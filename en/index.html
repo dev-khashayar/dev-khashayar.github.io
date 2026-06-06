@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PromptHub — Curated AI prompts for Marketing, SEO, Business & Automation. Professional prompts for better AI results.">
+  <meta name="theme-color" content="#0a0e14">
+  <meta property="og:title" content="PromptHub — Curated AI Prompts">
+  <meta property="og:description" content="Curated AI prompts for Marketing, SEO, Business & Automation. Professional prompts for better AI results.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dev-khashayar.github.io/en/">
+  <title>PromptHub — Curated AI Prompts for Marketing, SEO, Business & Automation</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="/en/" class="site-logo" aria-label="PromptHub Home">
+        Prompt<span>Hub</span>
+      </a>
+      <nav class="lang-switcher" aria-label="Language switcher">
+        <a href="/fa/" class="lang-switcher__link" lang="fa">FA</a>
+        <span class="lang-switcher__sep" aria-hidden="true">|</span>
+        <a href="/en/" class="lang-switcher__link active" lang="en" aria-current="page">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero__title">Curated AI Prompts</h1>
+        <p class="hero__subtitle">
+          Professional prompts for Marketing, SEO,<br>
+          Business & Automation — ready to use,<br>
+          designed for results.
+        </p>
+        <a href="#prompts-section" class="btn btn--primary">
+          Browse All Prompts
+        </a>
+      </div>
+    </section>
+
+    <!-- FEATURED PROMPTS -->
+    <section class="section" id="featured-section" aria-labelledby="featured-heading">
+      <div class="container">
+        <h2 class="section__title" id="featured-heading">
+          <span class="section__title-icon">⭐</span>
+          Featured Prompt
+        </h2>
+        <div class="prompt-cards-grid" id="featured-container">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SEARCH & FILTERS -->
+    <section class="section" id="prompts-section" aria-labelledby="all-prompts-heading">
+      <div class="container">
+        <div class="search-bar" role="search">
+          <span class="search-bar__icon" aria-hidden="true">🔍</span>
+          <input
+            type="search"
+            class="search-bar__input"
+            id="search-input"
+            placeholder="Search by title, tag, or category..."
+            aria-label="Search prompts"
+            autocomplete="off"
+          >
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-section__title">Category</div>
+          <div class="filter-chips" id="category-filters" role="group" aria-label="Filter by category">
+            <button class="filter-chip active" data-filter="all" data-filter-type="category" aria-pressed="true">All</button>
+            <button class="filter-chip" data-filter="strategy" data-filter-type="category" aria-pressed="false">Strategy</button>
+            <button class="filter-chip" data-filter="seo" data-filter-type="category" aria-pressed="false">SEO</button>
+            <button class="filter-chip" data-filter="marketing" data-filter-type="category" aria-pressed="false">Marketing</button>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-section__title">Type</div>
+          <div class="filter-chips" id="type-filters" role="group" aria-label="Filter by prompt type">
+            <button class="filter-chip active" data-filter="all" data-filter-type="type" aria-pressed="true">All Types</button>
+            <button class="filter-chip" data-filter="meta" data-filter-type="type" aria-pressed="false">Meta</button>
+            <button class="filter-chip" data-filter="multi-step" data-filter-type="type" aria-pressed="false">Multi-Step</button>
+            <button class="filter-chip" data-filter="single" data-filter-type="type" aria-pressed="false">Single</button>
+            <button class="filter-chip" data-filter="role" data-filter-type="type" aria-pressed="false">Role</button>
+            <button class="filter-chip" data-filter="template" data-filter-type="type" aria-pressed="false">Template</button>
+            <button class="filter-chip" data-filter="workflow" data-filter-type="type" aria-pressed="false">Workflow</button>
+            <button class="filter-chip" data-filter="pack" data-filter-type="type" aria-pressed="false">Pack</button>
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-section__title">Difficulty</div>
+          <div class="filter-chips" id="difficulty-filters" role="group" aria-label="Filter by difficulty level">
+            <button class="filter-chip active" data-filter="all" data-filter-type="difficulty" aria-pressed="true">All Levels</button>
+            <button class="filter-chip" data-filter="beginner" data-filter-type="difficulty" aria-pressed="false">Beginner</button>
+            <button class="filter-chip" data-filter="intermediate" data-filter-type="difficulty" aria-pressed="false">Intermediate</button>
+            <button class="filter-chip" data-filter="advanced" data-filter-type="difficulty" aria-pressed="false">Advanced</button>
+          </div>
+        </div>
+
+        <div class="results-count" id="results-count" aria-live="polite">
+          Loading prompts...
+        </div>
+
+        <div class="prompt-cards-grid" id="prompts-container">
+          <!-- Populated by JavaScript -->
+        </div>
+
+        <div id="no-results" style="display: none; text-align: center; padding: var(--space-2xl) 0;">
+          <p style="font-size: var(--font-size-lg); color: var(--color-text-muted); margin-bottom: var(--space-md);">
+            No prompts found matching your criteria.
+          </p>
+          <p style="font-size: var(--font-size-sm); color: var(--color-text-muted);">
+            Try adjusting your search or filters.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <p class="site-footer__text">
+        PromptHub &copy; 2026 &mdash; Curated AI Prompts for Professionals
+      </p>
+    </div>
+  </footer>
+
+  <script src="../assets/js/prompts-data-en.js"></script>
+  <script src="../assets/js/home.js"></script>
+</body>
+</html>
