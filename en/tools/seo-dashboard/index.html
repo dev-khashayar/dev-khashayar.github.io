@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="SEO Dashboard — Analyze your Google Search Console data like a senior SEO consultant. Upload your CSV export or connect via API for deep insights, opportunity detection, and actionable recommendations.">
+  <meta name="description" content="SEO Dashboard — Analyze your Google Search Console data like a senior SEO consultant. Upload XLSX or CSV for 12 deep analyses, interactive charts, and a prioritized action plan.">
   <meta name="theme-color" content="#0a0e14">
   <meta property="og:title" content="SEO Dashboard — PromptHub Tools">
-  <meta property="og:description" content="Analyze your Google Search Console data like a senior SEO consultant. Deep insights, opportunity detection, and actionable recommendations.">
+  <meta property="og:description" content="Analyze your Google Search Console data like a senior SEO consultant. 12 deep analyses, interactive charts, and a prioritized action plan.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://dev-khashayar.github.io/en/tools/seo-dashboard/">
   <title>SEO Dashboard — PromptHub</title>
@@ -19,71 +19,39 @@
 </head>
 <body>
 
-  <!-- ============================================ -->
-  <!-- SITE HEADER                                 -->
-  <!-- ============================================ -->
+  <!-- SITE HEADER -->
   <header class="site-header">
     <div class="container site-header__inner">
-      <a href="/en/" class="site-logo" aria-label="PromptHub Home">
-        Prompt<span>Hub</span>
-      </a>
-
+      <a href="/en/" class="site-logo" aria-label="PromptHub Home">Prompt<span>Hub</span></a>
       <nav class="desktop-nav" aria-label="Main navigation">
         <a href="/en/" class="desktop-nav__link">🏠 Home</a>
         <a href="/en/#prompts-section" class="desktop-nav__link">📋 Prompts</a>
         <a href="/en/tools/" class="desktop-nav__link active">🛠 Tools</a>
         <a href="/en/contact/" class="desktop-nav__link">📩 Contact</a>
       </nav>
-
       <div class="header-actions">
         <nav class="lang-switcher" aria-label="Language switcher">
           <a href="/fa/tools/seo-dashboard/" class="lang-switcher__link" lang="fa">FA</a>
           <span class="lang-switcher__sep" aria-hidden="true">|</span>
           <a href="/en/tools/seo-dashboard/" class="lang-switcher__link active" lang="en" aria-current="page">EN</a>
         </nav>
-
-        <button
-          class="hamburger-btn"
-          id="hamburger-btn"
-          aria-expanded="false"
-          aria-label="Open menu"
-          aria-controls="bottom-sheet"
-          data-open-label="Open menu"
-          data-close-label="Close menu"
-        >
-          <span class="hamburger-btn__icon" aria-hidden="true">
-            <span class="hamburger-btn__line"></span>
-            <span class="hamburger-btn__line"></span>
-            <span class="hamburger-btn__line"></span>
-          </span>
+        <button class="hamburger-btn" id="hamburger-btn" aria-expanded="false" aria-label="Open menu" aria-controls="bottom-sheet" data-open-label="Open menu" data-close-label="Close menu">
+          <span class="hamburger-btn__icon" aria-hidden="true"><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span><span class="hamburger-btn__line"></span></span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- ============================================ -->
-  <!-- BACKDROP + BOTTOM SHEET                     -->
-  <!-- ============================================ -->
+  <!-- BACKDROP + BOTTOM SHEET -->
   <div class="backdrop" id="backdrop" aria-hidden="true"></div>
-
   <div class="bottom-sheet" id="bottom-sheet" role="dialog" aria-modal="true" aria-label="Navigation menu">
-    <div class="bottom-sheet__handle" aria-hidden="true">
-      <div class="bottom-sheet__handle-bar"></div>
-    </div>
+    <div class="bottom-sheet__handle" aria-hidden="true"><div class="bottom-sheet__handle-bar"></div></div>
     <div class="bottom-sheet__content">
       <nav class="bottom-sheet__nav" aria-label="Mobile navigation">
-        <a href="/en/" class="bottom-sheet__nav-link">
-          <span class="bottom-sheet__nav-icon" aria-hidden="true">🏠</span> Home
-        </a>
-        <a href="/en/#prompts-section" class="bottom-sheet__nav-link">
-          <span class="bottom-sheet__nav-icon" aria-hidden="true">📋</span> Prompts
-        </a>
-        <a href="/en/tools/" class="bottom-sheet__nav-link active">
-          <span class="bottom-sheet__nav-icon" aria-hidden="true">🛠</span> Tools
-        </a>
-        <a href="/en/contact/" class="bottom-sheet__nav-link">
-          <span class="bottom-sheet__nav-icon" aria-hidden="true">📩</span> Contact
-        </a>
+        <a href="/en/" class="bottom-sheet__nav-link"><span class="bottom-sheet__nav-icon" aria-hidden="true">🏠</span> Home</a>
+        <a href="/en/#prompts-section" class="bottom-sheet__nav-link"><span class="bottom-sheet__nav-icon" aria-hidden="true">📋</span> Prompts</a>
+        <a href="/en/tools/" class="bottom-sheet__nav-link active"><span class="bottom-sheet__nav-icon" aria-hidden="true">🛠</span> Tools</a>
+        <a href="/en/contact/" class="bottom-sheet__nav-link"><span class="bottom-sheet__nav-icon" aria-hidden="true">📩</span> Contact</a>
       </nav>
       <div class="bottom-sheet__lang" aria-label="Language switcher">
         <a href="/fa/tools/seo-dashboard/" class="bottom-sheet__lang-btn" lang="fa">🇮🇷 فارسی</a>
@@ -92,11 +60,8 @@
     </div>
   </div>
 
-  <!-- ============================================ -->
-  <!-- MAIN CONTENT                                -->
-  <!-- ============================================ -->
+  <!-- MAIN CONTENT -->
   <main class="dashboard">
-    <!-- DASHBOARD HEADER -->
     <div class="dash-header">
       <div class="container dash-header__inner">
         <div class="dash-header__title-group">
@@ -116,27 +81,23 @@
 
     <div class="container" style="padding-top: var(--space-xl); padding-bottom: var(--space-2xl);">
 
-      <!-- UPLOAD SECTION (shown when no data) -->
+      <!-- UPLOAD SECTION -->
       <div id="upload-section">
         <div class="connect-section">
           <div class="upload-zone" id="upload-zone">
             <div class="upload-zone__icon" aria-hidden="true">📁</div>
-            <div class="upload-zone__title">Upload GSC CSV Export</div>
+            <div class="upload-zone__title">Upload GSC Export File</div>
             <div class="upload-zone__text">
-              Export your data from Google Search Console Performance report as CSV and upload it here.
+              Export your data from Google Search Console as <strong>XLSX</strong> (Google Sheets) or <strong>CSV</strong> and upload it here.<br><br>
+              <strong>Recommended:</strong> Export as Google Sheets → Download as XLSX for best compatibility with Persian content and multi-sheet support.<br><br>
               All data stays in your browser — nothing is sent anywhere.
             </div>
             <div class="upload-zone__preview"></div>
-            <input type="file" class="upload-zone__input" id="csv-file-input" accept=".csv">
+            <input type="file" class="upload-zone__input" id="csv-file-input" accept=".csv,.xlsx,.xls">
           </div>
-
           <div class="connect-divider">or</div>
-
-          <button class="btn btn--secondary" id="connect-gsc-btn">
-            🔗 Connect GSC API
-          </button>
+          <button class="btn btn--secondary" id="connect-gsc-btn">🔗 Connect GSC API</button>
         </div>
-
         <div class="tools-info" style="margin-top: 0;">
           <div class="tools-info__icon" aria-hidden="true">💡</div>
           <div class="tools-info__content">
@@ -145,88 +106,53 @@
               1. Open <strong>Google Search Console</strong> → Performance report<br>
               2. Set your desired date range (recommended: last 28 days)<br>
               3. Make sure <strong>Queries</strong>, <strong>Clicks</strong>, <strong>Impressions</strong>, <strong>CTR</strong>, and <strong>Position</strong> are selected<br>
-              4. Click <strong>Export</strong> (top-right) → <strong>CSV</strong><br>
-              5. Upload the downloaded file here<br><br>
+              4. Click <strong>Export</strong> (top-right) → <strong>Google Sheets</strong><br>
+              5. In Google Sheets: File → Download → <strong>Microsoft Excel (.xlsx)</strong><br>
+              6. Upload the .xlsx file here<br>
+              7. For multi-sheet analysis: export separate reports (Pages, Countries, Devices) as additional sheets in the same file<br><br>
               <em>Your data is processed entirely in your browser. It is never uploaded to any server.</em>
             </p>
           </div>
         </div>
       </div>
 
-      <!-- DASHBOARD SECTION (shown after data is loaded) -->
+      <!-- DASHBOARD SECTION -->
       <div id="dashboard-section" style="display: none;">
-
-        <!-- Brand Name Input -->
         <div style="margin-bottom: var(--space-lg); display: flex; align-items: center; gap: var(--space-md); flex-wrap: wrap;">
           <label style="font-size: var(--font-size-sm); color: var(--color-text-muted); white-space: nowrap;">Brand Name:</label>
-          <input
-            type="text"
-            id="brand-name-input"
-            class="data-table-search"
-            placeholder="e.g. Nike (for Brand vs Non-Brand analysis)"
-            style="width: 300px; max-width: 100%;"
-          >
-          <span style="font-size: var(--font-size-xs); color: var(--color-text-muted);">Optional — enables Brand vs Non-Brand analysis</span>
+          <input type="text" id="brand-name-input" class="data-table-search" placeholder="e.g. Nike (for Brand vs Non-Brand)" style="width: 300px; max-width: 100%;">
+          <span style="font-size: var(--font-size-xs); color: var(--color-text-muted);">Optional</span>
         </div>
 
         <!-- KPI CARDS -->
         <div class="kpi-grid">
-          <div class="kpi-card kpi-card--clicks">
-            <div class="kpi-card__label">📊 Total Clicks</div>
-            <div class="kpi-card__value" id="kpi-clicks">—</div>
-          </div>
-          <div class="kpi-card kpi-card--impressions">
-            <div class="kpi-card__label">👁️ Total Impressions</div>
-            <div class="kpi-card__value" id="kpi-impressions">—</div>
-          </div>
-          <div class="kpi-card kpi-card--ctr">
-            <div class="kpi-card__label">🎯 Average CTR</div>
-            <div class="kpi-card__value" id="kpi-ctr">—</div>
-          </div>
-          <div class="kpi-card kpi-card--position">
-            <div class="kpi-card__label">📈 Average Position</div>
-            <div class="kpi-card__value" id="kpi-position">—</div>
-          </div>
+          <div class="kpi-card kpi-card--clicks"><div class="kpi-card__label">📊 Total Clicks</div><div class="kpi-card__value" id="kpi-clicks">—</div></div>
+          <div class="kpi-card kpi-card--impressions"><div class="kpi-card__label">👁️ Total Impressions</div><div class="kpi-card__value" id="kpi-impressions">—</div></div>
+          <div class="kpi-card kpi-card--ctr"><div class="kpi-card__label">🎯 Average CTR</div><div class="kpi-card__value" id="kpi-ctr">—</div></div>
+          <div class="kpi-card kpi-card--position"><div class="kpi-card__label">📈 Average Position</div><div class="kpi-card__value" id="kpi-position">—</div></div>
         </div>
 
         <!-- HEALTH SCORE -->
         <div class="health-score-section">
           <div class="health-score-card">
             <div class="health-gauge">
-              <div class="health-gauge__circle">
-                <canvas id="health-gauge-chart" width="120" height="120"></canvas>
-                <div class="health-gauge__score" id="health-score-value">—</div>
-              </div>
+              <div class="health-gauge__circle"><canvas id="health-gauge-chart" width="120" height="120"></canvas><div class="health-gauge__score" id="health-score-value">—</div></div>
               <div class="health-gauge__label">Health Score</div>
             </div>
             <div class="health-details">
               <div class="health-details__title">SEO Health Assessment</div>
-              <div class="health-details__message" id="health-message">
-                Upload your GSC data to get a comprehensive health assessment.
-              </div>
+              <div class="health-details__message" id="health-message">Upload your GSC data to get a comprehensive health assessment.</div>
               <div class="health-breakdown">
-                <div class="health-breakdown__item">
-                  <div class="health-breakdown__value" id="breakdown-ctr">—</div>
-                  <div class="health-breakdown__label">CTR Score</div>
-                </div>
-                <div class="health-breakdown__item">
-                  <div class="health-breakdown__value" id="breakdown-position">—</div>
-                  <div class="health-breakdown__label">Position</div>
-                </div>
-                <div class="health-breakdown__item">
-                  <div class="health-breakdown__value" id="breakdown-ctrhealth">—</div>
-                  <div class="health-breakdown__label">CTR Health</div>
-                </div>
-                <div class="health-breakdown__item">
-                  <div class="health-breakdown__value" id="breakdown-opportunity">—</div>
-                  <div class="health-breakdown__label">Opportunities</div>
-                </div>
+                <div class="health-breakdown__item"><div class="health-breakdown__value" id="breakdown-ctr">—</div><div class="health-breakdown__label">CTR Score</div></div>
+                <div class="health-breakdown__item"><div class="health-breakdown__value" id="breakdown-position">—</div><div class="health-breakdown__label">Position</div></div>
+                <div class="health-breakdown__item"><div class="health-breakdown__value" id="breakdown-ctrhealth">—</div><div class="health-breakdown__label">CTR Health</div></div>
+                <div class="health-breakdown__item"><div class="health-breakdown__value" id="breakdown-opportunity">—</div><div class="health-breakdown__label">Opportunities</div></div>
               </div>
             </div>
           </div>
         </div>
 
-        <!-- TAB NAVIGATION -->
+        <!-- TABS -->
         <div class="dash-tabs" role="tablist">
           <button class="dash-tab active" data-tab="overview" role="tab" aria-selected="true">📊 Overview</button>
           <button class="dash-tab" data-tab="queries" role="tab" aria-selected="false">🔎 Top Queries</button>
@@ -242,172 +168,32 @@
           <button class="dash-tab" data-tab="action-plan" role="tab" aria-selected="false">📋 Action Plan</button>
         </div>
 
-        <!-- TAB: OVERVIEW -->
-        <div class="dash-tab-content" data-tab-content="overview" style="display: block;">
-          <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); text-align: center; padding: var(--space-xl);">
-            Upload your GSC data to see the full dashboard with all 12 analysis sections.
-          </p>
-        </div>
-
-        <!-- TAB: TOP QUERIES -->
-        <div class="dash-tab-content" data-tab-content="queries" style="display: none;">
-          <div class="dash-section">
-            <div class="dash-section__header">
-              <h2 class="dash-section__title">🔎 Top Queries Deep Dive</h2>
-            </div>
-            <div id="top-queries-table"></div>
-          </div>
-        </div>
-
-        <!-- TAB: TOP PAGES -->
-        <div class="dash-tab-content" data-tab-content="pages" style="display: none;">
-          <div class="dash-section">
-            <div class="dash-section__header">
-              <h2 class="dash-section__title">📄 Top Pages Deep Dive</h2>
-            </div>
-            <div id="top-pages-table"></div>
-          </div>
-        </div>
-
-        <!-- TAB: CTR HEALTH -->
-        <div class="dash-tab-content" data-tab-content="ctr-health" style="display: none;">
-          <div class="dash-section">
-            <div class="dash-section__header">
-              <h2 class="dash-section__title">💚 CTR Health Check</h2>
-              <span class="dash-section__badge dash-section__badge--info">Benchmark vs Industry Average</span>
-            </div>
-            <div class="chart-container" style="margin-bottom: var(--space-lg);">
-              <canvas id="ctr-scatter-chart"></canvas>
-            </div>
-            <div id="ctr-health-table"></div>
-          </div>
-        </div>
-
-        <!-- TAB: OPPORTUNITIES -->
-        <div class="dash-tab-content" data-tab-content="opportunities" style="display: none;">
-          <div class="dash-section">
-            <div class="dash-section__header">
-              <h2 class="dash-section__title">⚡ Opportunity Keywords</h2>
-              <span class="dash-section__badge dash-section__badge--warning">High Potential</span>
-            </div>
-            <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-lg);">
-              Keywords ranking in positions 4-20 with high impressions and below-average CTR. These are your biggest quick-win opportunities.
-            </p>
-            <div id="opportunities-table"></div>
-          </div>
-        </div>
-
-        <!-- TAB: CANNIBALIZATION -->
-        <div class="dash-tab-content" data-tab-content="cannibalization" style="display: none;">
-          <div class="dash-section">
-            <div class="dash-section__header">
-              <h2 class="dash-section__title">⚠️ Keyword Cannibalization</h2>
-              <span class="dash-section__badge dash-section__badge--critical" id="cannibal-count-badge"></span>
-            </div>
-            <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-lg);">
-              Multiple URLs competing for the same query dilute your ranking authority. Each group below needs consolidation.
-            </p>
-            <div id="cannibalization-container"></div>
-          </div>
-        </div>
-
-        <!-- TAB: CONTENT DECAY -->
-        <div class="dash-tab-content" data-tab-content="content-decay" style="display: none;">
-          <div class="dash-section">
-            <div class="dash-section__header">
-              <h2 class="dash-section__title">📉 Content Decay Detection</h2>
-            </div>
-            <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-lg);">
-              Content losing traffic over time. Requires data from two different time periods for accurate detection.
-            </p>
-            <div id="content-decay-table"></div>
-          </div>
-        </div>
-
-        <!-- TAB: DEVICE GAP -->
-        <div class="dash-tab-content" data-tab-content="device-gap" style="display: none;">
-          <div class="dash-section">
-            <div class="dash-section__header">
-              <h2 class="dash-section__title">📱 Device Performance Gap</h2>
-            </div>
-            <div class="chart-container" style="margin-bottom: var(--space-lg);">
-              <canvas id="device-bar-chart"></canvas>
-            </div>
-            <div id="device-gap-summary"></div>
-            <div id="device-gap-container"></div>
-          </div>
-        </div>
-
-        <!-- TAB: COUNTRY -->
-        <div class="dash-tab-content" data-tab-content="country" style="display: none;">
-          <div class="dash-section">
-            <div class="dash-section__header">
-              <h2 class="dash-section__title">🌍 Country Performance</h2>
-            </div>
-            <div class="chart-container" style="margin-bottom: var(--space-lg);">
-              <canvas id="country-bar-chart"></canvas>
-            </div>
-            <div id="country-table"></div>
-          </div>
-        </div>
-
-        <!-- TAB: ANOMALIES -->
-        <div class="dash-tab-content" data-tab-content="anomalies" style="display: none;">
-          <div class="dash-section">
-            <div class="dash-section__header">
-              <h2 class="dash-section__title">🔍 Anomaly Detection</h2>
-            </div>
-            <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-lg);">
-              Unusual changes in clicks, impressions, or rankings that may indicate issues or opportunities.
-            </p>
-            <div id="anomalies-container"></div>
-          </div>
-        </div>
-
-        <!-- TAB: BRAND VS NON-BRAND -->
-        <div class="dash-tab-content" data-tab-content="brand" style="display: none;">
-          <div class="dash-section">
-            <div class="dash-section__header">
-              <h2 class="dash-section__title">🏷️ Brand vs Non-Brand Performance</h2>
-            </div>
-            <div class="chart-container" style="max-width: 400px; margin: 0 auto var(--space-lg);">
-              <canvas id="brand-pie-chart"></canvas>
-            </div>
-            <div id="brand-chart"></div>
-          </div>
-        </div>
-
-        <!-- TAB: ACTION PLAN -->
-        <div class="dash-tab-content" data-tab-content="action-plan" style="display: none;">
-          <div class="dash-section">
-            <div class="dash-section__header">
-              <h2 class="dash-section__title">📋 Action Plan</h2>
-              <span class="dash-section__badge dash-section__badge--info">Prioritized by Impact & Urgency</span>
-            </div>
-            <div id="action-plan-container"></div>
-          </div>
-        </div>
-
+        <!-- All tab content panels -->
+        <div class="dash-tab-content" data-tab-content="overview" style="display: block;"><p style="font-size: var(--font-size-sm); color: var(--color-text-muted); text-align: center; padding: var(--space-xl);">Upload your GSC data to see the full dashboard with all 12 analysis sections.</p></div>
+        <div class="dash-tab-content" data-tab-content="queries" style="display: none;"><div class="dash-section"><div class="dash-section__header"><h2 class="dash-section__title">🔎 Top Queries Deep Dive</h2></div><div id="top-queries-table"></div></div></div>
+        <div class="dash-tab-content" data-tab-content="pages" style="display: none;"><div class="dash-section"><div class="dash-section__header"><h2 class="dash-section__title">📄 Top Pages Deep Dive</h2></div><div id="top-pages-table"></div></div></div>
+        <div class="dash-tab-content" data-tab-content="ctr-health" style="display: none;"><div class="dash-section"><div class="dash-section__header"><h2 class="dash-section__title">💚 CTR Health Check</h2><span class="dash-section__badge dash-section__badge--info">Benchmark vs Industry Average</span></div><div class="chart-container" style="margin-bottom: var(--space-lg);"><canvas id="ctr-scatter-chart"></canvas></div><div id="ctr-health-table"></div></div></div>
+        <div class="dash-tab-content" data-tab-content="opportunities" style="display: none;"><div class="dash-section"><div class="dash-section__header"><h2 class="dash-section__title">⚡ Opportunity Keywords</h2><span class="dash-section__badge dash-section__badge--warning">High Potential</span></div><p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-lg);">Keywords ranking in positions 4-20 with high impressions and below-average CTR. These are your biggest quick-win opportunities.</p><div id="opportunities-table"></div></div></div>
+        <div class="dash-tab-content" data-tab-content="cannibalization" style="display: none;"><div class="dash-section"><div class="dash-section__header"><h2 class="dash-section__title">⚠️ Keyword Cannibalization</h2><span class="dash-section__badge dash-section__badge--critical" id="cannibal-count-badge"></span></div><p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-lg);">Multiple URLs competing for the same query dilute your ranking authority.</p><div id="cannibalization-container"></div></div></div>
+        <div class="dash-tab-content" data-tab-content="content-decay" style="display: none;"><div class="dash-section"><div class="dash-section__header"><h2 class="dash-section__title">📉 Content Decay Detection</h2></div><p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-lg);">Content losing traffic over time. Requires data from two different time periods.</p><div id="content-decay-table"></div></div></div>
+        <div class="dash-tab-content" data-tab-content="device-gap" style="display: none;"><div class="dash-section"><div class="dash-section__header"><h2 class="dash-section__title">📱 Device Performance Gap</h2></div><div class="chart-container" style="margin-bottom: var(--space-lg);"><canvas id="device-bar-chart"></canvas></div><div id="device-gap-summary"></div><div id="device-gap-container"></div></div></div>
+        <div class="dash-tab-content" data-tab-content="country" style="display: none;"><div class="dash-section"><div class="dash-section__header"><h2 class="dash-section__title">🌍 Country Performance</h2></div><div class="chart-container" style="margin-bottom: var(--space-lg);"><canvas id="country-bar-chart"></canvas></div><div id="country-table"></div></div></div>
+        <div class="dash-tab-content" data-tab-content="anomalies" style="display: none;"><div class="dash-section"><div class="dash-section__header"><h2 class="dash-section__title">🔍 Anomaly Detection</h2></div><p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-lg);">Unusual changes in clicks, impressions, or rankings.</p><div id="anomalies-container"></div></div></div>
+        <div class="dash-tab-content" data-tab-content="brand" style="display: none;"><div class="dash-section"><div class="dash-section__header"><h2 class="dash-section__title">🏷️ Brand vs Non-Brand Performance</h2></div><div class="chart-container" style="max-width: 400px; margin: 0 auto var(--space-lg);"><canvas id="brand-pie-chart"></canvas></div><div id="brand-chart"></div></div></div>
+        <div class="dash-tab-content" data-tab-content="action-plan" style="display: none;"><div class="dash-section"><div class="dash-section__header"><h2 class="dash-section__title">📋 Action Plan</h2><span class="dash-section__badge dash-section__badge--info">Prioritized by Impact & Urgency</span></div><div id="action-plan-container"></div></div></div>
       </div>
     </div>
   </main>
 
-  <!-- ============================================ -->
-  <!-- SITE FOOTER                                  -->
-  <!-- ============================================ -->
+  <!-- SITE FOOTER -->
   <footer class="site-footer">
-    <div class="container">
-      <p class="site-footer__text">
-        PromptHub &copy; 2026 &mdash; Curated AI Prompts for Professionals
-      </p>
-    </div>
+    <div class="container"><p class="site-footer__text">PromptHub &copy; 2026 &mdash; Curated AI Prompts for Professionals</p></div>
   </footer>
 
-  <!-- ============================================ -->
-  <!-- SCRIPTS                                      -->
-  <!-- ============================================ -->
+  <!-- SCRIPTS -->
   <script src="../../../assets/js/navigation.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
   <script src="js/data-manager.js"></script>
   <script src="js/gsc-parser.js"></script>
   <script src="js/analysis-engine.js"></script>
