@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="داشبرد سئو — داده‌های Google Search Console خود را مثل یک متخصص سئوی ارشد تحلیل کن. فایل CSV خروجی را آپلود کن یا از طریق API وصل شو برای تحلیل عمیق، شناسایی فرصت‌ها و توصیه‌های عملی.">
+  <meta name="description" content="داشبرد سئو — داده‌های Google Search Console خود را مثل یک متخصص سئوی ارشد تحلیل کن. فایل XLSX یا CSV را آپلود کن برای ۱۲ تحلیل عمیق، نمودارهای تعاملی و برنامه اقدام اولویت‌بندی‌شده.">
   <meta name="theme-color" content="#0a0e14">
   <meta property="og:title" content="داشبرد سئو — ابزارهای PromptHub">
-  <meta property="og:description" content="داده‌های Google Search Console خود را مثل یک متخصص سئوی ارشد تحلیل کن. تحلیل عمیق، شناسایی فرصت‌ها و توصیه‌های عملی.">
+  <meta property="og:description" content="داده‌های Google Search Console خود را مثل یک متخصص سئوی ارشد تحلیل کن. ۱۲ تحلیل عمیق، نمودارهای تعاملی و برنامه اقدام.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://dev-khashayar.github.io/fa/tools/seo-dashboard/">
   <title>داشبرد سئو — PromptHub</title>
   <link rel="stylesheet" href="../../../assets/css/style.css">
-  <link rel="stylesheet" href="/en/tools/seo-dashboard/css/dashboard.css">
+  <link rel="stylesheet" href="../../../en/tools/seo-dashboard/css/dashboard.css">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 <body>
@@ -70,16 +70,20 @@
     <div class="bottom-sheet__content">
       <nav class="bottom-sheet__nav" aria-label="ناوبری موبایل">
         <a href="/fa/" class="bottom-sheet__nav-link">
-          <span class="bottom-sheet__nav-icon" aria-hidden="true">🏠</span> خانه
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🏠</span>
+          خانه
         </a>
         <a href="/fa/#prompts-section" class="bottom-sheet__nav-link">
-          <span class="bottom-sheet__nav-icon" aria-hidden="true">📋</span> پرامپت‌ها
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📋</span>
+          پرامپت‌ها
         </a>
         <a href="/fa/tools/" class="bottom-sheet__nav-link active">
-          <span class="bottom-sheet__nav-icon" aria-hidden="true">🛠</span> ابزارها
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🛠</span>
+          ابزارها
         </a>
         <a href="/fa/contact/" class="bottom-sheet__nav-link">
-          <span class="bottom-sheet__nav-icon" aria-hidden="true">📩</span> تماس با من
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📩</span>
+          تماس با من
         </a>
       </nav>
       <div class="bottom-sheet__lang" aria-label="تغییر زبان">
@@ -118,13 +122,14 @@
         <div class="connect-section">
           <div class="upload-zone" id="upload-zone">
             <div class="upload-zone__icon" aria-hidden="true">📁</div>
-            <div class="upload-zone__title">آپلود فایل CSV گوگل سرچ کنسول</div>
+            <div class="upload-zone__title">آپلود فایل خروجی GSC</div>
             <div class="upload-zone__text">
-              داده‌های Performance report گوگل سرچ کنسول را به صورت CSV خروجی بگیرید و اینجا آپلود کنید.
+              داده‌های Google Search Console را به صورت <strong>XLSX</strong> (Google Sheets) یا <strong>CSV</strong> خروجی بگیرید و اینجا آپلود کنید.<br><br>
+              <strong>توصیه:</strong> از طریق Google Sheets خروجی بگیرید و به صورت XLSX دانلود کنید — بهترین سازگاری با محتوای فارسی و پشتیبانی از چند شیت.<br><br>
               تمام داده‌ها در مرورگر شما باقی می‌ماند — هیچ چیزی به جایی ارسال نمی‌شود.
             </div>
             <div class="upload-zone__preview"></div>
-            <input type="file" class="upload-zone__input" id="csv-file-input" accept=".csv">
+            <input type="file" class="upload-zone__input" id="csv-file-input" accept=".csv,.xlsx,.xls">
           </div>
 
           <div class="connect-divider">یا</div>
@@ -142,8 +147,10 @@
               ۱. وارد <strong>Google Search Console</strong> شوید → گزارش Performance<br>
               ۲. بازه زمانی مورد نظر را تنظیم کنید (پیشنهاد: ۲۸ روز اخیر)<br>
               ۳. مطمئن شوید <strong>Queries</strong>، <strong>Clicks</strong>، <strong>Impressions</strong>، <strong>CTR</strong> و <strong>Position</strong> انتخاب شده باشند<br>
-              ۴. روی <strong>Export</strong> (بالا سمت راست) کلیک کنید → <strong>CSV</strong><br>
-              ۵. فایل دانلود شده را اینجا آپلود کنید<br><br>
+              ۴. روی <strong>Export</strong> (بالا سمت راست) کلیک کنید → <strong>Google Sheets</strong><br>
+              ۵. در Google Sheets: File → Download → <strong>Microsoft Excel (.xlsx)</strong><br>
+              ۶. فایل xlsx را اینجا آپلود کنید<br>
+              ۷. برای تحلیل چندبخشی: گزارش‌های Pages، Countries و Devices را به صورت شیت‌های جداگانه در همان فایل قرار دهید<br><br>
               <em>داده‌های شما کاملاً در مرورگر خودتان پردازش می‌شود و هرگز به هیچ سروری ارسال نمی‌شود.</em>
             </p>
           </div>
@@ -239,7 +246,7 @@
           <button class="dash-tab" data-tab="action-plan" role="tab" aria-selected="false">📋 برنامه اقدام</button>
         </div>
 
-        <!-- All tab content panels (same IDs as English version) -->
+        <!-- TAB CONTENTS -->
         <div class="dash-tab-content" data-tab-content="overview" style="display: block;">
           <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); text-align: center; padding: var(--space-xl);">
             داده‌های GSC خود را آپلود کنید تا داشبرد کامل با تمام ۱۲ بخش تحلیل نمایش داده شود.
@@ -394,13 +401,14 @@
   <!-- ============================================ -->
   <script src="../../../assets/js/navigation.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
-  <script src="/en/tools/seo-dashboard/js/data-manager.js"></script>
-  <script src="/en/tools/seo-dashboard/js/gsc-parser.js"></script>
-  <script src="/en/tools/seo-dashboard/js/analysis-engine.js"></script>
-  <script src="/en/tools/seo-dashboard/js/recommendation-engine.js"></script>
-  <script src="/en/tools/seo-dashboard/js/chart-builder.js"></script>
-  <script src="/en/tools/seo-dashboard/js/table-builder.js"></script>
-  <script src="/en/tools/seo-dashboard/js/ui-controller.js"></script>
-  <script src="/en/tools/seo-dashboard/js/app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+  <script src="../../../en/tools/seo-dashboard/js/data-manager.js"></script>
+  <script src="../../../en/tools/seo-dashboard/js/gsc-parser.js"></script>
+  <script src="../../../en/tools/seo-dashboard/js/analysis-engine.js"></script>
+  <script src="../../../en/tools/seo-dashboard/js/recommendation-engine.js"></script>
+  <script src="../../../en/tools/seo-dashboard/js/chart-builder.js"></script>
+  <script src="../../../en/tools/seo-dashboard/js/table-builder.js"></script>
+  <script src="../../../en/tools/seo-dashboard/js/ui-controller.js"></script>
+  <script src="../../../en/tools/seo-dashboard/js/app.js"></script>
 </body>
 </html>
