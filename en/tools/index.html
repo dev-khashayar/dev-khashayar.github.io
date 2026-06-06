@@ -1,0 +1,866 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PromptHub Tools — Free, practical tools for marketers, SEO specialists, and developers. Proxy Finder, YouTube Downloader, Telegram Downloader, Instagram Downloader, and more.">
+  <meta name="theme-color" content="#0a0e14">
+  <meta property="og:title" content="PromptHub Tools">
+  <meta property="og:description" content="Free, practical tools for marketers, SEO specialists, and developers. No installation required.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dev-khashayar.github.io/en/tools/">
+  <title>Tools — PromptHub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../assets/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <style>
+    /* ============================================
+       TOOLS PAGE — UNIQUE STYLES
+       ============================================ */
+
+    /* Tools Hero */
+    .tools-hero {
+      text-align: center;
+      padding: var(--space-2xl) 0 var(--space-xl);
+      background: var(--color-bg-hero);
+      border-bottom: 1px solid var(--color-border);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .tools-hero::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 30% 70%, rgba(167, 139, 250, 0.06) 0%, transparent 50%),
+                  radial-gradient(circle at 70% 30%, rgba(77, 166, 255, 0.06) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .tools-hero__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 64px;
+      height: 64px;
+      background: var(--color-accent-glow);
+      border: 1px solid var(--color-accent-primary);
+      border-radius: 18px;
+      font-size: 2rem;
+      margin-bottom: var(--space-md);
+      position: relative;
+    }
+
+    .tools-hero__title {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-sm);
+      line-height: var(--line-height-tight);
+      letter-spacing: -0.03em;
+      position: relative;
+    }
+
+    .tools-hero__subtitle {
+      font-size: var(--font-size-md);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-md);
+      line-height: var(--line-height-relaxed);
+      position: relative;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .tools-hero__stats {
+      display: flex;
+      justify-content: center;
+      gap: var(--space-xl);
+      margin-top: var(--space-lg);
+      position: relative;
+    }
+
+    .tools-hero__stat {
+      text-align: center;
+    }
+
+    .tools-hero__stat-value {
+      font-size: var(--font-size-2xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-accent-primary);
+      line-height: 1;
+    }
+
+    .tools-hero__stat-label {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-muted);
+      margin-top: var(--space-xs);
+    }
+
+    /* Featured Tool Card */
+    .featured-tool {
+      margin-bottom: var(--space-xl);
+    }
+
+    .featured-tool-card {
+      display: flex;
+      flex-direction: column;
+      background: linear-gradient(135deg, var(--color-bg-card) 0%, rgba(77, 166, 255, 0.08) 100%);
+      border: 1px solid var(--color-accent-primary);
+      border-radius: var(--radius-xl);
+      overflow: hidden;
+      transition: all var(--transition-base);
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
+
+    .featured-tool-card:hover {
+      border-color: var(--color-accent-secondary);
+      box-shadow: var(--shadow-glow), var(--shadow-elevated);
+      transform: translateY(-2px);
+    }
+
+    .featured-tool-card__badge {
+      position: absolute;
+      top: var(--space-md);
+      left: var(--space-md);
+      background: var(--color-accent-primary);
+      color: #fff;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-bold);
+      padding: 4px 12px;
+      border-radius: 12px;
+      letter-spacing: 0.03em;
+      z-index: 1;
+    }
+
+    .featured-tool-card__visual {
+      height: 160px;
+      background: linear-gradient(135deg, #1a2540 0%, #0d1b33 50%, #162040 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .featured-tool-card__visual::before {
+      content: '';
+      position: absolute;
+      width: 200px;
+      height: 200px;
+      background: radial-gradient(circle, rgba(77, 166, 255, 0.2) 0%, transparent 70%);
+      border-radius: 50%;
+      animation: pulse-glow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.3); opacity: 1; }
+    }
+
+    .featured-tool-card__icon {
+      font-size: 4rem;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 20px rgba(77, 166, 255, 0.5));
+    }
+
+    .featured-tool-card__body {
+      padding: var(--space-lg);
+    }
+
+    .featured-tool-card__title {
+      font-size: var(--font-size-xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .featured-tool-card__desc {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+      margin-bottom: var(--space-md);
+    }
+
+    .featured-tool-card__meta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .featured-tool-card__tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      padding: 4px 10px;
+      background: var(--color-accent-glow);
+      color: var(--color-accent-primary);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-medium);
+      border-radius: 16px;
+    }
+
+    /* Tools Grid */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: var(--space-md);
+    }
+
+    @media (min-width: 600px) {
+      .tools-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 900px) {
+      .tools-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    /* Tool Card */
+    .tool-card {
+      display: flex;
+      flex-direction: column;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      transition: all var(--transition-base);
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+    }
+
+    .tool-card:hover {
+      border-color: var(--color-border-light);
+      box-shadow: var(--shadow-elevated);
+      transform: translateY(-2px);
+    }
+
+    .tool-card--coming-soon {
+      opacity: 0.7;
+      cursor: default;
+    }
+
+    .tool-card--coming-soon:hover {
+      transform: none;
+      border-color: var(--color-border);
+      box-shadow: none;
+    }
+
+    .tool-card__visual {
+      height: 120px;
+      position: relative;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .tool-card__visual--proxy {
+      background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    }
+
+    .tool-card__visual--youtube {
+      background: linear-gradient(135deg, #2e1a1a 0%, #3e1616 50%, #600f0f 100%);
+    }
+
+    .tool-card__visual--telegram {
+      background: linear-gradient(135deg, #1a2e1a 0%, #163e1a 50%, #0f6020 100%);
+    }
+
+    .tool-card__visual--instagram {
+      background: linear-gradient(135deg, #2e1a2e 0%, #3e1630 50%, #600f50 100%);
+    }
+
+    .tool-card__visual--keyword {
+      background: linear-gradient(135deg, #2e2a1a 0%, #3e3816 50%, #60580f 100%);
+    }
+
+    .tool-card__visual--prompt {
+      background: linear-gradient(135deg, #1a1a2e 0%, #1e1640 50%, #2a0f60 100%);
+    }
+
+    .tool-card__visual-pattern {
+      position: absolute;
+      inset: 0;
+      opacity: 0.15;
+      background-image:
+        radial-gradient(circle at 20% 30%, rgba(255,255,255,0.4) 1px, transparent 1px),
+        radial-gradient(circle at 70% 60%, rgba(255,255,255,0.3) 1px, transparent 1px),
+        radial-gradient(circle at 40% 80%, rgba(255,255,255,0.3) 1px, transparent 1px);
+      background-size: 60px 60px, 80px 80px, 50px 50px;
+    }
+
+    .tool-card__icon {
+      font-size: 3rem;
+      position: relative;
+      z-index: 1;
+      filter: drop-shadow(0 0 15px rgba(255, 255, 255, 0.3));
+    }
+
+    .tool-card__status {
+      position: absolute;
+      top: var(--space-sm);
+      right: var(--space-sm);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 3px 10px;
+      border-radius: 12px;
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+      z-index: 1;
+    }
+
+    .tool-card__status--ready {
+      background: var(--color-success-bg);
+      color: var(--color-success);
+    }
+
+    .tool-card__status--soon {
+      background: rgba(245, 166, 35, 0.12);
+      color: var(--color-warning);
+    }
+
+    .tool-card__status-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: currentColor;
+    }
+
+    .tool-card__body {
+      padding: var(--space-md);
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .tool-card__title {
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-xs);
+    }
+
+    .tool-card__desc {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-base);
+      margin-bottom: var(--space-md);
+      flex: 1;
+    }
+
+    .tool-card__footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .tool-card__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--space-xs);
+    }
+
+    .tool-card__tag {
+      padding: 2px 8px;
+      background: var(--color-bg-elevated);
+      color: var(--color-text-muted);
+      font-size: 0.625rem;
+      font-weight: var(--font-weight-medium);
+      border-radius: 10px;
+    }
+
+    .tool-card__arrow {
+      color: var(--color-accent-primary);
+      font-size: var(--font-size-lg);
+      transition: transform var(--transition-fast);
+    }
+
+    .tool-card:hover .tool-card__arrow {
+      transform: translateX(4px);
+    }
+
+    .tool-card--coming-soon .tool-card__arrow {
+      color: var(--color-text-muted);
+    }
+
+    /* Coming Soon Label */
+    .tool-card__coming-soon-label {
+      display: flex;
+      align-items: center;
+      gap: var(--space-xs);
+      color: var(--color-warning);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-semibold);
+    }
+
+    /* Search & Filter Section */
+    .tools-filters {
+      margin: var(--space-xl) 0 var(--space-lg);
+    }
+
+    /* Info Banner */
+    .tools-info {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-lg);
+      padding: var(--space-lg);
+      margin-top: var(--space-2xl);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    @media (min-width: 768px) {
+      .tools-info {
+        flex-direction: row;
+        align-items: center;
+        gap: var(--space-xl);
+      }
+    }
+
+    .tools-info__icon {
+      font-size: 2.5rem;
+      flex-shrink: 0;
+    }
+
+    .tools-info__content {
+      flex: 1;
+    }
+
+    .tools-info__title {
+      font-size: var(--font-size-md);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-sm);
+    }
+
+    .tools-info__text {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- SITE HEADER                                 -->
+  <!-- ============================================ -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <!-- Logo -->
+      <a href="/en/" class="site-logo" aria-label="PromptHub Home">
+        Prompt<span>Hub</span>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="/en/" class="desktop-nav__link">🏠 Home</a>
+        <a href="/en/#prompts-section" class="desktop-nav__link">📋 Prompts</a>
+        <a href="/en/tools/" class="desktop-nav__link active">🛠 Tools</a>
+        <a href="/en/contact/" class="desktop-nav__link">📩 Contact</a>
+      </nav>
+
+      <!-- Header Actions: Language Switcher + Hamburger -->
+      <div class="header-actions">
+        <!-- Language Switcher -->
+        <nav class="lang-switcher" aria-label="Language switcher">
+          <a href="/fa/tools/" class="lang-switcher__link" lang="fa">FA</a>
+          <span class="lang-switcher__sep" aria-hidden="true">|</span>
+          <a href="/en/tools/" class="lang-switcher__link active" lang="en" aria-current="page">EN</a>
+        </nav>
+
+        <!-- Hamburger Button (Mobile Only) -->
+        <button
+          class="hamburger-btn"
+          id="hamburger-btn"
+          aria-expanded="false"
+          aria-label="Open menu"
+          aria-controls="bottom-sheet"
+          data-open-label="Open menu"
+          data-close-label="Close menu"
+        >
+          <span class="hamburger-btn__icon" aria-hidden="true">
+            <span class="hamburger-btn__line"></span>
+            <span class="hamburger-btn__line"></span>
+            <span class="hamburger-btn__line"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- BACKDROP (Mobile Menu Overlay)              -->
+  <!-- ============================================ -->
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+
+  <!-- ============================================ -->
+  <!-- BOTTOM SHEET (Mobile Navigation)            -->
+  <!-- ============================================ -->
+  <div
+    class="bottom-sheet"
+    id="bottom-sheet"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Navigation menu"
+  >
+    <!-- Handle Bar -->
+    <div class="bottom-sheet__handle" aria-hidden="true">
+      <div class="bottom-sheet__handle-bar"></div>
+    </div>
+
+    <!-- Sheet Content -->
+    <div class="bottom-sheet__content">
+      <!-- Navigation Links -->
+      <nav class="bottom-sheet__nav" aria-label="Mobile navigation">
+        <a href="/en/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🏠</span>
+          Home
+        </a>
+        <a href="/en/#prompts-section" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📋</span>
+          Prompts
+        </a>
+        <a href="/en/tools/" class="bottom-sheet__nav-link active">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🛠</span>
+          Tools
+        </a>
+        <a href="/en/contact/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📩</span>
+          Contact
+        </a>
+      </nav>
+
+      <!-- Language Switcher inside Bottom Sheet -->
+      <div class="bottom-sheet__lang" aria-label="Language switcher">
+        <a href="/fa/tools/" class="bottom-sheet__lang-btn" lang="fa">
+          🇮🇷 فارسی
+        </a>
+        <a href="/en/tools/" class="bottom-sheet__lang-btn active" lang="en" aria-current="page">
+          🇬🇧 English
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- MAIN CONTENT                                -->
+  <!-- ============================================ -->
+  <main>
+    <!-- TOOLS HERO -->
+    <section class="tools-hero">
+      <div class="container">
+        <div class="tools-hero__icon" aria-hidden="true">🧰</div>
+        <h1 class="tools-hero__title">PromptHub Toolbox</h1>
+        <p class="tools-hero__subtitle">
+          Free, fast, and practical tools for marketers,
+          SEO specialists, and developers — no installation required.
+        </p>
+        <div class="tools-hero__stats">
+          <div class="tools-hero__stat">
+            <div class="tools-hero__stat-value">6</div>
+            <div class="tools-hero__stat-label">Tools</div>
+          </div>
+          <div class="tools-hero__stat">
+            <div class="tools-hero__stat-value">5</div>
+            <div class="tools-hero__stat-label">Ready to use</div>
+          </div>
+          <div class="tools-hero__stat">
+            <div class="tools-hero__stat-value">Free</div>
+            <div class="tools-hero__stat-label">Forever</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+      <!-- SEARCH & FILTER -->
+      <div class="tools-filters">
+        <div class="search-bar" role="search">
+          <span class="search-bar__icon" aria-hidden="true">🔍</span>
+          <input
+            type="search"
+            class="search-bar__input"
+            id="tools-search"
+            placeholder="Search tools..."
+            aria-label="Search tools"
+            autocomplete="off"
+          >
+        </div>
+        <div class="filter-section">
+          <div class="filter-section__title">Category</div>
+          <div class="filter-chips" id="tools-category-filters" role="group" aria-label="Filter tools">
+            <button class="filter-chip active" data-filter="all">All</button>
+            <button class="filter-chip" data-filter="download">Downloader</button>
+            <button class="filter-chip" data-filter="seo">SEO</button>
+            <button class="filter-chip" data-filter="network">Network</button>
+            <button class="filter-chip" data-filter="ai">AI</button>
+          </div>
+        </div>
+      </div>
+
+      <!-- FEATURED TOOL -->
+      <div class="featured-tool">
+        <a href="#" class="featured-tool-card">
+          <span class="featured-tool-card__badge">⭐ Featured</span>
+          <div class="featured-tool-card__visual">
+            <span class="featured-tool-card__icon" aria-hidden="true">🔍</span>
+          </div>
+          <div class="featured-tool-card__body">
+            <h3 class="featured-tool-card__title">Proxy Finder</h3>
+            <p class="featured-tool-card__desc">
+              Automated scanning of Telegram channels to find free proxies and store them as JSON — always up-to-date, always fast.
+            </p>
+            <div class="featured-tool-card__meta">
+              <span class="featured-tool-card__tag">🔄 GitHub Action</span>
+              <span class="featured-tool-card__tag">📡 Network</span>
+              <span class="featured-tool-card__tag">⚡ Real-time JSON</span>
+            </div>
+          </div>
+        </a>
+      </div>
+
+      <!-- TOOLS GRID -->
+      <div class="tools-grid" id="tools-grid">
+
+        <!-- 1. Proxy Finder (in grid too, for consistency) -->
+        <a href="#" class="tool-card" data-category="network">
+          <div class="tool-card__visual tool-card__visual--proxy">
+            <div class="tool-card__visual-pattern" aria-hidden="true"></div>
+            <span class="tool-card__icon" aria-hidden="true">🔍</span>
+            <span class="tool-card__status tool-card__status--ready">
+              <span class="tool-card__status-dot" aria-hidden="true"></span>
+              Ready
+            </span>
+          </div>
+          <div class="tool-card__body">
+            <h3 class="tool-card__title">Proxy Finder</h3>
+            <p class="tool-card__desc">Automated Telegram channel scanner for free proxies — exports to JSON for front-end consumption.</p>
+            <div class="tool-card__footer">
+              <div class="tool-card__tags">
+                <span class="tool-card__tag">Network</span>
+                <span class="tool-card__tag">GitHub Action</span>
+              </div>
+              <span class="tool-card__arrow" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 2. YouTube Downloader -->
+        <a href="#" class="tool-card" data-category="download">
+          <div class="tool-card__visual tool-card__visual--youtube">
+            <div class="tool-card__visual-pattern" aria-hidden="true"></div>
+            <span class="tool-card__icon" aria-hidden="true">▶️</span>
+            <span class="tool-card__status tool-card__status--ready">
+              <span class="tool-card__status-dot" aria-hidden="true"></span>
+              Ready
+            </span>
+          </div>
+          <div class="tool-card__body">
+            <h3 class="tool-card__title">YouTube Downloader</h3>
+            <p class="tool-card__desc">Download YouTube videos in your preferred quality — just paste the link and go.</p>
+            <div class="tool-card__footer">
+              <div class="tool-card__tags">
+                <span class="tool-card__tag">Video</span>
+                <span class="tool-card__tag">Download</span>
+              </div>
+              <span class="tool-card__arrow" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 3. Telegram Downloader -->
+        <a href="#" class="tool-card" data-category="download">
+          <div class="tool-card__visual tool-card__visual--telegram">
+            <div class="tool-card__visual-pattern" aria-hidden="true"></div>
+            <span class="tool-card__icon" aria-hidden="true">✈️</span>
+            <span class="tool-card__status tool-card__status--ready">
+              <span class="tool-card__status-dot" aria-hidden="true"></span>
+              Ready
+            </span>
+          </div>
+          <div class="tool-card__body">
+            <h3 class="tool-card__title">Telegram Downloader</h3>
+            <p class="tool-card__desc">Download files, videos, and music from Telegram channels and groups via direct link.</p>
+            <div class="tool-card__footer">
+              <div class="tool-card__tags">
+                <span class="tool-card__tag">Messaging</span>
+                <span class="tool-card__tag">Download</span>
+              </div>
+              <span class="tool-card__arrow" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 4. Instagram Downloader -->
+        <a href="#" class="tool-card" data-category="download">
+          <div class="tool-card__visual tool-card__visual--instagram">
+            <div class="tool-card__visual-pattern" aria-hidden="true"></div>
+            <span class="tool-card__icon" aria-hidden="true">📸</span>
+            <span class="tool-card__status tool-card__status--ready">
+              <span class="tool-card__status-dot" aria-hidden="true"></span>
+              Ready
+            </span>
+          </div>
+          <div class="tool-card__body">
+            <h3 class="tool-card__title">Instagram Downloader</h3>
+            <p class="tool-card__desc">Download posts, stories, reels, and IGTV from Instagram — just one link is all you need.</p>
+            <div class="tool-card__footer">
+              <div class="tool-card__tags">
+                <span class="tool-card__tag">Social</span>
+                <span class="tool-card__tag">Download</span>
+              </div>
+              <span class="tool-card__arrow" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 5. Keyword Research Tool -->
+        <a href="#" class="tool-card" data-category="seo">
+          <div class="tool-card__visual tool-card__visual--keyword">
+            <div class="tool-card__visual-pattern" aria-hidden="true"></div>
+            <span class="tool-card__icon" aria-hidden="true">🎯</span>
+            <span class="tool-card__status tool-card__status--ready">
+              <span class="tool-card__status-dot" aria-hidden="true"></span>
+              Ready
+            </span>
+          </div>
+          <div class="tool-card__body">
+            <h3 class="tool-card__title">Keyword Research Tool</h3>
+            <p class="tool-card__desc">Quick keyword analysis with search volume, ranking difficulty, and smart suggestions.</p>
+            <div class="tool-card__footer">
+              <div class="tool-card__tags">
+                <span class="tool-card__tag">SEO</span>
+                <span class="tool-card__tag">Research</span>
+              </div>
+              <span class="tool-card__arrow" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </a>
+
+        <!-- 6. Prompt Builder -->
+        <div class="tool-card tool-card--coming-soon" data-category="ai">
+          <div class="tool-card__visual tool-card__visual--prompt">
+            <div class="tool-card__visual-pattern" aria-hidden="true"></div>
+            <span class="tool-card__icon" aria-hidden="true">🤖</span>
+            <span class="tool-card__status tool-card__status--soon">
+              <span class="tool-card__status-dot" aria-hidden="true"></span>
+              Soon
+            </span>
+          </div>
+          <div class="tool-card__body">
+            <h3 class="tool-card__title">Prompt Builder</h3>
+            <p class="tool-card__desc">Build professional AI prompts with AI assistance — perfect for any task and any industry.</p>
+            <div class="tool-card__footer">
+              <div class="tool-card__tags">
+                <span class="tool-card__tag">AI</span>
+                <span class="tool-card__tag">Generator</span>
+              </div>
+              <span class="tool-card__coming-soon-label">🔜 Coming Soon</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- INFO BANNER -->
+      <div class="tools-info">
+        <div class="tools-info__icon" aria-hidden="true">💡</div>
+        <div class="tools-info__content">
+          <h3 class="tools-info__title">How do these tools work?</h3>
+          <p class="tools-info__text">
+            All tools on this page are powered by GitHub Actions. Some run automatically on a schedule and store output as JSON files. Others work like a form — you set the variables, the Action executes, and the result is displayed to you live. No server, no cost — just the power of GitHub.
+          </p>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================ -->
+  <!-- SITE FOOTER                                  -->
+  <!-- ============================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="site-footer__text">
+        PromptHub &copy; 2026 &mdash; Curated AI Prompts for Professionals
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============================================ -->
+  <!-- SCRIPTS                                      -->
+  <!-- ============================================ -->
+  <script src="../../assets/js/navigation.js"></script>
+  <script>
+    /**
+     * Tools Page — Filter Logic
+     */
+    (function () {
+      'use strict';
+
+      var searchInput = document.getElementById('tools-search');
+      var filterChips = document.querySelectorAll('#tools-category-filters .filter-chip');
+      var toolCards = document.querySelectorAll('#tools-grid .tool-card');
+      var activeFilter = 'all';
+      var searchQuery = '';
+
+      function filterTools() {
+        toolCards.forEach(function (card) {
+          var category = card.getAttribute('data-category');
+          var text = card.textContent.toLowerCase();
+
+          var matchesFilter = activeFilter === 'all' || category === activeFilter;
+          var matchesSearch = !searchQuery || text.indexOf(searchQuery) !== -1;
+
+          if (matchesFilter && matchesSearch) {
+            card.style.display = '';
+          } else {
+            card.style.display = 'none';
+          }
+        });
+      }
+
+      // Search
+      if (searchInput) {
+        var searchTimeout;
+        searchInput.addEventListener('input', function () {
+          clearTimeout(searchTimeout);
+          searchTimeout = setTimeout(function () {
+            searchQuery = searchInput.value.trim().toLowerCase();
+            filterTools();
+          }, 200);
+        });
+      }
+
+      // Filter Chips
+      filterChips.forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          filterChips.forEach(function (c) {
+            c.classList.remove('active');
+            c.setAttribute('aria-pressed', 'false');
+          });
+          chip.classList.add('active');
+          chip.setAttribute('aria-pressed', 'true');
+          activeFilter = chip.getAttribute('data-filter');
+          filterTools();
+        });
+      });
+    })();
+  </script>
+</body>
+</html>
