@@ -18,26 +18,117 @@
 </head>
 <body>
 
-  <!-- SITE HEADER -->
+  <!-- ============================================ -->
+  <!-- SITE HEADER                                 -->
+  <!-- ============================================ -->
   <header class="site-header">
     <div class="container site-header__inner">
+      <!-- Logo -->
       <a href="/en/" class="site-logo" aria-label="PromptHub Home">
         Prompt<span>Hub</span>
       </a>
-      <nav class="lang-switcher" aria-label="Language switcher">
-        <a href="/fa/strategy/business-strategy-growth/" class="lang-switcher__link" lang="fa">FA</a>
-        <span class="lang-switcher__sep" aria-hidden="true">|</span>
-        <a href="/en/strategy/business-strategy-growth/" class="lang-switcher__link active" lang="en" aria-current="page">EN</a>
+
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="/en/" class="desktop-nav__link">🏠 Home</a>
+        <a href="/en/#prompts-section" class="desktop-nav__link active">📋 Prompts</a>
+        <a href="/en/tools/" class="desktop-nav__link">🛠 Tools</a>
+        <a href="/en/contact/" class="desktop-nav__link">📩 Contact</a>
       </nav>
+
+      <!-- Header Actions: Language Switcher + Hamburger -->
+      <div class="header-actions">
+        <!-- Language Switcher -->
+        <nav class="lang-switcher" aria-label="Language switcher">
+          <a href="/fa/strategy/business-strategy-growth/" class="lang-switcher__link" lang="fa">FA</a>
+          <span class="lang-switcher__sep" aria-hidden="true">|</span>
+          <a href="/en/strategy/business-strategy-growth/" class="lang-switcher__link active" lang="en" aria-current="page">EN</a>
+        </nav>
+
+        <!-- Hamburger Button (Mobile Only) -->
+        <button
+          class="hamburger-btn"
+          id="hamburger-btn"
+          aria-expanded="false"
+          aria-label="Open menu"
+          aria-controls="bottom-sheet"
+          data-open-label="Open menu"
+          data-close-label="Close menu"
+        >
+          <span class="hamburger-btn__icon" aria-hidden="true">
+            <span class="hamburger-btn__line"></span>
+            <span class="hamburger-btn__line"></span>
+            <span class="hamburger-btn__line"></span>
+          </span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- MAIN CONTENT — Populated by detail.js -->
+  <!-- ============================================ -->
+  <!-- BACKDROP (Mobile Menu Overlay)              -->
+  <!-- ============================================ -->
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+
+  <!-- ============================================ -->
+  <!-- BOTTOM SHEET (Mobile Navigation)            -->
+  <!-- ============================================ -->
+  <div
+    class="bottom-sheet"
+    id="bottom-sheet"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Navigation menu"
+  >
+    <!-- Handle Bar -->
+    <div class="bottom-sheet__handle" aria-hidden="true">
+      <div class="bottom-sheet__handle-bar"></div>
+    </div>
+
+    <!-- Sheet Content -->
+    <div class="bottom-sheet__content">
+      <!-- Navigation Links -->
+      <nav class="bottom-sheet__nav" aria-label="Mobile navigation">
+        <a href="/en/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🏠</span>
+          Home
+        </a>
+        <a href="/en/#prompts-section" class="bottom-sheet__nav-link active">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📋</span>
+          Prompts
+        </a>
+        <a href="/en/tools/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🛠</span>
+          Tools
+        </a>
+        <a href="/en/contact/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📩</span>
+          Contact
+        </a>
+      </nav>
+
+      <!-- Language Switcher inside Bottom Sheet -->
+      <div class="bottom-sheet__lang" aria-label="Language switcher">
+        <a href="/fa/strategy/business-strategy-growth/" class="bottom-sheet__lang-btn" lang="fa">
+          🇮🇷 فارسی
+        </a>
+        <a href="/en/strategy/business-strategy-growth/" class="bottom-sheet__lang-btn active" lang="en" aria-current="page">
+          🇬🇧 English
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- MAIN CONTENT                                -->
+  <!-- ============================================ -->
   <main data-prompt-id="business-strategy-growth">
     <!-- Built dynamically by detail.js -->
   </main>
 
-  <!-- SITE FOOTER -->
+  <!-- ============================================ -->
+  <!-- SITE FOOTER                                  -->
+  <!-- ============================================ -->
   <footer class="site-footer">
     <div class="container">
       <p class="site-footer__text">
@@ -46,8 +137,11 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
+  <!-- ============================================ -->
+  <!-- SCRIPTS                                      -->
+  <!-- ============================================ -->
   <script src="../../../assets/js/prompts-data-en.js"></script>
+  <script src="../../../assets/js/navigation.js"></script>
   <script src="../../../assets/js/detail.js"></script>
 </body>
 </html>
