@@ -3,22 +3,33 @@
  * 
  * Handles: rendering prompt cards, search, filter, featured section,
  * and all client-side interactivity for the home page.
+ * Supports both English and Persian via data attribute on <html>.
  * 
- * @version 1.0.0
+ * @version 2.0.0
  */
 
 (function () {
   'use strict';
 
+  // --- Detect language from HTML lang attribute ---
+  var htmlEl = document.documentElement;
+  var lang = htmlEl.getAttribute('lang') || 'en';
+  var isRTL = htmlEl.getAttribute('dir') === 'rtl';
+
+  // --- Select correct data source ---
+  var PROMPTS_DATA = (lang === 'fa' && typeof PROMPTS_DATA_FA !== 'undefined')
+    ? PROMPTS_DATA_FA
+    : (typeof PROMPTS_DATA_EN !== 'undefined' ? PROMPTS_DATA_EN : []);
+
   // --- DOM References ---
-  const featuredContainer = document.getElementById('featured-container');
-  const promptsContainer = document.getElementById('prompts-container');
-  const resultsCount = document.getElementById('results-count');
-  const noResults = document.getElementById('no-results');
-  const searchInput = document.getElementById('search-input');
+  var featuredContainer = document.getElementById('featured-container');
+  var promptsContainer = document.getElementById('prompts-container');
+  var resultsCount = document.getElementById('results-count');
+  var noResults = document.getElementById('no-results');
+  var searchInput = document.getElementById('search-input');
 
   // --- State ---
-  let activeFilters = {
+  var activeFilters = {
     category: 'all',
     type: 'all',
     difficulty: 'all',
@@ -43,7 +54,7 @@
    * @returns {string}
    */
   function formatType(type) {
-    const typeMap = {
+    var typeMapEN = {
       'meta': 'Meta',
       'multi-step': 'Multi-Step',
       'single': 'Single',
@@ -52,7 +63,65 @@
       'workflow': 'Workflow',
       'pack': 'Pack'
     };
+    var typeMapFA = {
+      'meta': 'متا',
+      'multi-step': 'چندمرحله‌ای',
+      'single': 'تکی',
+      'role': 'نقش',
+      'template': 'تمپلیت',
+      'workflow': 'فرآیند',
+      'pack': 'پک'
+    };
+    var typeMap = (lang === 'fa') ? typeMapFA : typeMapEN;
     return typeMap[type] || capitalize(type);
+  }
+
+  /**
+   * Format difficulty for display.
+   * @param {string} difficulty
+   * @returns {string}
+   */
+  function formatDifficulty(difficulty) {
+    var diffMapEN = {
+      'beginner': 'Beginner',
+      'intermediate': 'Intermediate',
+      'advanced': 'Advanced'
+    };
+    var diffMapFA = {
+      'beginner': 'مبتدی',
+      'intermediate': 'متوسط',
+      'advanced': 'حرفه‌ای'
+    };
+    var diffMap = (lang === 'fa') ? diffMapFA : diffMapEN;
+    return diffMap[difficulty] || capitalize(difficulty);
+  }
+
+  /**
+   * Format category for display.
+   * @param {string} category
+   * @returns {string}
+   */
+  function formatCategory(category) {
+    var catMapEN = {
+      'strategy': 'Strategy',
+      'seo': 'SEO',
+      'marketing': 'Marketing',
+      'automation': 'Automation',
+      'ai': 'AI',
+      'productivity': 'Productivity',
+      'research': 'Research'
+    };
+    var catMapFA = {
+      'strategy': 'استراتژی',
+      'seo': 'سئو',
+      'marketing': 'بازاریابی',
+      'automation': 'اتوماسیون',
+      'ai': 'هوش مصنوعی',
+      'productivity': 'بهره‌وری',
+      'research': 'تحقیق'
+    };
+    var catMap = (lang === 'fa') ? catMapFA : catMapEN;
+    return catMap[category] || capitalize(category);
   }
 
   /**
@@ -61,32 +130,38 @@
    * @returns {string}
    */
   function getCardMeta(prompt) {
+    var modesLabel = (lang === 'fa') ? 'حالت' : 'Modes';
+    var stepsLabel = (lang === 'fa') ? 'مرحله' : 'Steps';
+    var promptsLabel = (lang === 'fa') ? 'پرامپت' : 'Prompts';
+    var promptLabel = (lang === 'fa') ? 'پرامپت' : 'Prompt';
+    var templateLabel = (lang === 'fa') ? 'تمپلیت' : 'Template';
+
     if (prompt.type === 'meta' && prompt.modesCount) {
-      return prompt.modesCount + ' Modes · ' + prompt.totalSetupTime;
+      return prompt.modesCount + ' ' + modesLabel + ' · ' + prompt.totalSetupTime;
     }
     if ((prompt.type === 'multi-step' || prompt.type === 'workflow') && prompt.stepsCount) {
-      return prompt.stepsCount + ' Steps · ' + prompt.totalSetupTime;
+      return prompt.stepsCount + ' ' + stepsLabel + ' · ' + prompt.totalSetupTime;
     }
     if (prompt.type === 'pack' && prompt.promptBlocks) {
-      return prompt.promptBlocks.length + ' Prompts · ' + prompt.totalSetupTime;
+      return prompt.promptBlocks.length + ' ' + promptsLabel + ' · ' + prompt.totalSetupTime;
     }
     if (prompt.type === 'single' || prompt.type === 'role') {
-      return '1 Prompt · ' + prompt.totalSetupTime;
+      return '1 ' + promptLabel + ' · ' + prompt.totalSetupTime;
     }
     if (prompt.type === 'template') {
-      return '1 Template · ' + prompt.totalSetupTime;
+      return '1 ' + templateLabel + ' · ' + prompt.totalSetupTime;
     }
     return prompt.totalSetupTime || '';
   }
 
   /**
    * Build URL for a prompt detail page.
-   * Uses the /{category}/{slug}/ structure.
+   * Uses the /{lang}/{category}/{slug}/ structure.
    * @param {Object} prompt
    * @returns {string}
    */
   function buildPromptUrl(prompt) {
-    return '/' + prompt.category + '/' + prompt.slug + '/';
+    return '/' + lang + '/' + prompt.category + '/' + prompt.slug + '/';
   }
 
   /**
@@ -109,7 +184,7 @@
 
     var categoryBadge = document.createElement('span');
     categoryBadge.className = 'badge badge--category ' + prompt.category;
-    categoryBadge.textContent = capitalize(prompt.category);
+    categoryBadge.textContent = formatCategory(prompt.category);
     badgesDiv.appendChild(categoryBadge);
 
     var typeBadge = document.createElement('span');
@@ -119,7 +194,7 @@
 
     var difficultyBadge = document.createElement('span');
     difficultyBadge.className = 'badge badge--difficulty ' + prompt.difficulty;
-    difficultyBadge.textContent = capitalize(prompt.difficulty);
+    difficultyBadge.textContent = formatDifficulty(prompt.difficulty);
     badgesDiv.appendChild(difficultyBadge);
 
     // Title
@@ -145,8 +220,8 @@
 
     // View link text
     var viewText = document.createElement('span');
-    viewText.style.cssText = 'margin-left: auto; color: var(--color-accent-primary); font-weight: var(--font-weight-medium);';
-    viewText.textContent = 'View Prompt →';
+    viewText.style.cssText = 'margin-' + (isRTL ? 'right' : 'left') + ': auto; color: var(--color-accent-primary); font-weight: var(--font-weight-medium);';
+    viewText.textContent = (lang === 'fa') ? 'مشاهده پرامپت ←' : 'View Prompt →';
     metaDiv.appendChild(viewText);
 
     // Assemble
@@ -164,19 +239,15 @@
    * @returns {boolean}
    */
   function promptMatchesFilters(prompt) {
-    // Category filter
     if (activeFilters.category !== 'all' && prompt.category !== activeFilters.category) {
       return false;
     }
-    // Type filter
     if (activeFilters.type !== 'all' && prompt.type !== activeFilters.type) {
       return false;
     }
-    // Difficulty filter
     if (activeFilters.difficulty !== 'all' && prompt.difficulty !== activeFilters.difficulty) {
       return false;
     }
-    // Search filter
     if (activeFilters.search) {
       var searchLower = activeFilters.search.toLowerCase();
       var searchableText = [
@@ -198,7 +269,6 @@
    * Render all prompt cards based on current filters.
    */
   function renderPrompts() {
-    // Clear containers
     if (promptsContainer) {
       promptsContainer.innerHTML = '';
     }
@@ -210,44 +280,46 @@
     var featuredPrompts = filteredPrompts.filter(function (p) { return p.featured; });
     var nonFeaturedPrompts = filteredPrompts.filter(function (p) { return !p.featured; });
 
-    // Render featured
     if (featuredContainer && featuredPrompts.length > 0) {
       featuredPrompts.forEach(function (prompt) {
         featuredContainer.appendChild(createPromptCard(prompt, true));
       });
     } else if (featuredContainer) {
-      // Hide featured section if no featured prompts match
       var featuredSection = document.getElementById('featured-section');
       if (featuredSection) {
         featuredSection.style.display = 'none';
       }
     }
 
-    // Render all non-featured
     if (promptsContainer) {
       nonFeaturedPrompts.forEach(function (prompt) {
         promptsContainer.appendChild(createPromptCard(prompt, false));
       });
     }
 
-    // Update results count
     if (resultsCount) {
       var count = filteredPrompts.length;
-      if (count === 0) {
-        resultsCount.textContent = 'No prompts found';
-      } else if (count === 1) {
-        resultsCount.textContent = '1 prompt found';
+      if (lang === 'fa') {
+        if (count === 0) {
+          resultsCount.textContent = 'هیچ پرامپتی یافت نشد';
+        } else {
+          resultsCount.textContent = count + ' پرامپت یافت شد';
+        }
       } else {
-        resultsCount.textContent = count + ' prompts found';
+        if (count === 0) {
+          resultsCount.textContent = 'No prompts found';
+        } else if (count === 1) {
+          resultsCount.textContent = '1 prompt found';
+        } else {
+          resultsCount.textContent = count + ' prompts found';
+        }
       }
     }
 
-    // Toggle no-results message
     if (noResults) {
       noResults.style.display = filteredPrompts.length === 0 ? 'block' : 'none';
     }
 
-    // Restore featured section visibility if needed
     if (filteredPrompts.length > 0) {
       var featuredSection = document.getElementById('featured-section');
       if (featuredSection && featuredContainer && featuredContainer.children.length > 0) {
@@ -268,7 +340,6 @@
 
   // --- Event Listeners ---
 
-  // Search input with debounce
   var searchTimeout;
   if (searchInput) {
     searchInput.addEventListener('input', function () {
@@ -280,7 +351,6 @@
     });
   }
 
-  // Filter chip clicks — using event delegation on filter groups
   function handleFilterClick(filterType) {
     var containerId = filterType + '-filters';
     var container = document.getElementById(containerId);
@@ -290,7 +360,6 @@
       var chip = e.target.closest('.filter-chip');
       if (!chip) return;
 
-      // Update active state
       var chips = container.querySelectorAll('.filter-chip');
       chips.forEach(function (c) {
         c.classList.remove('active');
@@ -299,7 +368,6 @@
       chip.classList.add('active');
       chip.setAttribute('aria-pressed', 'true');
 
-      // Update filter
       var filterValue = chip.getAttribute('data-filter');
       setFilter(filterType, filterValue);
     });
