@@ -1,9 +1,7 @@
 /**
- * PromptHub — Prompts Data
+ * PromptHub — Prompts Data (English)
  * 
- * This file contains all prompt data for the static MVP.
- * In a future version, this can be loaded from a JSON file via fetch().
- * For now, it's embedded directly for zero-dependency static hosting.
+ * This file contains all prompt data in English for the static MVP.
  * 
  * @version 1.0.0
  * @date 2026-06
