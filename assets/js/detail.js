@@ -3,15 +3,26 @@
  * 
  * Handles: rendering prompt detail page, expand/collapse blocks,
  * copy buttons, related prompts, and toast notifications.
+ * Supports both English and Persian.
  * 
- * Expected: A global PROMPTS_DATA array (from prompts-data.js)
+ * Expected: PROMPTS_DATA_FA and PROMPTS_DATA_EN globals (from data files)
  *           and a data-prompt-id attribute on the main element.
  * 
- * @version 1.0.0
+ * @version 2.0.0
  */
 
 (function () {
   'use strict';
+
+  // --- Detect language ---
+  var htmlEl = document.documentElement;
+  var lang = htmlEl.getAttribute('lang') || 'en';
+  var isRTL = htmlEl.getAttribute('dir') === 'rtl';
+
+  // --- Select correct data source ---
+  var PROMPTS_DATA = (lang === 'fa' && typeof PROMPTS_DATA_FA !== 'undefined')
+    ? PROMPTS_DATA_FA
+    : (typeof PROMPTS_DATA_EN !== 'undefined' ? PROMPTS_DATA_EN : []);
 
   // --- Get prompt ID from DOM ---
   var mainEl = document.querySelector('main[data-prompt-id]');
@@ -20,7 +31,6 @@
   var promptId = mainEl.getAttribute('data-prompt-id');
   var prompt = null;
 
-  // Find prompt data
   for (var i = 0; i < PROMPTS_DATA.length; i++) {
     if (PROMPTS_DATA[i].id === promptId) {
       prompt = PROMPTS_DATA[i];
@@ -29,29 +39,22 @@
   }
 
   if (!prompt) {
-    mainEl.innerHTML = '<div class="container" style="padding: var(--space-2xl) 0; text-align: center;"><p style="color: var(--color-error);">Prompt not found.</p><a href="/" class="btn btn--secondary mt-lg">← Back to Home</a></div>';
+    var notFoundMsg = (lang === 'fa')
+      ? '<div class="container" style="padding: var(--space-2xl) 0; text-align: center;"><p style="color: var(--color-error);">پرامپت مورد نظر یافت نشد.</p><a href="/fa/" class="btn btn--secondary mt-lg">← بازگشت به صفحه اصلی</a></div>'
+      : '<div class="container" style="padding: var(--space-2xl) 0; text-align: center;"><p style="color: var(--color-error);">Prompt not found.</p><a href="/" class="btn btn--secondary mt-lg">← Back to Home</a></div>';
+    mainEl.innerHTML = notFoundMsg;
     return;
   }
 
   // --- Helper Functions ---
 
-  /**
-   * Capitalize first letter.
-   * @param {string} str
-   * @returns {string}
-   */
   function capitalize(str) {
     if (!str) return '';
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
 
-  /**
-   * Format prompt type for display.
-   * @param {string} type
-   * @returns {string}
-   */
   function formatType(type) {
-    var typeMap = {
+    var typeMapEN = {
       'meta': 'Meta',
       'multi-step': 'Multi-Step',
       'single': 'Single',
@@ -60,14 +63,57 @@
       'workflow': 'Workflow',
       'pack': 'Pack'
     };
+    var typeMapFA = {
+      'meta': 'متا',
+      'multi-step': 'چندمرحله‌ای',
+      'single': 'تکی',
+      'role': 'نقش',
+      'template': 'تمپلیت',
+      'workflow': 'فرآیند',
+      'pack': 'پک'
+    };
+    var typeMap = (lang === 'fa') ? typeMapFA : typeMapEN;
     return typeMap[type] || capitalize(type);
   }
 
-  /**
-   * Get related prompt data by ID.
-   * @param {string} id
-   * @returns {Object|null}
-   */
+  function formatDifficulty(difficulty) {
+    var diffMapEN = {
+      'beginner': 'Beginner',
+      'intermediate': 'Intermediate',
+      'advanced': 'Advanced'
+    };
+    var diffMapFA = {
+      'beginner': 'مبتدی',
+      'intermediate': 'متوسط',
+      'advanced': 'حرفه‌ای'
+    };
+    var diffMap = (lang === 'fa') ? diffMapFA : diffMapEN;
+    return diffMap[difficulty] || capitalize(difficulty);
+  }
+
+  function formatCategory(category) {
+    var catMapEN = {
+      'strategy': 'Strategy',
+      'seo': 'SEO',
+      'marketing': 'Marketing',
+      'automation': 'Automation',
+      'ai': 'AI',
+      'productivity': 'Productivity',
+      'research': 'Research'
+    };
+    var catMapFA = {
+      'strategy': 'استراتژی',
+      'seo': 'سئو',
+      'marketing': 'بازاریابی',
+      'automation': 'اتوماسیون',
+      'ai': 'هوش مصنوعی',
+      'productivity': 'بهره‌وری',
+      'research': 'تحقیق'
+    };
+    var catMap = (lang === 'fa') ? catMapFA : catMapEN;
+    return catMap[category] || capitalize(category);
+  }
+
   function getRelatedPrompt(id) {
     for (var i = 0; i < PROMPTS_DATA.length; i++) {
       if (PROMPTS_DATA[i].id === id) {
@@ -77,19 +123,14 @@
     return null;
   }
 
-  /**
-   * Build URL for a prompt detail page.
-   * @param {Object} p
-   * @returns {string}
-   */
   function buildPromptUrl(p) {
-    return '/' + p.category + '/' + p.slug + '/';
+    return '/' + lang + '/' + p.category + '/' + p.slug + '/';
   }
 
-  /**
-   * Show toast notification.
-   * @param {string} message
-   */
+  function getHomeUrl() {
+    return '/' + lang + '/';
+  }
+
   function showToast(message) {
     var toast = document.getElementById('toast');
     if (!toast) {
@@ -105,36 +146,30 @@
     }, 2000);
   }
 
-  /**
-   * Copy text to clipboard.
-   * @param {string} text
-   * @param {HTMLElement} buttonEl
-   */
   function copyToClipboard(text, buttonEl) {
+    var copiedMsg = (lang === 'fa') ? '✓ کپی شد!' : '✓ Copied!';
+    var toastMsg = (lang === 'fa') ? 'در کلیپ‌بورد کپی شد!' : 'Copied to clipboard!';
+    var failMsg = (lang === 'fa') ? 'کپی ناموفق بود. لطفاً دوباره تلاش کنید.' : 'Failed to copy. Please try again.';
+
     if (navigator.clipboard && navigator.clipboard.writeText) {
       navigator.clipboard.writeText(text).then(function () {
         buttonEl.classList.add('copied');
         var originalText = buttonEl.textContent;
-        buttonEl.textContent = '✓ Copied!';
-        showToast('Copied to clipboard!');
+        buttonEl.textContent = copiedMsg;
+        showToast(toastMsg);
         setTimeout(function () {
           buttonEl.classList.remove('copied');
           buttonEl.textContent = originalText;
         }, 2000);
       }).catch(function () {
-        fallbackCopy(text, buttonEl);
+        fallbackCopy(text, buttonEl, copiedMsg, toastMsg, failMsg);
       });
     } else {
-      fallbackCopy(text, buttonEl);
+      fallbackCopy(text, buttonEl, copiedMsg, toastMsg, failMsg);
     }
   }
 
-  /**
-   * Fallback copy method using textarea.
-   * @param {string} text
-   * @param {HTMLElement} buttonEl
-   */
-  function fallbackCopy(text, buttonEl) {
+  function fallbackCopy(text, buttonEl, copiedMsg, toastMsg, failMsg) {
     var textarea = document.createElement('textarea');
     textarea.value = text;
     textarea.style.position = 'fixed';
@@ -147,64 +182,55 @@
       document.execCommand('copy');
       buttonEl.classList.add('copied');
       var originalText = buttonEl.textContent;
-      buttonEl.textContent = '✓ Copied!';
-      showToast('Copied to clipboard!');
+      buttonEl.textContent = copiedMsg;
+      showToast(toastMsg);
       setTimeout(function () {
         buttonEl.classList.remove('copied');
         buttonEl.textContent = originalText;
       }, 2000);
     } catch (e) {
-      showToast('Failed to copy. Please try again.');
+      showToast(failMsg);
     }
     document.body.removeChild(textarea);
   }
 
-  /**
-   * Get block type label (Step, Prompt, or generic Block).
-   * @param {number} index
-   * @param {number} total
-   * @returns {string}
-   */
   function getBlockLabel(index, total) {
+    var stepOf = (lang === 'fa') ? 'از' : 'of';
     if (prompt.type === 'multi-step' || prompt.type === 'workflow') {
-      return 'Step ' + (index + 1) + ' of ' + total;
+      return ((lang === 'fa') ? 'مرحله ' : 'Step ') + (index + 1) + ' ' + stepOf + ' ' + total;
     }
     if (prompt.type === 'pack') {
-      return 'Prompt ' + (index + 1) + ' of ' + total;
+      return ((lang === 'fa') ? 'پرامپت ' : 'Prompt ') + (index + 1) + ' ' + stepOf + ' ' + total;
     }
     if (total > 1) {
-      return 'Block ' + (index + 1) + ' of ' + total;
+      return ((lang === 'fa') ? 'بخش ' : 'Block ') + (index + 1) + ' ' + stepOf + ' ' + total;
     }
-    return 'Prompt';
+    return (lang === 'fa') ? 'پرامپت' : 'Prompt';
   }
 
   // --- Build Page ---
 
-  /**
-   * Build the complete detail page.
-   */
   function buildDetailPage() {
     var container = document.createElement('div');
     container.className = 'container';
 
     // Back link
     var backLink = document.createElement('a');
-    backLink.href = '/';
+    backLink.href = getHomeUrl();
     backLink.className = 'back-link';
-    backLink.innerHTML = '← Back to All Prompts';
+    backLink.innerHTML = (lang === 'fa') ? '← بازگشت به همه پرامپت‌ها' : '← Back to All Prompts';
     container.appendChild(backLink);
 
     // Page Header
     var header = document.createElement('header');
     header.className = 'page-header';
 
-    // Badges
     var badgesDiv = document.createElement('div');
     badgesDiv.className = 'page-header__badges badge-group';
 
     var catBadge = document.createElement('span');
     catBadge.className = 'badge badge--category ' + prompt.category;
-    catBadge.textContent = capitalize(prompt.category);
+    catBadge.textContent = formatCategory(prompt.category);
     badgesDiv.appendChild(catBadge);
 
     var typeBadge = document.createElement('span');
@@ -214,18 +240,16 @@
 
     var diffBadge = document.createElement('span');
     diffBadge.className = 'badge badge--difficulty ' + prompt.difficulty;
-    diffBadge.textContent = capitalize(prompt.difficulty);
+    diffBadge.textContent = formatDifficulty(prompt.difficulty);
     badgesDiv.appendChild(diffBadge);
 
     header.appendChild(badgesDiv);
 
-    // Title
     var titleEl = document.createElement('h1');
     titleEl.className = 'page-header__title';
     titleEl.textContent = prompt.title;
     header.appendChild(titleEl);
 
-    // Description
     var descEl = document.createElement('p');
     descEl.className = 'page-header__description';
     descEl.textContent = prompt.fullDescription;
@@ -240,7 +264,7 @@
 
       var whoTitle = document.createElement('h2');
       whoTitle.className = 'section__title';
-      whoTitle.innerHTML = '<span class="section__title-icon">👤</span> Who Is This For?';
+      whoTitle.innerHTML = '<span class="section__title-icon">👤</span> ' + ((lang === 'fa') ? 'مناسب چه کسانی است؟' : 'Who Is This For?');
       whoSection.appendChild(whoTitle);
 
       var whoList = document.createElement('div');
@@ -264,7 +288,7 @@
 
       var usageTitle = document.createElement('h2');
       usageTitle.className = 'section__title';
-      usageTitle.innerHTML = '<span class="section__title-icon">📖</span> How To Use';
+      usageTitle.innerHTML = '<span class="section__title-icon">📖</span> ' + ((lang === 'fa') ? 'نحوه استفاده' : 'How To Use');
       usageSection.appendChild(usageTitle);
 
       var usageContent = document.createElement('div');
@@ -283,7 +307,7 @@
 
       var outputTitle = document.createElement('h2');
       outputTitle.className = 'section__title';
-      outputTitle.innerHTML = '<span class="section__title-icon">📊</span> Expected Output';
+      outputTitle.innerHTML = '<span class="section__title-icon">📊</span> ' + ((lang === 'fa') ? 'خروجی مورد انتظار' : 'Expected Output');
       outputSection.appendChild(outputTitle);
 
       var callout = document.createElement('div');
@@ -300,7 +324,7 @@
       exampleSection.className = 'example-section section';
 
       var summary = document.createElement('summary');
-      summary.innerHTML = '<span style="display: inline-flex; align-items: center; gap: var(--space-sm);">💡 Example</span>';
+      summary.innerHTML = '<span style="display: inline-flex; align-items: center; gap: var(--space-sm);">💡 ' + ((lang === 'fa') ? 'مثال' : 'Example') + '</span>';
       exampleSection.appendChild(summary);
 
       var exampleContent = document.createElement('div');
@@ -324,7 +348,6 @@
         var blockEl = document.createElement('div');
         blockEl.className = 'prompt-block';
 
-        // Header
         var blockHeader = document.createElement('div');
         blockHeader.className = 'prompt-block__header';
 
@@ -346,7 +369,6 @@
         blockHeader.appendChild(blockTitleWrap);
         blockEl.appendChild(blockHeader);
 
-        // Body
         var blockBody = document.createElement('div');
         blockBody.className = 'prompt-block__body';
 
@@ -357,33 +379,34 @@
 
         blockEl.appendChild(blockBody);
 
-        // Expand/Collapse button
+        var expandLabel = (lang === 'fa') ? 'باز کردن ▼' : 'Expand ▼';
+        var collapseLabel = (lang === 'fa') ? 'بستن ▲' : 'Collapse ▲';
         var expandBtn = document.createElement('button');
         expandBtn.className = 'prompt-block__expand';
-        expandBtn.textContent = 'Expand ▼';
+        expandBtn.textContent = expandLabel;
         expandBtn.setAttribute('aria-expanded', 'false');
         expandBtn.addEventListener('click', function () {
           var isExpanded = blockBody.classList.contains('expanded');
           if (isExpanded) {
             blockBody.classList.remove('expanded');
-            expandBtn.textContent = 'Expand ▼';
+            expandBtn.textContent = expandLabel;
             expandBtn.setAttribute('aria-expanded', 'false');
           } else {
             blockBody.classList.add('expanded');
-            expandBtn.textContent = 'Collapse ▲';
+            expandBtn.textContent = collapseLabel;
             expandBtn.setAttribute('aria-expanded', 'true');
           }
         });
         blockEl.appendChild(expandBtn);
 
-        // Footer with copy button
         var blockFooter = document.createElement('div');
         blockFooter.className = 'prompt-block__footer';
 
+        var copyLabel = (lang === 'fa') ? '📋 کپی' : '📋 Copy';
         var copyBtn = document.createElement('button');
         copyBtn.className = 'btn btn--copy';
-        copyBtn.textContent = '📋 Copy';
-        copyBtn.setAttribute('aria-label', 'Copy ' + getBlockLabel(index, prompt.promptBlocks.length));
+        copyBtn.textContent = copyLabel;
+        copyBtn.setAttribute('aria-label', (lang === 'fa' ? 'کپی ' : 'Copy ') + getBlockLabel(index, prompt.promptBlocks.length));
         copyBtn.addEventListener('click', function () {
           copyToClipboard(block.text, copyBtn);
         });
@@ -395,14 +418,15 @@
 
       blocksSection.appendChild(blocksContainer);
 
-      // Copy All button for multi-block prompts
       if (prompt.promptBlocks.length > 1) {
         var copyAllWrap = document.createElement('div');
         copyAllWrap.style.cssText = 'text-align: center; margin-top: var(--space-lg);';
 
         var copyAllBtn = document.createElement('button');
         copyAllBtn.className = 'btn btn--secondary btn--block';
-        copyAllBtn.textContent = '📋 Copy All ' + getBlockLabel(0, 0).split(' ')[0] + 's';
+        var blockTypeLabel = (lang === 'fa') ? 'مراحل' : 'Steps';
+        if (prompt.type === 'pack') blockTypeLabel = (lang === 'fa') ? 'پرامپت‌ها' : 'Prompts';
+        copyAllBtn.textContent = '📋 ' + ((lang === 'fa') ? 'کپی همه ' : 'Copy All ') + blockTypeLabel;
 
         var allText = prompt.promptBlocks.map(function (b) {
           return '--- ' + b.title + ' ---\n\n' + b.text;
@@ -425,7 +449,7 @@
 
       var relatedTitle = document.createElement('h2');
       relatedTitle.className = 'section__title';
-      relatedTitle.innerHTML = '<span class="section__title-icon">🔗</span> Related Prompts';
+      relatedTitle.innerHTML = '<span class="section__title-icon">🔗</span> ' + ((lang === 'fa') ? 'پرامپت‌های مرتبط' : 'Related Prompts');
       relatedSection.appendChild(relatedTitle);
 
       var relatedGrid = document.createElement('div');
@@ -444,12 +468,12 @@
 
         var rCatBadge = document.createElement('span');
         rCatBadge.className = 'badge badge--category ' + relatedPrompt.category;
-        rCatBadge.textContent = capitalize(relatedPrompt.category);
+        rCatBadge.textContent = formatCategory(relatedPrompt.category);
         cardBadges.appendChild(rCatBadge);
 
         var rDiffBadge = document.createElement('span');
         rDiffBadge.className = 'badge badge--difficulty ' + relatedPrompt.difficulty;
-        rDiffBadge.textContent = capitalize(relatedPrompt.difficulty);
+        rDiffBadge.textContent = formatDifficulty(relatedPrompt.difficulty);
         cardBadges.appendChild(rDiffBadge);
 
         card.appendChild(cardBadges);
@@ -473,7 +497,7 @@
 
       var tagsTitle = document.createElement('h2');
       tagsTitle.className = 'section__title';
-      tagsTitle.innerHTML = '<span class="section__title-icon">🏷</span> Tags';
+      tagsTitle.innerHTML = '<span class="section__title-icon">🏷</span> ' + ((lang === 'fa') ? 'برچسب‌ها' : 'Tags');
       tagsSection.appendChild(tagsTitle);
 
       var tagsList = document.createElement('div');
@@ -497,24 +521,24 @@
 
     var metaText = document.createElement('p');
     metaText.style.cssText = 'font-size: var(--font-size-xs); color: var(--color-text-muted);';
-    metaText.textContent = 'Updated: ' + prompt.updatedDate + ' · Version ' + prompt.version;
+    var updateLabel = (lang === 'fa') ? 'بروزرسانی' : 'Updated';
+    var versionLabel = (lang === 'fa') ? 'نسخه' : 'Version';
+    metaText.textContent = updateLabel + ': ' + prompt.updatedDate + ' · ' + versionLabel + ' ' + prompt.version;
     metaFooter.appendChild(metaText);
 
     container.appendChild(metaFooter);
 
     // Bottom back link
     var backLinkBottom = document.createElement('a');
-    backLinkBottom.href = '/';
+    backLinkBottom.href = getHomeUrl();
     backLinkBottom.className = 'back-link';
     backLinkBottom.style.cssText = 'display: block; text-align: center;';
-    backLinkBottom.innerHTML = '← Back to All Prompts';
+    backLinkBottom.innerHTML = (lang === 'fa') ? '← بازگشت به همه پرامپت‌ها' : '← Back to All Prompts';
     container.appendChild(backLinkBottom);
 
-    // Append to main
     mainEl.appendChild(container);
   }
 
-  // --- Initialize ---
   buildDetailPage();
 
 })();
