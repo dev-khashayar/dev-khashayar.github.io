@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="داشبرد سئو — داده‌های Google Search Console خود را مثل یک متخصص سئوی ارشد تحلیل کن. فایل CSV خروجی را آپلود کن یا از طریق API وصل شو برای تحلیل عمیق، شناسایی فرصت‌ها و توصیه‌های عملی.">
+  <meta name="theme-color" content="#0a0e14">
+  <meta property="og:title" content="داشبرد سئو — ابزارهای PromptHub">
+  <meta property="og:description" content="داده‌های Google Search Console خود را مثل یک متخصص سئوی ارشد تحلیل کن. تحلیل عمیق، شناسایی فرصت‌ها و توصیه‌های عملی.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dev-khashayar.github.io/fa/tools/seo-dashboard/">
+  <title>داشبرد سئو — PromptHub</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="stylesheet" href="../../en/tools/seo-dashboard/css/dashboard.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- SITE HEADER                                 -->
+  <!-- ============================================ -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="/fa/" class="site-logo" aria-label="PromptHub خانه">
+        Prompt<span>Hub</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="ناوبری اصلی">
+        <a href="/fa/" class="desktop-nav__link">🏠 خانه</a>
+        <a href="/fa/#prompts-section" class="desktop-nav__link">📋 پرامپت‌ها</a>
+        <a href="/fa/tools/" class="desktop-nav__link active">🛠 ابزارها</a>
+        <a href="/fa/contact/" class="desktop-nav__link">📩 تماس با من</a>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switcher" aria-label="تغییر زبان">
+          <a href="/fa/tools/seo-dashboard/" class="lang-switcher__link active" lang="fa" aria-current="page">FA</a>
+          <span class="lang-switcher__sep" aria-hidden="true">|</span>
+          <a href="/en/tools/seo-dashboard/" class="lang-switcher__link" lang="en">EN</a>
+        </nav>
+
+        <button
+          class="hamburger-btn"
+          id="hamburger-btn"
+          aria-expanded="false"
+          aria-label="باز کردن منو"
+          aria-controls="bottom-sheet"
+          data-open-label="باز کردن منو"
+          data-close-label="بستن منو"
+        >
+          <span class="hamburger-btn__icon" aria-hidden="true">
+            <span class="hamburger-btn__line"></span>
+            <span class="hamburger-btn__line"></span>
+            <span class="hamburger-btn__line"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- BACKDROP + BOTTOM SHEET                     -->
+  <!-- ============================================ -->
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+
+  <div class="bottom-sheet" id="bottom-sheet" role="dialog" aria-modal="true" aria-label="منوی ناوبری">
+    <div class="bottom-sheet__handle" aria-hidden="true">
+      <div class="bottom-sheet__handle-bar"></div>
+    </div>
+    <div class="bottom-sheet__content">
+      <nav class="bottom-sheet__nav" aria-label="ناوبری موبایل">
+        <a href="/fa/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🏠</span> خانه
+        </a>
+        <a href="/fa/#prompts-section" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📋</span> پرامپت‌ها
+        </a>
+        <a href="/fa/tools/" class="bottom-sheet__nav-link active">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🛠</span> ابزارها
+        </a>
+        <a href="/fa/contact/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📩</span> تماس با من
+        </a>
+      </nav>
+      <div class="bottom-sheet__lang" aria-label="تغییر زبان">
+        <a href="/fa/tools/seo-dashboard/" class="bottom-sheet__lang-btn active" lang="fa" aria-current="page">🇮🇷 فارسی</a>
+        <a href="/en/tools/seo-dashboard/" class="bottom-sheet__lang-btn" lang="en">🇬🇧 English</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- MAIN CONTENT                                -->
+  <!-- ============================================ -->
+  <main class="dashboard">
+    <!-- DASHBOARD HEADER -->
+    <div class="dash-header">
+      <div class="container dash-header__inner">
+        <div class="dash-header__title-group">
+          <div class="dash-header__icon" aria-hidden="true">🔍</div>
+          <div>
+            <h1 class="dash-header__title">داشبرد سئو</h1>
+            <p class="dash-header__subtitle">تحلیلگر Google Search Console</p>
+          </div>
+        </div>
+        <div class="dash-header__actions">
+          <span class="data-source-badge data-source-badge--empty" id="data-source-badge">داده‌ای بارگذاری نشده</span>
+          <span class="date-range" id="date-range-display"></span>
+          <button class="btn btn--secondary" id="refresh-btn" style="display: none;">🔄 بروزرسانی</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="container" style="padding-top: var(--space-xl); padding-bottom: var(--space-2xl);">
+
+      <!-- UPLOAD SECTION -->
+      <div id="upload-section">
+        <div class="connect-section">
+          <div class="upload-zone" id="upload-zone">
+            <div class="upload-zone__icon" aria-hidden="true">📁</div>
+            <div class="upload-zone__title">آپلود فایل CSV گوگل سرچ کنسول</div>
+            <div class="upload-zone__text">
+              داده‌های Performance report گوگل سرچ کنسول را به صورت CSV خروجی بگیرید و اینجا آپلود کنید.
+              تمام داده‌ها در مرورگر شما باقی می‌ماند — هیچ چیزی به جایی ارسال نمی‌شود.
+            </div>
+            <div class="upload-zone__preview"></div>
+            <input type="file" class="upload-zone__input" id="csv-file-input" accept=".csv">
+          </div>
+
+          <div class="connect-divider">یا</div>
+
+          <button class="btn btn--secondary" id="connect-gsc-btn">
+            🔗 اتصال به GSC API
+          </button>
+        </div>
+
+        <div class="tools-info" style="margin-top: 0;">
+          <div class="tools-info__icon" aria-hidden="true">💡</div>
+          <div class="tools-info__content">
+            <h3 class="tools-info__title">چطور از گوگل سرچ کنسول خروجی بگیریم؟</h3>
+            <p class="tools-info__text">
+              ۱. وارد <strong>Google Search Console</strong> شوید → گزارش Performance<br>
+              ۲. بازه زمانی مورد نظر را تنظیم کنید (پیشنهاد: ۲۸ روز اخیر)<br>
+              ۳. مطمئن شوید <strong>Queries</strong>، <strong>Clicks</strong>، <strong>Impressions</strong>، <strong>CTR</strong> و <strong>Position</strong> انتخاب شده باشند<br>
+              ۴. روی <strong>Export</strong> (بالا سمت راست) کلیک کنید → <strong>CSV</strong><br>
+              ۵. فایل دانلود شده را اینجا آپلود کنید<br><br>
+              <em>داده‌های شما کاملاً در مرورگر خودتان پردازش می‌شود و هرگز به هیچ سروری ارسال نمی‌شود.</em>
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <!-- DASHBOARD SECTION -->
+      <div id="dashboard-section" style="display: none;">
+
+        <!-- Brand Name Input -->
+        <div style="margin-bottom: var(--space-lg); display: flex; align-items: center; gap: var(--space-md); flex-wrap: wrap;">
+          <label style="font-size: var(--font-size-sm); color: var(--color-text-muted); white-space: nowrap;">نام برند:</label>
+          <input
+            type="text"
+            id="brand-name-input"
+            class="data-table-search"
+            placeholder="مثال: دیجی‌کالا (برای تحلیل برند vs غیربرند)"
+            style="width: 300px; max-width: 100%;"
+          >
+          <span style="font-size: var(--font-size-xs); color: var(--color-text-muted);">اختیاری — برای تفکیک ترافیک برند و غیربرند</span>
+        </div>
+
+        <!-- KPI CARDS -->
+        <div class="kpi-grid">
+          <div class="kpi-card kpi-card--clicks">
+            <div class="kpi-card__label">📊 کل کلیک‌ها</div>
+            <div class="kpi-card__value" id="kpi-clicks">—</div>
+          </div>
+          <div class="kpi-card kpi-card--impressions">
+            <div class="kpi-card__label">👁️ کل نمایش‌ها</div>
+            <div class="kpi-card__value" id="kpi-impressions">—</div>
+          </div>
+          <div class="kpi-card kpi-card--ctr">
+            <div class="kpi-card__label">🎯 میانگین CTR</div>
+            <div class="kpi-card__value" id="kpi-ctr">—</div>
+          </div>
+          <div class="kpi-card kpi-card--position">
+            <div class="kpi-card__label">📈 میانگین رتبه</div>
+            <div class="kpi-card__value" id="kpi-position">—</div>
+          </div>
+        </div>
+
+        <!-- HEALTH SCORE -->
+        <div class="health-score-section">
+          <div class="health-score-card">
+            <div class="health-gauge">
+              <div class="health-gauge__circle">
+                <canvas id="health-gauge-chart" width="120" height="120"></canvas>
+                <div class="health-gauge__score" id="health-score-value">—</div>
+              </div>
+              <div class="health-gauge__label">امتیاز سلامت</div>
+            </div>
+            <div class="health-details">
+              <div class="health-details__title">ارزیابی سلامت سئو</div>
+              <div class="health-details__message" id="health-message">
+                داده‌های GSC خود را آپلود کنید تا ارزیابی جامع سلامت سئو را دریافت کنید.
+              </div>
+              <div class="health-breakdown">
+                <div class="health-breakdown__item">
+                  <div class="health-breakdown__value" id="breakdown-ctr">—</div>
+                  <div class="health-breakdown__label">امتیاز CTR</div>
+                </div>
+                <div class="health-breakdown__item">
+                  <div class="health-breakdown__value" id="breakdown-position">—</div>
+                  <div class="health-breakdown__label">رتبه</div>
+                </div>
+                <div class="health-breakdown__item">
+                  <div class="health-breakdown__value" id="breakdown-ctrhealth">—</div>
+                  <div class="health-breakdown__label">سلامت CTR</div>
+                </div>
+                <div class="health-breakdown__item">
+                  <div class="health-breakdown__value" id="breakdown-opportunity">—</div>
+                  <div class="health-breakdown__label">فرصت‌ها</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- TAB NAVIGATION -->
+        <div class="dash-tabs" role="tablist">
+          <button class="dash-tab active" data-tab="overview" role="tab" aria-selected="true">📊 نمای کلی</button>
+          <button class="dash-tab" data-tab="queries" role="tab" aria-selected="false">🔎 کوئری‌های برتر</button>
+          <button class="dash-tab" data-tab="pages" role="tab" aria-selected="false">📄 صفحات برتر</button>
+          <button class="dash-tab" data-tab="ctr-health" role="tab" aria-selected="false">💚 سلامت CTR</button>
+          <button class="dash-tab" data-tab="opportunities" role="tab" aria-selected="false">⚡ فرصت‌ها</button>
+          <button class="dash-tab" data-tab="cannibalization" role="tab" aria-selected="false">⚠️ هم‌خواری</button>
+          <button class="dash-tab" data-tab="content-decay" role="tab" aria-selected="false">📉 زوال محتوا</button>
+          <button class="dash-tab" data-tab="device-gap" role="tab" aria-selected="false">📱 شکاف دستگاه</button>
+          <button class="dash-tab" data-tab="country" role="tab" aria-selected="false">🌍 کشورها</button>
+          <button class="dash-tab" data-tab="anomalies" role="tab" aria-selected="false">🔍 ناهنجاری‌ها</button>
+          <button class="dash-tab" data-tab="brand" role="tab" aria-selected="false">🏷️ برند vs غیربرند</button>
+          <button class="dash-tab" data-tab="action-plan" role="tab" aria-selected="false">📋 برنامه اقدام</button>
+        </div>
+
+        <!-- All tab content panels (same IDs as English version) -->
+        <div class="dash-tab-content" data-tab-content="overview" style="display: block;">
+          <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); text-align: center; padding: var(--space-xl);">
+            داده‌های GSC خود را آپلود کنید تا داشبرد کامل با تمام ۱۲ بخش تحلیل نمایش داده شود.
+          </p>
+        </div>
+
+        <div class="dash-tab-content" data-tab-content="queries" style="display: none;">
+          <div class="dash-section">
+            <div class="dash-section__header">
+              <h2 class="dash-section__title">🔎 تحلیل عمیق کوئری‌های برتر</h2>
+            </div>
+            <div id="top-queries-table"></div>
+          </div>
+        </div>
+
+        <div class="dash-tab-content" data-tab-content="pages" style="display: none;">
+          <div class="dash-section">
+            <div class="dash-section__header">
+              <h2 class="dash-section__title">📄 تحلیل عمیق صفحات برتر</h2>
+            </div>
+            <div id="top-pages-table"></div>
+          </div>
+        </div>
+
+        <div class="dash-tab-content" data-tab-content="ctr-health" style="display: none;">
+          <div class="dash-section">
+            <div class="dash-section__header">
+              <h2 class="dash-section__title">💚 بررسی سلامت CTR</h2>
+              <span class="dash-section__badge dash-section__badge--info">مقایسه با میانگین صنعت</span>
+            </div>
+            <div class="chart-container" style="margin-bottom: var(--space-lg);">
+              <canvas id="ctr-scatter-chart"></canvas>
+            </div>
+            <div id="ctr-health-table"></div>
+          </div>
+        </div>
+
+        <div class="dash-tab-content" data-tab-content="opportunities" style="display: none;">
+          <div class="dash-section">
+            <div class="dash-section__header">
+              <h2 class="dash-section__title">⚡ کلمات کلیدی فرصت‌دار</h2>
+              <span class="dash-section__badge dash-section__badge--warning">پتانسیل بالا</span>
+            </div>
+            <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-lg);">
+              کلمات کلیدی در رتبه ۴ تا ۲۰ با نمایش بالا و CTR پایین‌تر از میانگین. اینها بهترین فرصت‌های برد سریع شما هستند.
+            </p>
+            <div id="opportunities-table"></div>
+          </div>
+        </div>
+
+        <div class="dash-tab-content" data-tab-content="cannibalization" style="display: none;">
+          <div class="dash-section">
+            <div class="dash-section__header">
+              <h2 class="dash-section__title">⚠️ هم‌خواری کلمات کلیدی</h2>
+              <span class="dash-section__badge dash-section__badge--critical" id="cannibal-count-badge"></span>
+            </div>
+            <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-lg);">
+              چندین URL برای یک کوئری رقابت می‌کنند و اعتبار رتبه‌بندی شما را کاهش می‌دهند. هر گروه زیر نیاز به ادغام دارد.
+            </p>
+            <div id="cannibalization-container"></div>
+          </div>
+        </div>
+
+        <div class="dash-tab-content" data-tab-content="content-decay" style="display: none;">
+          <div class="dash-section">
+            <div class="dash-section__header">
+              <h2 class="dash-section__title">📉 تشخیص زوال محتوا</h2>
+            </div>
+            <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-lg);">
+              محتوایی که ترافیک خود را در طول زمان از دست می‌دهد. برای تشخیص دقیق به داده از دو بازه زمانی مختلف نیاز است.
+            </p>
+            <div id="content-decay-table"></div>
+          </div>
+        </div>
+
+        <div class="dash-tab-content" data-tab-content="device-gap" style="display: none;">
+          <div class="dash-section">
+            <div class="dash-section__header">
+              <h2 class="dash-section__title">📱 شکاف عملکرد دستگاه‌ها</h2>
+            </div>
+            <div class="chart-container" style="margin-bottom: var(--space-lg);">
+              <canvas id="device-bar-chart"></canvas>
+            </div>
+            <div id="device-gap-summary"></div>
+            <div id="device-gap-container"></div>
+          </div>
+        </div>
+
+        <div class="dash-tab-content" data-tab-content="country" style="display: none;">
+          <div class="dash-section">
+            <div class="dash-section__header">
+              <h2 class="dash-section__title">🌍 عملکرد کشورها</h2>
+            </div>
+            <div class="chart-container" style="margin-bottom: var(--space-lg);">
+              <canvas id="country-bar-chart"></canvas>
+            </div>
+            <div id="country-table"></div>
+          </div>
+        </div>
+
+        <div class="dash-tab-content" data-tab-content="anomalies" style="display: none;">
+          <div class="dash-section">
+            <div class="dash-section__header">
+              <h2 class="dash-section__title">🔍 تشخیص ناهنجاری</h2>
+            </div>
+            <p style="font-size: var(--font-size-sm); color: var(--color-text-muted); margin-bottom: var(--space-lg);">
+              تغییرات غیرعادی در کلیک‌ها، نمایش‌ها یا رتبه‌بندی که ممکن است نشان‌دهنده مشکلات یا فرصت‌ها باشد.
+            </p>
+            <div id="anomalies-container"></div>
+          </div>
+        </div>
+
+        <div class="dash-tab-content" data-tab-content="brand" style="display: none;">
+          <div class="dash-section">
+            <div class="dash-section__header">
+              <h2 class="dash-section__title">🏷️ عملکرد برند در مقابل غیربرند</h2>
+            </div>
+            <div class="chart-container" style="max-width: 400px; margin: 0 auto var(--space-lg);">
+              <canvas id="brand-pie-chart"></canvas>
+            </div>
+            <div id="brand-chart"></div>
+          </div>
+        </div>
+
+        <div class="dash-tab-content" data-tab-content="action-plan" style="display: none;">
+          <div class="dash-section">
+            <div class="dash-section__header">
+              <h2 class="dash-section__title">📋 برنامه اقدام</h2>
+              <span class="dash-section__badge dash-section__badge--info">اولویت‌بندی بر اساس تأثیر و فوریت</span>
+            </div>
+            <div id="action-plan-container"></div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </main>
+
+  <!-- ============================================ -->
+  <!-- SITE FOOTER                                  -->
+  <!-- ============================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="site-footer__text">
+        PromptHub &copy; 2026 — پرامپت‌های حرفه‌ای هوش مصنوعی
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============================================ -->
+  <!-- SCRIPTS                                      -->
+  <!-- ============================================ -->
+  <script src="../../../assets/js/navigation.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="../../en/tools/seo-dashboard/js/data-manager.js"></script>
+  <script src="../../en/tools/seo-dashboard/js/gsc-parser.js"></script>
+  <script src="../../en/tools/seo-dashboard/js/analysis-engine.js"></script>
+  <script src="../../en/tools/seo-dashboard/js/recommendation-engine.js"></script>
+  <script src="../../en/tools/seo-dashboard/js/chart-builder.js"></script>
+  <script src="../../en/tools/seo-dashboard/js/table-builder.js"></script>
+  <script src="../../en/tools/seo-dashboard/js/ui-controller.js"></script>
+  <script src="../../en/tools/seo-dashboard/js/app.js"></script>
+</body>
+</html>
