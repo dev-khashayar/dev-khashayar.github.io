@@ -1,0 +1,62 @@
+{
+  "description": "Average CTR by Google SERP Position — based on Advanced Web Ranking CTR Study 2025-2026. Used as benchmark for CTR Health Check.",
+  "source": "Advanced Web Ranking CTR Study",
+  "lastUpdated": "2026-01",
+  "ctrByPosition": {
+    "1": 0.281,
+    "2": 0.157,
+    "3": 0.110,
+    "4": 0.080,
+    "5": 0.062,
+    "6": 0.049,
+    "7": 0.039,
+    "8": 0.032,
+    "9": 0.026,
+    "10": 0.022,
+    "11": 0.018,
+    "12": 0.015,
+    "13": 0.013,
+    "14": 0.011,
+    "15": 0.009,
+    "16": 0.008,
+    "17": 0.007,
+    "18": 0.006,
+    "19": 0.005,
+    "20": 0.004
+  },
+  "ctrByDevice": {
+    "desktop": {
+      "1": 0.312,
+      "2": 0.172,
+      "3": 0.118,
+      "4": 0.085,
+      "5": 0.066,
+      "6": 0.052,
+      "7": 0.041,
+      "8": 0.033,
+      "9": 0.027,
+      "10": 0.023
+    },
+    "mobile": {
+      "1": 0.248,
+      "2": 0.141,
+      "3": 0.102,
+      "4": 0.074,
+      "5": 0.058,
+      "6": 0.046,
+      "7": 0.037,
+      "8": 0.030,
+      "9": 0.025,
+      "10": 0.021
+    }
+  },
+  "googleAlgorithmUpdates": [
+    { "date": "2026-03-12", "name": "March 2026 Core Update", "type": "core" },
+    { "date": "2025-12-15", "name": "December 2025 Core Update", "type": "core" },
+    { "date": "2025-11-05", "name": "November 2025 Spam Update", "type": "spam" },
+    { "date": "2025-09-20", "name": "September 2025 Helpful Content Update", "type": "content" },
+    { "date": "2025-08-10", "name": "August 2025 Core Update", "type": "core" },
+    { "date": "2025-05-28", "name": "May 2025 Core Update", "type": "core" },
+    { "date": "2025-03-15", "name": "March 2025 Core Update", "type": "core" }
+  ]
+}
