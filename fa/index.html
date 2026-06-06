@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="PromptHub — پرامپت‌های حرفه‌ای هوش مصنوعی برای بازاریابی، سئو، کسب‌وکار و اتوماسیون. پرامپت‌های آماده برای نتایج بهتر.">
+  <meta name="theme-color" content="#0a0e14">
+  <meta property="og:title" content="PromptHub — پرامپت‌های حرفه‌ای هوش مصنوعی">
+  <meta property="og:description" content="پرامپت‌های حرفه‌ای برای بازاریابی، سئو، کسب‌وکار و اتوماسیون — آماده استفاده، طراحی‌شده برای نتیجه.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dev-khashayar.github.io/fa/">
+  <title>PromptHub — پرامپت‌های حرفه‌ای هوش مصنوعی</title>
+  <link rel="stylesheet" href="../assets/css/style.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- SITE HEADER -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="/fa/" class="site-logo" aria-label="PromptHub خانه">
+        Prompt<span>Hub</span>
+      </a>
+      <nav class="lang-switcher" aria-label="تغییر زبان">
+        <a href="/fa/" class="lang-switcher__link active" lang="fa" aria-current="page">FA</a>
+        <span class="lang-switcher__sep" aria-hidden="true">|</span>
+        <a href="/en/" class="lang-switcher__link" lang="en">EN</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SECTION -->
+    <section class="hero">
+      <div class="container">
+        <h1 class="hero__title">پرامپت‌های حرفه‌ای هوش مصنوعی</h1>
+        <p class="hero__subtitle">
+          پرامپت‌های تخصصی برای بازاریابی، سئو،<br>
+          کسب‌وکار و اتوماسیون — آماده استفاده،<br>
+          طراحی‌شده برای نتیجه.
+        </p>
+        <a href="#prompts-section" class="btn btn--primary">
+          مشاهده همه پرامپت‌ها
+        </a>
+      </div>
+    </section>
+
+    <!-- FEATURED PROMPTS -->
+    <section class="section" id="featured-section" aria-labelledby="featured-heading">
+      <div class="container">
+        <h2 class="section__title" id="featured-heading">
+          <span class="section__title-icon">⭐</span>
+          پرامپت ویژه
+        </h2>
+        <div class="prompt-cards-grid" id="featured-container">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+    </section>
+
+    <!-- SEARCH & FILTERS -->
+    <section class="section" id="prompts-section" aria-labelledby="all-prompts-heading">
+      <div class="container">
+        <!-- Search Bar -->
+        <div class="search-bar" role="search">
+          <span class="search-bar__icon" aria-hidden="true">🔍</span>
+          <input
+            type="search"
+            class="search-bar__input"
+            id="search-input"
+            placeholder="جستجو بر اساس عنوان، برچسب یا دسته‌بندی..."
+            aria-label="جستجوی پرامپت‌ها"
+            autocomplete="off"
+          >
+        </div>
+
+        <!-- Category Filters -->
+        <div class="filter-section">
+          <div class="filter-section__title">دسته‌بندی</div>
+          <div class="filter-chips" id="category-filters" role="group" aria-label="فیلتر بر اساس دسته‌بندی">
+            <button class="filter-chip active" data-filter="all" data-filter-type="category" aria-pressed="true">همه</button>
+            <button class="filter-chip" data-filter="strategy" data-filter-type="category" aria-pressed="false">استراتژی</button>
+            <button class="filter-chip" data-filter="seo" data-filter-type="category" aria-pressed="false">سئو</button>
+            <button class="filter-chip" data-filter="marketing" data-filter-type="category" aria-pressed="false">بازاریابی</button>
+          </div>
+        </div>
+
+        <!-- Type Filters -->
+        <div class="filter-section">
+          <div class="filter-section__title">نوع</div>
+          <div class="filter-chips" id="type-filters" role="group" aria-label="فیلتر بر اساس نوع پرامپت">
+            <button class="filter-chip active" data-filter="all" data-filter-type="type" aria-pressed="true">همه</button>
+            <button class="filter-chip" data-filter="meta" data-filter-type="type" aria-pressed="false">متا</button>
+            <button class="filter-chip" data-filter="multi-step" data-filter-type="type" aria-pressed="false">چندمرحله‌ای</button>
+            <button class="filter-chip" data-filter="single" data-filter-type="type" aria-pressed="false">تکی</button>
+            <button class="filter-chip" data-filter="role" data-filter-type="type" aria-pressed="false">نقش</button>
+            <button class="filter-chip" data-filter="template" data-filter-type="type" aria-pressed="false">تمپلیت</button>
+            <button class="filter-chip" data-filter="workflow" data-filter-type="type" aria-pressed="false">فرآیند</button>
+            <button class="filter-chip" data-filter="pack" data-filter-type="type" aria-pressed="false">پک</button>
+          </div>
+        </div>
+
+        <!-- Difficulty Filters -->
+        <div class="filter-section">
+          <div class="filter-section__title">سطح</div>
+          <div class="filter-chips" id="difficulty-filters" role="group" aria-label="فیلتر بر اساس سطح">
+            <button class="filter-chip active" data-filter="all" data-filter-type="difficulty" aria-pressed="true">همه</button>
+            <button class="filter-chip" data-filter="beginner" data-filter-type="difficulty" aria-pressed="false">مبتدی</button>
+            <button class="filter-chip" data-filter="intermediate" data-filter-type="difficulty" aria-pressed="false">متوسط</button>
+            <button class="filter-chip" data-filter="advanced" data-filter-type="difficulty" aria-pressed="false">حرفه‌ای</button>
+          </div>
+        </div>
+
+        <!-- Results Count -->
+        <div class="results-count" id="results-count" aria-live="polite">
+          در حال بارگذاری...
+        </div>
+
+        <!-- Prompt Cards Grid -->
+        <div class="prompt-cards-grid" id="prompts-container">
+          <!-- Populated by JavaScript -->
+        </div>
+
+        <!-- No Results Message -->
+        <div id="no-results" style="display: none; text-align: center; padding: var(--space-2xl) 0;">
+          <p style="font-size: var(--font-size-lg); color: var(--color-text-muted); margin-bottom: var(--space-md);">
+            هیچ پرامپتی با این معیارها یافت نشد.
+          </p>
+          <p style="font-size: var(--font-size-sm); color: var(--color-text-muted);">
+            لطفاً جستجو یا فیلترهای خود را تغییر دهید.
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- SITE FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="site-footer__text">
+        PromptHub &copy; 2026 — پرامپت‌های حرفه‌ای هوش مصنوعی
+      </p>
+    </div>
+  </footer>
+
+  <!-- SCRIPTS -->
+  <script src="../assets/js/prompts-data-fa.js"></script>
+  <script src="../assets/js/home.js"></script>
+</body>
+</html>
