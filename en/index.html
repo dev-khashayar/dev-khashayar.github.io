@@ -15,27 +15,117 @@
 </head>
 <body>
 
-  <!-- SITE HEADER -->
+  <!-- ============================================ -->
+  <!-- SITE HEADER                                 -->
+  <!-- ============================================ -->
   <header class="site-header">
     <div class="container site-header__inner">
+      <!-- Logo -->
       <a href="/en/" class="site-logo" aria-label="PromptHub Home">
         Prompt<span>Hub</span>
       </a>
-      <nav class="lang-switcher" aria-label="Language switcher">
-        <a href="/fa/" class="lang-switcher__link" lang="fa">FA</a>
-        <span class="lang-switcher__sep" aria-hidden="true">|</span>
-        <a href="/en/" class="lang-switcher__link active" lang="en" aria-current="page">EN</a>
+
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="/en/" class="desktop-nav__link active">🏠 Home</a>
+        <a href="/en/#prompts-section" class="desktop-nav__link">📋 Prompts</a>
+        <a href="/en/tools/" class="desktop-nav__link">🛠 Tools</a>
+        <a href="/en/contact/" class="desktop-nav__link">📩 Contact</a>
       </nav>
+
+      <!-- Header Actions: Language Switcher + Hamburger -->
+      <div class="header-actions">
+        <!-- Language Switcher -->
+        <nav class="lang-switcher" aria-label="Language switcher">
+          <a href="/fa/" class="lang-switcher__link" lang="fa">FA</a>
+          <span class="lang-switcher__sep" aria-hidden="true">|</span>
+          <a href="/en/" class="lang-switcher__link active" lang="en" aria-current="page">EN</a>
+        </nav>
+
+        <!-- Hamburger Button (Mobile Only) -->
+        <button
+          class="hamburger-btn"
+          id="hamburger-btn"
+          aria-expanded="false"
+          aria-label="Open menu"
+          aria-controls="bottom-sheet"
+          data-open-label="Open menu"
+          data-close-label="Close menu"
+        >
+          <span class="hamburger-btn__icon" aria-hidden="true">
+            <span class="hamburger-btn__line"></span>
+            <span class="hamburger-btn__line"></span>
+            <span class="hamburger-btn__line"></span>
+          </span>
+        </button>
+      </div>
     </div>
   </header>
 
+  <!-- ============================================ -->
+  <!-- BACKDROP (Mobile Menu Overlay)              -->
+  <!-- ============================================ -->
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+
+  <!-- ============================================ -->
+  <!-- BOTTOM SHEET (Mobile Navigation)            -->
+  <!-- ============================================ -->
+  <div
+    class="bottom-sheet"
+    id="bottom-sheet"
+    role="dialog"
+    aria-modal="true"
+    aria-label="Navigation menu"
+  >
+    <!-- Handle Bar -->
+    <div class="bottom-sheet__handle" aria-hidden="true">
+      <div class="bottom-sheet__handle-bar"></div>
+    </div>
+
+    <!-- Sheet Content -->
+    <div class="bottom-sheet__content">
+      <!-- Navigation Links -->
+      <nav class="bottom-sheet__nav" aria-label="Mobile navigation">
+        <a href="/en/" class="bottom-sheet__nav-link active">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🏠</span>
+          Home
+        </a>
+        <a href="/en/#prompts-section" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📋</span>
+          Prompts
+        </a>
+        <a href="/en/tools/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🛠</span>
+          Tools
+        </a>
+        <a href="/en/contact/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📩</span>
+          Contact
+        </a>
+      </nav>
+
+      <!-- Language Switcher inside Bottom Sheet -->
+      <div class="bottom-sheet__lang" aria-label="Language switcher">
+        <a href="/fa/" class="bottom-sheet__lang-btn" lang="fa">
+          🇮🇷 فارسی
+        </a>
+        <a href="/en/" class="bottom-sheet__lang-btn active" lang="en" aria-current="page">
+          🇬🇧 English
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- MAIN CONTENT                                -->
+  <!-- ============================================ -->
   <main>
     <!-- HERO SECTION -->
     <section class="hero">
       <div class="container">
         <h1 class="hero__title">Curated AI Prompts</h1>
         <p class="hero__subtitle">
-          Professional prompts for , SEO,<br>
+          Professional prompts for Marketing, SEO,<br>
           Business & Automation — ready to use,<br>
           designed for results.
         </p>
@@ -61,6 +151,7 @@
     <!-- SEARCH & FILTERS -->
     <section class="section" id="prompts-section" aria-labelledby="all-prompts-heading">
       <div class="container">
+        <!-- Search Bar -->
         <div class="search-bar" role="search">
           <span class="search-bar__icon" aria-hidden="true">🔍</span>
           <input
@@ -73,6 +164,7 @@
           >
         </div>
 
+        <!-- Category Filters -->
         <div class="filter-section">
           <div class="filter-section__title">Category</div>
           <div class="filter-chips" id="category-filters" role="group" aria-label="Filter by category">
@@ -85,6 +177,7 @@
           </div>
         </div>
 
+        <!-- Type Filters -->
         <div class="filter-section">
           <div class="filter-section__title">Type</div>
           <div class="filter-chips" id="type-filters" role="group" aria-label="Filter by prompt type">
@@ -99,6 +192,7 @@
           </div>
         </div>
 
+        <!-- Difficulty Filters -->
         <div class="filter-section">
           <div class="filter-section__title">Difficulty</div>
           <div class="filter-chips" id="difficulty-filters" role="group" aria-label="Filter by difficulty level">
@@ -109,14 +203,17 @@
           </div>
         </div>
 
+        <!-- Results Count -->
         <div class="results-count" id="results-count" aria-live="polite">
           Loading prompts...
         </div>
 
+        <!-- Prompt Cards Grid -->
         <div class="prompt-cards-grid" id="prompts-container">
           <!-- Populated by JavaScript -->
         </div>
 
+        <!-- No Results Message -->
         <div id="no-results" style="display: none; text-align: center; padding: var(--space-2xl) 0;">
           <p style="font-size: var(--font-size-lg); color: var(--color-text-muted); margin-bottom: var(--space-md);">
             No prompts found matching your criteria.
@@ -129,6 +226,9 @@
     </section>
   </main>
 
+  <!-- ============================================ -->
+  <!-- SITE FOOTER                                  -->
+  <!-- ============================================ -->
   <footer class="site-footer">
     <div class="container">
       <p class="site-footer__text">
@@ -137,7 +237,11 @@
     </div>
   </footer>
 
+  <!-- ============================================ -->
+  <!-- SCRIPTS                                      -->
+  <!-- ============================================ -->
   <script src="../assets/js/prompts-data-en.js"></script>
+  <script src="../assets/js/navigation.js"></script>
   <script src="../assets/js/home.js"></script>
 </body>
 </html>
