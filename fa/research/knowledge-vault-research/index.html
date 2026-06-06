@@ -15,26 +15,117 @@
 </head>
 <body>
 
-  <!-- SITE HEADER -->
+  <!-- ============================================ -->
+  <!-- SITE HEADER                                 -->
+  <!-- ============================================ -->
   <header class="site-header">
     <div class="container site-header__inner">
+      <!-- Logo -->
       <a href="/fa/" class="site-logo" aria-label="PromptHub خانه">
         Prompt<span>Hub</span>
       </a>
-      <nav class="lang-switcher" aria-label="تغییر زبان">
-        <a href="/fa/research/knowledge-vault-research/" class="lang-switcher__link active" lang="fa" aria-current="page">FA</a>
-        <span class="lang-switcher__sep" aria-hidden="true">|</span>
-        <a href="/en/research/knowledge-vault-research/" class="lang-switcher__link" lang="en">EN</a>
+
+      <!-- Desktop Navigation -->
+      <nav class="desktop-nav" aria-label="ناوبری اصلی">
+        <a href="/fa/" class="desktop-nav__link">🏠 خانه</a>
+        <a href="/fa/#prompts-section" class="desktop-nav__link active">📋 پرامپت‌ها</a>
+        <a href="/fa/tools/" class="desktop-nav__link">🛠 ابزارها</a>
+        <a href="/fa/contact/" class="desktop-nav__link">📩 تماس با من</a>
       </nav>
+
+      <!-- Header Actions: Language Switcher + Hamburger -->
+      <div class="header-actions">
+        <!-- Language Switcher -->
+        <nav class="lang-switcher" aria-label="تغییر زبان">
+          <a href="/fa/research/knowledge-vault-research/" class="lang-switcher__link active" lang="fa" aria-current="page">FA</a>
+          <span class="lang-switcher__sep" aria-hidden="true">|</span>
+          <a href="/en/research/knowledge-vault-research/" class="lang-switcher__link" lang="en">EN</a>
+        </nav>
+
+        <!-- Hamburger Button (Mobile Only) -->
+        <button
+          class="hamburger-btn"
+          id="hamburger-btn"
+          aria-expanded="false"
+          aria-label="باز کردن منو"
+          aria-controls="bottom-sheet"
+          data-open-label="باز کردن منو"
+          data-close-label="بستن منو"
+        >
+          <span class="hamburger-btn__icon" aria-hidden="true">
+            <span class="hamburger-btn__line"></span>
+            <span class="hamburger-btn__line"></span>
+            <span class="hamburger-btn__line"></span>
+          </span>
+        </button>
+      </div>
     </div>
   </header>
 
-  <!-- MAIN CONTENT -->
+  <!-- ============================================ -->
+  <!-- BACKDROP (Mobile Menu Overlay)              -->
+  <!-- ============================================ -->
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+
+  <!-- ============================================ -->
+  <!-- BOTTOM SHEET (Mobile Navigation)            -->
+  <!-- ============================================ -->
+  <div
+    class="bottom-sheet"
+    id="bottom-sheet"
+    role="dialog"
+    aria-modal="true"
+    aria-label="منوی ناوبری"
+  >
+    <!-- Handle Bar -->
+    <div class="bottom-sheet__handle" aria-hidden="true">
+      <div class="bottom-sheet__handle-bar"></div>
+    </div>
+
+    <!-- Sheet Content -->
+    <div class="bottom-sheet__content">
+      <!-- Navigation Links -->
+      <nav class="bottom-sheet__nav" aria-label="ناوبری موبایل">
+        <a href="/fa/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🏠</span>
+          خانه
+        </a>
+        <a href="/fa/#prompts-section" class="bottom-sheet__nav-link active">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📋</span>
+          پرامپت‌ها
+        </a>
+        <a href="/fa/tools/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🛠</span>
+          ابزارها
+        </a>
+        <a href="/fa/contact/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📩</span>
+          تماس با من
+        </a>
+      </nav>
+
+      <!-- Language Switcher inside Bottom Sheet -->
+      <div class="bottom-sheet__lang" aria-label="تغییر زبان">
+        <a href="/fa/research/knowledge-vault-research/" class="bottom-sheet__lang-btn active" lang="fa" aria-current="page">
+          🇮🇷 فارسی
+        </a>
+        <a href="/en/research/knowledge-vault-research/" class="bottom-sheet__lang-btn" lang="en">
+          🇬🇧 English
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- MAIN CONTENT                                -->
+  <!-- ============================================ -->
   <main data-prompt-id="knowledge-vault-research">
     <!-- Built dynamically by detail.js -->
   </main>
 
-  <!-- SITE FOOTER -->
+  <!-- ============================================ -->
+  <!-- SITE FOOTER                                  -->
+  <!-- ============================================ -->
   <footer class="site-footer">
     <div class="container">
       <p class="site-footer__text">
@@ -43,8 +134,11 @@
     </div>
   </footer>
 
-  <!-- SCRIPTS -->
+  <!-- ============================================ -->
+  <!-- SCRIPTS                                      -->
+  <!-- ============================================ -->
   <script src="../../../assets/js/prompts-data-fa.js"></script>
+  <script src="../../../assets/js/navigation.js"></script>
   <script src="../../../assets/js/detail.js"></script>
 </body>
 </html>
