@@ -1,0 +1,86 @@
+name: Proxy Finder Engine
+
+on:
+  schedule:
+    - cron: "*/10 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write   # لازم برای push
+
+concurrency:
+  group: proxy-finder-cron
+  cancel-in-progress: true
+
+jobs:
+  run-engine:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+
+    steps:
+      # =========================================
+      # 1. Checkout
+      # =========================================
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      # =========================================
+      # 2. Python Setup (optimized cache)
+      # =========================================
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+          cache: "pip"
+
+      # =========================================
+      # 3. Install dependencies (minimal + fast)
+      # =========================================
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install --no-cache-dir requests beautifulsoup4
+
+      # =========================================
+      # 4. Run engine (safe execution)
+      # =========================================
+      - name: Run proxy finder engine
+        env:
+          PYTHONUNBUFFERED: "1"
+        run: |
+          python scripts/proxy-finder.py
+
+      # =========================================
+      # 5. Validate output (basic sanity check)
+      # =========================================
+      - name: Validate output files
+        run: |
+          echo "Checking generated data..."
+
+          ls -R data || echo "No data folder found"
+
+          test -f data/proxy-finder/proxy.json && echo "proxy.json OK" || echo "proxy.json MISSING"
+
+      # =========================================
+      # 6. Commit & Push (safe + clean)
+      # =========================================
+      - name: Commit results
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          git add data/
+
+          # جلوگیری از commit خالی
+          if git diff --cached --quiet; then
+            echo "No changes detected"
+            exit 0
+          fi
+
+          git commit -m "⚡ proxy engine update $(date -u '+%Y-%m-%d %H:%M:%S UTC')"
+
+      - name: Push changes
+        uses: ad-m/github-push-action@v1
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          branch: main
