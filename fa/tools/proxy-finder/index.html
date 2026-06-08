@@ -11,8 +11,1011 @@
   <meta property="og:url" content="https://dev-khashayar.github.io/fa/tools/proxy-finder/">
   <title>پروکسی فایندر — PromptHub</title>
   <link rel="stylesheet" href="../../../assets/css/style.css">
-  <link rel="stylesheet" href="../../../en/tools/proxy-finder/css/proxy-finder.css">
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+  <style>
+    /* ============================================
+       PROXY FINDER V2 — COMPLETE REDESIGN
+       Mobile-First | Clean | Readable | Modern
+       ============================================ */
+
+    :root {
+      --pf-radius-sm: 10px;
+      --pf-radius: 16px;
+      --pf-radius-lg: 22px;
+
+      --color-vless: #a78bfa;
+      --color-vless-bg: rgba(167, 139, 250, 0.12);
+      --color-vmess: #f5a623;
+      --color-vmess-bg: rgba(245, 166, 35, 0.12);
+      --color-trojan: #3dd68c;
+      --color-trojan-bg: rgba(61, 214, 140, 0.12);
+      --color-ss: #4da6ff;
+      --color-ss-bg: rgba(77, 166, 255, 0.12);
+      --color-mtproto: #f04770;
+      --color-mtproto-bg: rgba(240, 71, 112, 0.12);
+    }
+
+    .proxy-page {
+      min-height: 100vh;
+      background: var(--color-bg-primary);
+    }
+
+    /* ============================================
+       HERO — Clean & Impactful
+       ============================================ */
+
+    .pf-hero {
+      padding: 48px 0 32px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .pf-hero::before {
+      content: '';
+      position: absolute;
+      top: -60%;
+      left: -40%;
+      width: 180%;
+      height: 200%;
+      background:
+        radial-gradient(ellipse at 30% 40%, rgba(167, 139, 250, 0.06) 0%, transparent 55%),
+        radial-gradient(ellipse at 70% 60%, rgba(77, 166, 255, 0.05) 0%, transparent 55%),
+        radial-gradient(ellipse at 50% 80%, rgba(240, 71, 112, 0.04) 0%, transparent 50%);
+      pointer-events: none;
+    }
+
+    .pf-hero__container {
+      position: relative;
+      z-index: 1;
+      max-width: 680px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+
+    .pf-hero__icon-wrap {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 72px;
+      height: 72px;
+      background: linear-gradient(135deg, rgba(167, 139, 250, 0.2), rgba(77, 166, 255, 0.15));
+      border: 1px solid rgba(167, 139, 250, 0.3);
+      border-radius: 20px;
+      font-size: 2.2rem;
+      margin-bottom: 20px;
+    }
+
+    .pf-hero__title {
+      font-size: clamp(1.8rem, 4vw, 2.6rem);
+      font-weight: 800;
+      color: var(--color-text-primary);
+      margin-bottom: 12px;
+      line-height: 1.2;
+      letter-spacing: -0.03em;
+    }
+
+    .pf-hero__title span {
+      background: linear-gradient(135deg, var(--color-vless), var(--color-accent-primary));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .pf-hero__desc {
+      font-size: 1rem;
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+      margin-bottom: 20px;
+      max-width: 520px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .pf-hero__pulse {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 6px 16px;
+      background: var(--color-success-bg);
+      border-radius: 20px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--color-success);
+    }
+
+    .pf-hero__pulse-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--color-success);
+      animation: pf-pulse 2s ease-in-out infinite;
+    }
+
+    @keyframes pf-pulse {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.3; transform: scale(1.6); }
+    }
+
+    /* ============================================
+       STATS — Horizontal scroll chips on mobile
+       ============================================ */
+
+    .pf-stats-strip {
+      display: flex;
+      gap: 12px;
+      overflow-x: auto;
+      padding: 24px 0 8px;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+    }
+
+    .pf-stats-strip::-webkit-scrollbar { display: none; }
+
+    .pf-stat-chip {
+      flex-shrink: 0;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 12px 18px;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .pf-stat-chip:hover {
+      border-color: var(--color-border-light);
+      box-shadow: var(--shadow-card);
+    }
+
+    .pf-stat-chip__icon {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 12px;
+      font-size: 1.1rem;
+      flex-shrink: 0;
+    }
+
+    .pf-stat-chip__icon--total { background: var(--color-accent-glow); color: var(--color-accent-primary); }
+    .pf-stat-chip__icon--active { background: var(--color-success-bg); color: var(--color-success); }
+    .pf-stat-chip__icon--sources { background: var(--color-vless-bg); color: var(--color-vless); }
+    .pf-stat-chip__icon--grade-a { background: var(--color-success-bg); color: var(--color-success); }
+
+    .pf-stat-chip__info {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .pf-stat-chip__value {
+      font-size: 1.2rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      line-height: 1;
+    }
+
+    .pf-stat-chip__label {
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+      margin-top: 2px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    /* ============================================
+       FILTER BAR — Clean chip-based
+       ============================================ */
+
+    .pf-filter-strip {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin: 28px 0 24px;
+    }
+
+    .pf-search-wrap {
+      flex: 1;
+      min-width: 220px;
+      position: relative;
+    }
+
+    .pf-search-wrap input {
+      width: 100%;
+      padding: 11px 16px 11px 42px;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: 14px;
+      color: var(--color-text-primary);
+      font-size: 0.9rem;
+      font-family: inherit;
+      outline: none;
+      transition: all 0.2s ease;
+    }
+
+    .pf-search-wrap input:focus {
+      border-color: var(--color-accent-primary);
+      box-shadow: 0 0 0 3px var(--color-accent-glow);
+    }
+
+    .pf-search-wrap input::placeholder {
+      color: var(--color-text-muted);
+    }
+
+    .pf-search-icon {
+      position: absolute;
+      right: 14px;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 1.1rem;
+      color: var(--color-text-muted);
+      pointer-events: none;
+    }
+
+    [dir="ltr"] .pf-search-icon {
+      right: auto;
+      left: 14px;
+    }
+
+    [dir="ltr"] .pf-search-wrap input {
+      padding: 11px 42px 11px 16px;
+    }
+
+    .pf-filter-chips {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .pf-chip {
+      padding: 8px 15px;
+      font-size: 0.78rem;
+      font-weight: 600;
+      border-radius: 22px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      white-space: nowrap;
+      background: var(--color-bg-card);
+      color: var(--color-text-muted);
+      border: 1px solid var(--color-border);
+      user-select: none;
+    }
+
+    .pf-chip:hover {
+      border-color: var(--color-border-light);
+      color: var(--color-text-primary);
+    }
+
+    .pf-chip.active {
+      background: var(--color-accent-glow);
+      border-color: var(--color-accent-primary);
+      color: var(--color-accent-primary);
+    }
+
+    .pf-chip--vless.active { background: var(--color-vless-bg); border-color: var(--color-vless); color: var(--color-vless); }
+    .pf-chip--vmess.active { background: var(--color-vmess-bg); border-color: var(--color-vmess); color: var(--color-vmess); }
+    .pf-chip--trojan.active { background: var(--color-trojan-bg); border-color: var(--color-trojan); color: var(--color-trojan); }
+    .pf-chip--ss.active { background: var(--color-ss-bg); border-color: var(--color-ss); color: var(--color-ss); }
+    .pf-chip--mtproto.active { background: var(--color-mtproto-bg); border-color: var(--color-mtproto); color: var(--color-mtproto); }
+
+    /* ============================================
+       SECTION HEADER
+       ============================================ */
+
+    .pf-section-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 18px;
+      gap: 12px;
+    }
+
+    .pf-section-title {
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+    }
+
+    .pf-section-badge {
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+      background: var(--color-bg-elevated);
+      padding: 4px 14px;
+      border-radius: 14px;
+    }
+
+    /* ============================================
+       RECOMMENDATION CARDS
+       ============================================ */
+
+    .pf-recs {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 14px;
+      margin-bottom: 36px;
+    }
+
+    @media (min-width: 700px) {
+      .pf-recs {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 550px) and (max-width: 699px) {
+      .pf-recs {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .pf-rec-card {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--pf-radius);
+      padding: 20px;
+      transition: all 0.25s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pf-rec-card:hover {
+      border-color: var(--color-accent-primary);
+      box-shadow: var(--shadow-elevated);
+      transform: translateY(-2px);
+    }
+
+    .pf-rec-card::after {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 60px;
+      height: 60px;
+      background: radial-gradient(circle, rgba(167, 139, 250, 0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .pf-rec-card__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 14px;
+    }
+
+    .pf-rec-card__type {
+      padding: 4px 12px;
+      border-radius: 12px;
+      font-size: 0.68rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .pf-rec-card__type--vless { background: var(--color-vless-bg); color: var(--color-vless); }
+    .pf-rec-card__type--vmess { background: var(--color-vmess-bg); color: var(--color-vmess); }
+    .pf-rec-card__type--trojan { background: var(--color-trojan-bg); color: var(--color-trojan); }
+    .pf-rec-card__type--shadowsocks { background: var(--color-ss-bg); color: var(--color-ss); }
+    .pf-rec-card__type--ss { background: var(--color-ss-bg); color: var(--color-ss); }
+    .pf-rec-card__type--mtproto { background: var(--color-mtproto-bg); color: var(--color-mtproto); }
+
+    .pf-rec-card__grade {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      font-size: 0.7rem;
+      font-weight: 800;
+    }
+
+    .pf-rec-card__grade--a { background: var(--color-success-bg); color: var(--color-success); }
+    .pf-rec-card__grade--b { background: var(--color-info-bg); color: var(--color-info); }
+    .pf-rec-card__grade--c { background: rgba(245, 166, 35, 0.12); color: var(--color-warning); }
+
+    .pf-rec-card__url {
+      font-family: var(--font-family-mono);
+      font-size: 0.72rem;
+      color: var(--color-text-secondary);
+      word-break: break-all;
+      line-height: 1.5;
+      margin-bottom: 14px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+
+    .pf-rec-card__meta {
+      display: flex;
+      gap: 16px;
+      margin-bottom: 16px;
+      font-size: 0.75rem;
+      color: var(--color-text-muted);
+    }
+
+    .pf-rec-card__meta-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .pf-rec-card__meta-item--ping {
+      color: var(--color-success);
+      font-weight: 600;
+    }
+
+    .pf-rec-card__actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .pf-rec-card__btn {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 5px;
+      padding: 8px 0;
+      border-radius: 10px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: var(--color-bg-elevated);
+      color: var(--color-text-secondary);
+      border: 1px solid transparent;
+    }
+
+    .pf-rec-card__btn:hover {
+      background: var(--color-accent-glow);
+      color: var(--color-accent-primary);
+      border-color: var(--color-accent-primary);
+    }
+
+    .pf-rec-card__btn--fav {
+      flex: 0;
+      padding: 8px 10px;
+      font-size: 0.9rem;
+    }
+
+    .pf-rec-card__btn--fav.faved {
+      color: #f5a623;
+    }
+
+    /* ============================================
+       CONFIG TABLE — Clean & readable
+       ============================================ */
+
+    .pf-table-section {
+      margin-bottom: 36px;
+    }
+
+    .pf-table-wrap {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--pf-radius);
+      overflow: hidden;
+    }
+
+    /* Desktop table */
+    .pf-table-desk {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.85rem;
+      display: none;
+    }
+
+    @media (min-width: 750px) {
+      .pf-table-desk {
+        display: table;
+      }
+    }
+
+    .pf-table-desk thead th {
+      padding: 14px 16px;
+      text-align: right;
+      font-size: 0.7rem;
+      font-weight: 700;
+      color: var(--color-text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+      background: var(--color-bg-elevated);
+      border-bottom: 1px solid var(--color-border);
+      white-space: nowrap;
+      cursor: pointer;
+      user-select: none;
+    }
+
+    .pf-table-desk thead th:hover { color: var(--color-text-primary); }
+    .pf-table-desk thead th.sorted { color: var(--color-accent-primary); }
+
+    .pf-table-desk tbody td {
+      padding: 12px 16px;
+      border-bottom: 1px solid rgba(30, 40, 56, 0.5);
+      color: var(--color-text-secondary);
+      vertical-align: middle;
+    }
+
+    .pf-table-desk tbody tr {
+      transition: background 0.15s ease;
+    }
+
+    .pf-table-desk tbody tr:hover {
+      background: var(--color-bg-elevated);
+    }
+
+    .pf-table-desk tbody tr:last-child td {
+      border-bottom: none;
+    }
+
+    /* Mobile cards (stacked) */
+    .pf-table-mobile {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      padding: 14px;
+    }
+
+    @media (min-width: 750px) {
+      .pf-table-mobile {
+        display: none;
+      }
+    }
+
+    .pf-mobile-card {
+      background: var(--color-bg-elevated);
+      border: 1px solid var(--color-border);
+      border-radius: var(--pf-radius-sm);
+      padding: 16px;
+      transition: all 0.2s ease;
+    }
+
+    .pf-mobile-card:hover {
+      border-color: var(--color-border-light);
+    }
+
+    .pf-mobile-card__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px;
+    }
+
+    .pf-mobile-card__type {
+      padding: 3px 10px;
+      border-radius: 10px;
+      font-size: 0.65rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+    }
+
+    .pf-mobile-card__type--vless { background: var(--color-vless-bg); color: var(--color-vless); }
+    .pf-mobile-card__type--vmess { background: var(--color-vmess-bg); color: var(--color-vmess); }
+    .pf-mobile-card__type--trojan { background: var(--color-trojan-bg); color: var(--color-trojan); }
+    .pf-mobile-card__type--shadowsocks { background: var(--color-ss-bg); color: var(--color-ss); }
+    .pf-mobile-card__type--ss { background: var(--color-ss-bg); color: var(--color-ss); }
+    .pf-mobile-card__type--mtproto { background: var(--color-mtproto-bg); color: var(--color-mtproto); }
+
+    .pf-mobile-card__badges {
+      display: flex;
+      gap: 6px;
+    }
+
+    .pf-mobile-card__grade {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      font-size: 0.6rem;
+      font-weight: 800;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pf-mobile-card__grade--a { background: var(--color-success-bg); color: var(--color-success); }
+    .pf-mobile-card__grade--b { background: var(--color-info-bg); color: var(--color-info); }
+    .pf-mobile-card__grade--c { background: rgba(245, 166, 35, 0.12); color: var(--color-warning); }
+
+    .pf-mobile-card__status {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      align-self: center;
+    }
+
+    .pf-mobile-card__status--active { background: var(--color-success); }
+    .pf-mobile-card__status--dead { background: var(--color-error); }
+
+    .pf-mobile-card__url {
+      font-family: var(--font-family-mono);
+      font-size: 0.7rem;
+      color: var(--color-text-secondary);
+      word-break: break-all;
+      margin-bottom: 12px;
+      line-height: 1.5;
+    }
+
+    .pf-mobile-card__info {
+      display: flex;
+      gap: 14px;
+      margin-bottom: 14px;
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+    }
+
+    .pf-mobile-card__actions {
+      display: flex;
+      gap: 6px;
+    }
+
+    .pf-mobile-card__btn {
+      flex: 1;
+      padding: 7px 0;
+      border-radius: 8px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      cursor: pointer;
+      text-align: center;
+      background: var(--color-bg-card);
+      color: var(--color-text-secondary);
+      border: 1px solid var(--color-border);
+      transition: all 0.2s ease;
+    }
+
+    .pf-mobile-card__btn:active {
+      background: var(--color-accent-glow);
+      color: var(--color-accent-primary);
+    }
+
+    /* ============================================
+       PAGINATION
+       ============================================ */
+
+    .pf-pagination {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      padding: 16px 20px;
+      border-top: 1px solid var(--color-border);
+      flex-wrap: wrap;
+    }
+
+    .pf-page-btn {
+      min-width: 34px;
+      height: 34px;
+      border-radius: 10px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      background: var(--color-bg-elevated);
+      color: var(--color-text-muted);
+      border: 1px solid var(--color-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pf-page-btn:hover {
+      border-color: var(--color-accent-primary);
+      color: var(--color-accent-primary);
+    }
+
+    .pf-page-btn.active {
+      background: var(--color-accent-primary);
+      border-color: var(--color-accent-primary);
+      color: #fff;
+    }
+
+    .pf-page-btn:disabled {
+      opacity: 0.35;
+      cursor: not-allowed;
+    }
+
+    .pf-page-info {
+      font-size: 0.72rem;
+      color: var(--color-text-muted);
+      padding: 0 8px;
+    }
+
+    /* ============================================
+       LEADERBOARD
+       ============================================ */
+
+    .pf-leaderboard {
+      margin-bottom: 36px;
+    }
+
+    .pf-lb-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 8px;
+    }
+
+    @media (min-width: 550px) {
+      .pf-lb-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    @media (min-width: 800px) {
+      .pf-lb-grid {
+        grid-template-columns: 1fr 1fr 1fr;
+      }
+    }
+
+    .pf-lb-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 14px 16px;
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--pf-radius-sm);
+      transition: all 0.2s ease;
+    }
+
+    .pf-lb-item:hover {
+      border-color: var(--color-border-light);
+      box-shadow: var(--shadow-card);
+    }
+
+    .pf-lb-rank {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      font-size: 0.8rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .pf-lb-rank--1 { background: linear-gradient(135deg, #f5a623, #f04770); color: #fff; }
+    .pf-lb-rank--2 { background: linear-gradient(135deg, #a0aec0, #718096); color: #fff; }
+    .pf-lb-rank--3 { background: linear-gradient(135deg, #d69e2e, #975a16); color: #fff; }
+    .pf-lb-rank--other { background: var(--color-bg-elevated); color: var(--color-text-muted); }
+
+    .pf-lb-info {
+      flex: 1;
+      min-width: 0;
+    }
+
+    .pf-lb-source {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--color-text-primary);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .pf-lb-source a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .pf-lb-source a:hover {
+      color: var(--color-accent-primary);
+    }
+
+    .pf-lb-meta {
+      font-size: 0.7rem;
+      color: var(--color-text-muted);
+      margin-top: 2px;
+    }
+
+    .pf-lb-trust {
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--color-success);
+      flex-shrink: 0;
+    }
+
+    /* ============================================
+       INFO BANNER
+       ============================================ */
+
+    .pf-info {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--pf-radius);
+      padding: 24px;
+      margin-bottom: 40px;
+    }
+
+    @media (min-width: 600px) {
+      .pf-info {
+        display: flex;
+        gap: 20px;
+        align-items: flex-start;
+      }
+    }
+
+    .pf-info__icon {
+      font-size: 2rem;
+      margin-bottom: 12px;
+      flex-shrink: 0;
+    }
+
+    @media (min-width: 600px) {
+      .pf-info__icon {
+        margin-bottom: 0;
+      }
+    }
+
+    .pf-info__title {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--color-text-primary);
+      margin-bottom: 8px;
+    }
+
+    .pf-info__text {
+      font-size: 0.82rem;
+      color: var(--color-text-secondary);
+      line-height: 1.75;
+    }
+
+    /* ============================================
+       LOADING / EMPTY
+       ============================================ */
+
+    .pf-state {
+      text-align: center;
+      padding: 48px 20px;
+    }
+
+    .pf-state__icon {
+      font-size: 3rem;
+      margin-bottom: 14px;
+      opacity: 0.5;
+    }
+
+    .pf-state__text {
+      font-size: 0.9rem;
+      color: var(--color-text-muted);
+      max-width: 400px;
+      margin: 0 auto;
+      line-height: 1.6;
+    }
+
+    .pf-spinner {
+      width: 36px;
+      height: 36px;
+      border: 3px solid var(--color-border);
+      border-top-color: var(--color-accent-primary);
+      border-radius: 50%;
+      animation: pf-spin 0.6s linear infinite;
+      margin: 0 auto 14px;
+    }
+
+    @keyframes pf-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    /* ============================================
+       QR MODAL
+       ============================================ */
+
+    .pf-qr-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.7);
+      z-index: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 16px;
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+    }
+
+    .pf-qr-overlay.show {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .pf-qr-modal {
+      background: var(--color-bg-card);
+      border: 1px solid var(--color-border);
+      border-radius: var(--pf-radius-lg);
+      width: 100%;
+      max-width: 360px;
+      padding: 28px;
+      text-align: center;
+      transform: translateY(24px);
+      transition: transform 0.3s ease;
+    }
+
+    .pf-qr-overlay.show .pf-qr-modal {
+      transform: translateY(0);
+    }
+
+    .pf-qr-close {
+      position: absolute;
+      top: 12px;
+      left: 12px;
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background: var(--color-bg-elevated);
+      border: none;
+      color: var(--color-text-muted);
+      font-size: 1.2rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .pf-qr-code {
+      display: inline-flex;
+      padding: 14px;
+      background: #fff;
+      border-radius: 12px;
+      margin-bottom: 16px;
+    }
+
+    .pf-qr-type {
+      display: inline-block;
+      padding: 4px 14px;
+      border-radius: 12px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-bottom: 14px;
+    }
+
+    .pf-qr-type--vless { background: var(--color-vless-bg); color: var(--color-vless); }
+    .pf-qr-type--vmess { background: var(--color-vmess-bg); color: var(--color-vmess); }
+    .pf-qr-type--trojan { background: var(--color-trojan-bg); color: var(--color-trojan); }
+    .pf-qr-type--shadowsocks { background: var(--color-ss-bg); color: var(--color-ss); }
+    .pf-qr-type--ss { background: var(--color-ss-bg); color: var(--color-ss); }
+    .pf-qr-type--mtproto { background: var(--color-mtproto-bg); color: var(--color-mtproto); }
+
+    .pf-qr-url {
+      display: flex;
+      gap: 8px;
+    }
+
+    .pf-qr-url input {
+      flex: 1;
+      padding: 8px 12px;
+      background: var(--color-bg-primary);
+      border: 1px solid var(--color-border);
+      border-radius: 8px;
+      color: var(--color-text-secondary);
+      font-size: 0.72rem;
+      font-family: var(--font-family-mono);
+      outline: none;
+    }
+
+    .pf-qr-url button {
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-size: 0.72rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: var(--color-accent-primary);
+      color: #fff;
+      border: none;
+      white-space: nowrap;
+    }
+
+    body.pf-modal-open {
+      overflow: hidden;
+    }
+  </style>
 </head>
 <body>
 
@@ -96,184 +1099,157 @@
   <!-- ============================================ -->
   <!-- MAIN CONTENT                                -->
   <!-- ============================================ -->
-  <main class="proxy-finder-page">
+  <main class="proxy-page">
 
     <!-- HERO -->
     <section class="pf-hero">
-      <div class="container">
-        <div class="pf-hero__icon" aria-hidden="true">📡</div>
-        <h1 class="pf-hero__title">
-          <span class="pf-hero__title-highlight">پروکسی</span> فایندر
-        </h1>
-        <p class="pf-hero__subtitle">
-          کانفیگ‌های رایگان و بروز پروکسی و VPN از <strong>۲۰۰+ کانال تلگرامی</strong>
-          جمع‌آوری شده. VLESS، VMess، Trojan، Shadowsocks و MTProto —
-          همه تست شده، رتبه‌بندی شده و آماده استفاده.
+      <div class="pf-hero__container">
+        <div class="pf-hero__icon-wrap" aria-hidden="true">📡</div>
+        <h1 class="pf-hero__title">پروکسی<span> فایندر</span></h1>
+        <p class="pf-hero__desc">
+          کانفیگ‌های رایگان و بروز پروکسی و VPN از <strong>۲۰۰+ کانال تلگرامی</strong> —
+          تست شده، رتبه‌بندی شده، آماده استفاده.
         </p>
-        <div class="pf-hero__meta">
-          <span class="pf-hero__update">
-            <span class="pf-hero__update-dot" aria-hidden="true"></span>
-            <span id="last-update">در حال بارگذاری...</span>
-          </span>
-          <span>🔄 بروزرسانی خودکار هر ۳۰ دقیقه</span>
-          <span>🔒 داده‌ها در مرورگر شما می‌ماند</span>
+        <div class="pf-hero__pulse">
+          <span class="pf-hero__pulse-dot" aria-hidden="true"></span>
+          <span id="last-update">در حال بارگذاری...</span>
         </div>
       </div>
     </section>
 
     <div class="container">
 
-      <!-- STATS -->
-      <div class="pf-stats">
-        <div class="pf-stat pf-stat--accent">
-          <div class="pf-stat__value" id="stat-total-configs">—</div>
-          <div class="pf-stat__label">کل کانفیگ‌ها</div>
+      <!-- STATS CHIPS -->
+      <div class="pf-stats-strip" id="stats-strip">
+        <div class="pf-stat-chip">
+          <div class="pf-stat-chip__icon pf-stat-chip__icon--total">📊</div>
+          <div class="pf-stat-chip__info">
+            <div class="pf-stat-chip__value" id="stat-total">—</div>
+            <div class="pf-stat-chip__label">کل کانفیگ‌ها</div>
+          </div>
         </div>
-        <div class="pf-stat pf-stat--success">
-          <div class="pf-stat__value" id="stat-alive">—</div>
-          <div class="pf-stat__label">فعال</div>
+        <div class="pf-stat-chip">
+          <div class="pf-stat-chip__icon pf-stat-chip__icon--active">✅</div>
+          <div class="pf-stat-chip__info">
+            <div class="pf-stat-chip__value" id="stat-active">—</div>
+            <div class="pf-stat-chip__label">فعال</div>
+          </div>
         </div>
-        <div class="pf-stat">
-          <div class="pf-stat__value" id="stat-channels">—</div>
-          <div class="pf-stat__label">منبع</div>
+        <div class="pf-stat-chip">
+          <div class="pf-stat-chip__icon pf-stat-chip__icon--sources">📡</div>
+          <div class="pf-stat-chip__info">
+            <div class="pf-stat-chip__value" id="stat-sources">—</div>
+            <div class="pf-stat-chip__label">منبع</div>
+          </div>
         </div>
-        <div class="pf-stat pf-stat--vless">
-          <div class="pf-stat__value" id="stat-grade-a">—</div>
-          <div class="pf-stat__label">درجه A</div>
-        </div>
-        <div class="pf-stat pf-stat--vmess">
-          <div class="pf-stat__value" id="stat-grade-b">—</div>
-          <div class="pf-stat__label">درجه B</div>
-        </div>
-        <div class="pf-stat pf-stat--warning">
-          <div class="pf-stat__value" id="stat-grade-c">—</div>
-          <div class="pf-stat__label">درجه C</div>
+        <div class="pf-stat-chip">
+          <div class="pf-stat-chip__icon pf-stat-chip__icon--grade-a">⭐</div>
+          <div class="pf-stat-chip__info">
+            <div class="pf-stat-chip__value" id="stat-grade-a">—</div>
+            <div class="pf-stat-chip__label">درجه A</div>
+          </div>
         </div>
       </div>
 
-      <!-- FILTER BAR -->
-      <div class="pf-filter-bar">
-        <div class="search-bar" role="search">
-          <span class="search-bar__icon" aria-hidden="true">🔍</span>
+      <!-- FILTER STRIP -->
+      <div class="pf-filter-strip">
+        <div class="pf-search-wrap">
           <input
             type="search"
-            class="search-bar__input"
-            id="proxy-search-input"
-            placeholder="جستجو بر اساس URL، نوع یا منبع..."
-            aria-label="جستجوی کانفیگ‌ها"
+            id="proxy-search"
+            placeholder="جستجوی سریع در کانفیگ‌ها..."
             autocomplete="off"
           >
+          <span class="pf-search-icon">🔍</span>
         </div>
-        <div class="pf-filter-selects">
-          <select class="pf-filter-select" id="type-filter" aria-label="فیلتر بر اساس نوع">
-            <option value="all">همه نوع‌ها</option>
-            <option value="vless">VLESS</option>
-            <option value="vmess">VMess</option>
-            <option value="trojan">Trojan</option>
-            <option value="shadowsocks">Shadowsocks</option>
-            <option value="mtproto">MTProto</option>
+        <div class="pf-filter-chips" id="type-chips">
+          <button class="pf-chip active" data-type="all">همه</button>
+          <button class="pf-chip pf-chip--vless" data-type="vless">VLESS</button>
+          <button class="pf-chip pf-chip--vmess" data-type="vmess">VMess</button>
+          <button class="pf-chip pf-chip--trojan" data-type="trojan">Trojan</button>
+          <button class="pf-chip pf-chip--ss" data-type="shadowsocks">SS</button>
+          <button class="pf-chip pf-chip--mtproto" data-type="mtproto">MTProto</button>
+        </div>
+      </div>
+
+      <!-- SECONDARY FILTERS -->
+      <div class="pf-filter-strip" style="margin-top: 0;">
+        <div class="pf-filter-chips" id="grade-chips">
+          <button class="pf-chip active" data-grade="all">همه درجه‌ها</button>
+          <button class="pf-chip" data-grade="A">⭐ A</button>
+          <button class="pf-chip" data-grade="B">B</button>
+          <button class="pf-chip" data-grade="C">C</button>
+        </div>
+        <div style="margin-right: auto; display: flex; gap: 8px; align-items: center;">
+          <select id="page-size-select" style="padding: 8px 12px; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 14px; color: var(--color-text-primary); font-size: 0.78rem; font-family: inherit; cursor: pointer; outline: none;">
+            <option value="25">۲۵ تایی</option>
+            <option value="50">۵۰ تایی</option>
+            <option value="100">۱۰۰ تایی</option>
           </select>
-          <select class="pf-filter-select" id="grade-filter" aria-label="فیلتر بر اساس درجه">
-            <option value="all">همه درجه‌ها</option>
-            <option value="A">درجه A</option>
-            <option value="B">درجه B</option>
-            <option value="C">درجه C</option>
-          </select>
-          <select class="pf-filter-select" id="status-filter" aria-label="فیلتر بر اساس وضعیت">
-            <option value="all">همه وضعیت‌ها</option>
-            <option value="active" selected>فقط فعال</option>
-            <option value="dead">فقط غیرفعال</option>
-          </select>
-          <select class="pf-filter-select" id="page-size-select" aria-label="تعداد نتایج در هر صفحه">
-            <option value="25">۲۵ در هر صفحه</option>
-            <option value="50">۵۰ در هر صفحه</option>
-            <option value="100">۱۰۰ در هر صفحه</option>
-          </select>
+          <button id="refresh-btn" style="padding: 8px 14px; background: var(--color-bg-card); border: 1px solid var(--color-border); border-radius: 14px; color: var(--color-text-primary); font-size: 0.78rem; cursor: pointer; font-family: inherit;">🔄</button>
         </div>
       </div>
 
       <!-- RECOMMENDATIONS -->
-      <div class="pf-section">
-        <div class="pf-section__header">
-          <h2 class="pf-section__title">⭐ توصیه‌های برتر</h2>
-          <span class="pf-section__count">درجه A · کمترین پینگ</span>
-        </div>
-        <div class="pf-recommendations" id="recommendations-container">
-          <!-- Populated by JavaScript -->
-        </div>
+      <div class="pf-section-head">
+        <h2 class="pf-section-title">⭐ توصیه‌های ویژه</h2>
+        <span class="pf-section-badge">کمترین پینگ · بالاترین اعتبار</span>
+      </div>
+      <div class="pf-recs" id="recs-container"></div>
+
+      <!-- CONFIG TABLE -->
+      <div class="pf-section-head">
+        <h2 class="pf-section-title">📋 همه کانفیگ‌ها</h2>
+        <span class="pf-section-badge" id="result-count">—</span>
       </div>
 
-      <!-- PROXY TABLE -->
-      <div class="pf-section">
-        <div class="pf-section__header">
-          <h2 class="pf-section__title">📋 همه کانفیگ‌ها</h2>
-          <span class="pf-section__count" id="result-count">در حال بارگذاری...</span>
-          <button class="btn btn--secondary" id="refresh-btn" style="font-size: var(--font-size-xs);">🔄 بروزرسانی</button>
-        </div>
-        <div class="pf-table-wrapper" id="proxy-table-wrapper">
-          <div class="pf-table-scroll">
-            <table class="pf-table" id="proxy-table">
+      <div class="pf-table-section">
+        <div class="pf-table-wrap">
+          <!-- Desktop Table -->
+          <div class="pf-table-scroll" style="overflow-x: auto;">
+            <table class="pf-table-desk" id="desk-table">
               <thead>
                 <tr>
                   <th data-sort="type">نوع</th>
-                  <th data-sort="latency_ms">پینگ</th>
+                  <th data-sort="latency_ms">⏱ پینگ</th>
                   <th data-sort="trust_score">اعتبار</th>
                   <th data-sort="status">وضعیت</th>
                   <th data-sort="source">منبع</th>
-                  <th>URL</th>
+                  <th>لینک کانفیگ</th>
                   <th>عملیات</th>
                 </tr>
               </thead>
-              <tbody id="proxy-table-body">
-                <!-- Populated by JavaScript -->
-              </tbody>
+              <tbody id="desk-tbody"></tbody>
             </table>
           </div>
-          <div class="pf-pagination" id="pagination-container">
-            <!-- Populated by JavaScript -->
-          </div>
+          <!-- Mobile Cards -->
+          <div class="pf-table-mobile" id="mobile-cards"></div>
+          <!-- Pagination -->
+          <div class="pf-pagination" id="pagination"></div>
         </div>
       </div>
 
       <!-- LEADERBOARD -->
-      <div class="pf-section">
-        <div class="pf-section__header">
-          <h2 class="pf-section__title">🏆 برترین منابع</h2>
-          <span class="pf-section__count">بر اساس امتیاز اعتبار</span>
-        </div>
-        <div class="pf-leaderboard">
-          <div class="pf-table-scroll">
-            <table class="pf-leaderboard-table">
-              <thead>
-                <tr>
-                  <th>رتبه</th>
-                  <th>کانال</th>
-                  <th>کانفیگ</th>
-                  <th>امتیاز اعتبار</th>
-                </tr>
-              </thead>
-              <tbody id="leaderboard-body">
-                <!-- Populated by JavaScript -->
-              </tbody>
-            </table>
-          </div>
-        </div>
+      <div class="pf-section-head">
+        <h2 class="pf-section-title">🏆 برترین کانال‌ها</h2>
+        <span class="pf-section-badge">بر اساس امتیاز اعتبار</span>
+      </div>
+      <div class="pf-leaderboard">
+        <div class="pf-lb-grid" id="lb-grid"></div>
       </div>
 
-      <!-- INFO BANNER -->
-      <div class="tools-info" style="margin-bottom: var(--space-2xl);">
-        <div class="tools-info__icon" aria-hidden="true">💡</div>
-        <div class="tools-info__content">
-          <h3 class="tools-info__title">این ابزار چطور کار می‌کنه؟</h3>
-          <p class="tools-info__text">
+      <!-- INFO -->
+      <div class="pf-info">
+        <div class="pf-info__icon">💡</div>
+        <div>
+          <h3 class="pf-info__title">این ابزار چطور کار می‌کنه؟</h3>
+          <p class="pf-info__text">
             یه اسکریپت پایتون از طریق <strong>GitHub Actions</strong> اجرا میشه و ۲۰۰+ کانال تلگرامی رو
             برای پیدا کردن کانفیگ‌های پروکسی و VPN اسکن می‌کنه. هر کانفیگ با یه اتصال TCP واقعی تست میشه
             تا latency اندازه‌گیری بشه. کانفیگ‌ها deduplicate میشن، بر اساس trust score رتبه‌بندی میشن
-            و به صورت فایل JSON روی GitHub Pages ذخیره میشن. این صفحه اون فایل‌ها رو می‌خونه و نمایش میده —
-            همه چیز توی مرورگر شما اتفاق می‌افته.
+            و به صورت فایل JSON روی GitHub Pages ذخیره میشن.
             <br><br>
             <strong>مقادیر پینگ</strong> از سرور GitHub Actions اندازه‌گیری شدن، نه از اینترنت شما.
-            این مقادیر یه نشانه قابل اعتماد از پاسخ‌دهی سرور هستن.
             <br><br>
             <em>هیچ داده‌ای به هیچ سروری ارسال نمیشه. تمام پردازش‌ها به صورت محلی در مرورگر شما انجام میشه.</em>
           </p>
@@ -294,14 +1270,464 @@
     </div>
   </footer>
 
+  <!-- QR MODAL -->
+  <div class="pf-qr-overlay" id="qr-overlay">
+    <div class="pf-qr-modal">
+      <button class="pf-qr-close" onclick="document.getElementById('qr-overlay').classList.remove('show'); document.body.classList.remove('pf-modal-open');">✕</button>
+      <div class="pf-qr-type" id="qr-type-label">VLESS</div>
+      <div class="pf-qr-code" id="qr-code-container"></div>
+      <p style="font-size: 0.75rem; color: var(--color-text-muted); margin-bottom: 14px;">این QR کد رو با کلاینت VPN اسکن کن</p>
+      <div class="pf-qr-url">
+        <input type="text" id="qr-url-input" readonly>
+        <button onclick="copyQrUrl()">📋 کپی</button>
+      </div>
+    </div>
+  </div>
+
   <!-- ============================================ -->
   <!-- SCRIPTS                                      -->
   <!-- ============================================ -->
   <script src="../../../assets/js/navigation.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
-  <script src="../../../en/tools/proxy-finder/js/data-loader.js"></script>
-  <script src="../../../en/tools/proxy-finder/js/qr-generator.js"></script>
-  <script src="../../../en/tools/proxy-finder/js/ui-controller.js"></script>
-  <script src="../../../en/tools/proxy-finder/js/app.js"></script>
+
+  <script>
+    // ============================================
+    // PROXY FINDER — Inline App (Self-contained)
+    // ============================================
+
+    (function () {
+      'use strict';
+
+      // --- Config ---
+      var DATA_PATH = '../../../data/proxy-finder/';
+      var FAVORITES_KEY = 'pf_favorites_v2';
+      var PAGE_SIZE = 25;
+
+      // --- State ---
+      var allProxies = [];
+      var recommendations = [];
+      var leaderboard = [];
+      var stats = {};
+      var filtered = [];
+      var favorites = {};
+      var currentPage = 1;
+      var activeType = 'all';
+      var activeGrade = 'all';
+      var searchQuery = '';
+      var sortKey = 'trust_score';
+      var sortDir = 'desc';
+
+      // --- Init ---
+      loadFavorites();
+      fetchData();
+
+      // --- Favorites ---
+      function loadFavorites() {
+        try { favorites = JSON.parse(localStorage.getItem(FAVORITES_KEY)) || {}; }
+        catch (e) { favorites = {}; }
+      }
+
+      function saveFavorites() {
+        try { localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites)); }
+        catch (e) {}
+      }
+
+      function toggleFav(id) {
+        if (favorites[id]) { delete favorites[id]; }
+        else { favorites[id] = true; }
+        saveFavorites();
+        renderAll();
+      }
+
+      function isFav(id) { return !!favorites[id]; }
+
+      // --- Data Fetch ---
+      function fetchData() {
+        Promise.all([
+          fetch(DATA_PATH + 'proxy.json').then(function (r) { return r.json(); }).catch(function () { return []; }),
+          fetch(DATA_PATH + 'recommendations.json').then(function (r) { return r.json(); }).catch(function () { return []; }),
+          fetch(DATA_PATH + 'leaderboard.json').then(function (r) { return r.json(); }).catch(function () { return []; }),
+          fetch(DATA_PATH + 'stats.json').then(function (r) { return r.json(); }).catch(function () { return {}; })
+        ]).then(function (results) {
+          allProxies = results[0] || [];
+          recommendations = results[1] || [];
+          leaderboard = results[2] || [];
+          stats = results[3] || {};
+          updateStats();
+          updateLastUpdate();
+          applyFilters();
+          renderAll();
+        }).catch(function () {
+          document.getElementById('desk-tbody').innerHTML = '<tr><td colspan="7" style="text-align:center;padding:40px;color:var(--color-text-muted);">خطا در بارگذاری داده‌ها. فایل‌های JSON پیدا نشدن.</td></tr>';
+        });
+      }
+
+      // --- Stats ---
+      function updateStats() {
+        setText('stat-total', fmt(stats.total_configs || allProxies.length));
+        setText('stat-active', fmt(stats.proxies_alive || allProxies.filter(function (p) { return p.status === 'active'; }).length));
+        setText('stat-sources', fmt(stats.channels_checked || 0));
+        setText('stat-grade-a', fmt(allProxies.filter(function (p) { return p.trust_grade === 'A'; }).length));
+      }
+
+      function updateLastUpdate() {
+        var el = document.getElementById('last-update');
+        if (!el) return;
+        var t = stats.generated_at;
+        if (t) {
+          var ago = timeAgo(t);
+          el.textContent = 'بروزرسانی: ' + ago;
+        } else {
+          el.textContent = 'در حال بارگذاری...';
+        }
+      }
+
+      // --- Filters ---
+      function applyFilters() {
+        filtered = allProxies.slice();
+
+        if (activeType !== 'all') {
+          filtered = filtered.filter(function (p) { return p.type === activeType; });
+        }
+
+        if (activeGrade !== 'all') {
+          filtered = filtered.filter(function (p) { return p.trust_grade === activeGrade; });
+        }
+
+        if (searchQuery) {
+          var q = searchQuery.toLowerCase();
+          filtered = filtered.filter(function (p) {
+            return (p.url || '').toLowerCase().indexOf(q) !== -1 ||
+                   (p.source || '').toLowerCase().indexOf(q) !== -1 ||
+                   (p.type || '').toLowerCase().indexOf(q) !== -1;
+          });
+        }
+
+        // Sort
+        filtered.sort(function (a, b) {
+          var va = a[sortKey], vb = b[sortKey];
+          if (va == null) va = sortDir === 'asc' ? Infinity : -Infinity;
+          if (vb == null) vb = sortDir === 'asc' ? Infinity : -Infinity;
+          if (typeof va === 'string') va = va.toLowerCase();
+          if (typeof vb === 'string') vb = vb.toLowerCase();
+          return sortDir === 'asc' ? (va > vb ? 1 : va < vb ? -1 : 0) : (va < vb ? 1 : va > vb ? -1 : 0);
+        });
+
+        currentPage = 1;
+      }
+
+      // --- Render All ---
+      function renderAll() {
+        renderRecs();
+        renderDesktopTable();
+        renderMobileCards();
+        renderPagination();
+        renderLeaderboard();
+        setText('result-count', filtered.length + ' کانفیگ');
+      }
+
+      // --- Recommendations ---
+      function renderRecs() {
+        var container = document.getElementById('recs-container');
+        if (!container) return;
+        var recs = recommendations.length > 0 ? recommendations.slice(0, 3) : allProxies.filter(function (p) { return p.trust_grade === 'A'; }).slice(0, 3);
+        if (recs.length === 0) { container.innerHTML = ''; return; }
+
+        var html = '';
+        recs.forEach(function (p) {
+          var furl = escapeHtml(truncate(p.url, 70));
+          var ftype = p.type || 'unknown';
+          var fgrade = p.trust_grade || 'C';
+          var fping = p.latency_ms ? p.latency_ms + 'ms' : '—';
+          var fid = p.id || '';
+          var fav = isFav(fid);
+          html += '<div class="pf-rec-card">';
+          html += '<div class="pf-rec-card__top">';
+          html += '<span class="pf-rec-card__type pf-rec-card__type--' + ftype + '">' + typeLabel(ftype) + '</span>';
+          html += '<span class="pf-rec-card__grade pf-rec-card__grade--' + fgrade.toLowerCase() + '">' + fgrade + '</span>';
+          html += '</div>';
+          html += '<div class="pf-rec-card__url">' + furl + '</div>';
+          html += '<div class="pf-rec-card__meta">';
+          html += '<span class="pf-rec-card__meta-item pf-rec-card__meta-item--ping">⏱ ' + fping + '</span>';
+          html += '<span class="pf-rec-card__meta-item">📊 ' + (p.trust_score || 0) + '</span>';
+          html += '<span class="pf-rec-card__meta-item">📡 ' + escapeHtml(truncate(p.source, 15)) + '</span>';
+          html += '</div>';
+          html += '<div class="pf-rec-card__actions">';
+          html += '<button class="pf-rec-card__btn" onclick="copyConfig(\'' + esc(p.url) + '\')">📋 کپی</button>';
+          html += '<button class="pf-rec-card__btn" onclick="showQR(\'' + esc(p.url) + '\',\'' + ftype + '\')">📱 QR</button>';
+          html += '<button class="pf-rec-card__btn pf-rec-card__btn--fav' + (fav ? ' faved' : '') + '" onclick="toggleFav(\'' + fid + '\')">' + (fav ? '★' : '☆') + '</button>';
+          html += '</div>';
+          html += '</div>';
+        });
+        container.innerHTML = html;
+      }
+
+      // --- Desktop Table ---
+      function renderDesktopTable() {
+        var tbody = document.getElementById('desk-tbody');
+        if (!tbody) return;
+
+        var totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+        var start = (currentPage - 1) * PAGE_SIZE;
+        var page = filtered.slice(start, start + PAGE_SIZE);
+
+        if (page.length === 0) {
+          tbody.innerHTML = '<tr><td colspan="7" style="text-align:center;padding:32px;color:var(--color-text-muted);">هیچ کانفیگی با این فیلترها یافت نشد</td></tr>';
+          return;
+        }
+
+        var html = '';
+        page.forEach(function (p) {
+          var furl = escapeHtml(truncate(p.url, 55));
+          var ftype = p.type || 'unknown';
+          var fgrade = p.trust_grade || 'C';
+          var fping = p.latency_ms ? '<span style="color:var(--color-success);font-weight:600;">' + p.latency_ms + 'ms</span>' : '<span style="color:var(--color-text-muted);">—</span>';
+          var fstatus = p.status === 'active' ? '<span style="color:var(--color-success);">● فعال</span>' : '<span style="color:var(--color-error);">○ غیرفعال</span>';
+          var fsource = escapeHtml(truncate(p.source, 18));
+          var fid = p.id || '';
+          var fav = isFav(fid);
+
+          html += '<tr>';
+          html += '<td><span class="pf-rec-card__type pf-rec-card__type--' + ftype + '" style="font-size:0.65rem;">' + typeLabel(ftype) + '</span></td>';
+          html += '<td>' + fping + '</td>';
+          html += '<td><span class="pf-rec-card__grade pf-rec-card__grade--' + fgrade.toLowerCase() + '" style="display:inline-flex;width:auto;padding:2px 10px;border-radius:10px;font-size:0.68rem;">' + fgrade + ' · ' + (p.trust_score || 0) + '</span></td>';
+          html += '<td style="font-size:0.75rem;">' + fstatus + '</td>';
+          html += '<td style="font-size:0.75rem;color:var(--color-text-muted);" title="' + escapeHtml(p.source) + '">' + fsource + '</td>';
+          html += '<td style="font-family:var(--font-family-mono);font-size:0.7rem;max-width:200px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;" title="' + escapeHtml(p.url) + '">' + furl + '</td>';
+          html += '<td style="white-space:nowrap;">';
+          html += '<button class="pf-rec-card__btn" style="display:inline-flex;padding:5px 9px;font-size:0.65rem;" onclick="copyConfig(\'' + esc(p.url) + '\')">📋</button> ';
+          html += '<button class="pf-rec-card__btn" style="display:inline-flex;padding:5px 9px;font-size:0.65rem;" onclick="showQR(\'' + esc(p.url) + '\',\'' + ftype + '\')">📱</button> ';
+          html += '<button class="pf-rec-card__btn" style="display:inline-flex;padding:5px 9px;font-size:0.65rem;" onclick="importConfig(\'' + esc(p.url) + '\',\'' + ftype + '\')">🔗</button> ';
+          html += '<button class="pf-rec-card__btn pf-rec-card__btn--fav' + (fav ? ' faved' : '') + '" style="display:inline-flex;padding:5px 8px;font-size:0.65rem;" onclick="toggleFav(\'' + fid + '\')">' + (fav ? '★' : '☆') + '</button>';
+          html += '</td>';
+          html += '</tr>';
+        });
+
+        tbody.innerHTML = html;
+
+        // Sort indicators
+        document.querySelectorAll('#desk-table th[data-sort]').forEach(function (th) {
+          th.classList.remove('sorted');
+          if (th.getAttribute('data-sort') === sortKey) {
+            th.classList.add('sorted');
+            th.textContent = th.textContent.replace(/ [▼▲]/g, '') + (sortDir === 'desc' ? ' ▼' : ' ▲');
+          }
+        });
+      }
+
+      // --- Mobile Cards ---
+      function renderMobileCards() {
+        var container = document.getElementById('mobile-cards');
+        if (!container) return;
+
+        var totalPages = Math.ceil(filtered.length / PAGE_SIZE);
+        var start = (currentPage - 1) * PAGE_SIZE;
+        var page = filtered.slice(start, start + PAGE_SIZE);
+
+        if (page.length === 0) {
+          container.innerHTML = '<div style="text-align:center;padding:32px;color:var(--color-text-muted);">هیچ کانفیگی یافت نشد</div>';
+          return;
+        }
+
+        var html = '';
+        page.forEach(function (p) {
+          var ftype = p.type || 'unknown';
+          var fgrade = p.trust_grade || 'C';
+          var fping = p.latency_ms ? p.latency_ms + 'ms' : '—';
+          var fsource = escapeHtml(truncate(p.source, 16));
+          var fid = p.id || '';
+          var fav = isFav(fid);
+
+          html += '<div class="pf-mobile-card">';
+          html += '<div class="pf-mobile-card__top">';
+          html += '<span class="pf-mobile-card__type pf-mobile-card__type--' + ftype + '">' + typeLabel(ftype) + '</span>';
+          html += '<div class="pf-mobile-card__badges">';
+          html += '<span class="pf-mobile-card__grade pf-mobile-card__grade--' + fgrade.toLowerCase() + '">' + fgrade + '</span>';
+          html += '<span class="pf-mobile-card__status pf-mobile-card__status--' + (p.status === 'active' ? 'active' : 'dead') + '"></span>';
+          html += '</div>';
+          html += '</div>';
+          html += '<div class="pf-mobile-card__url">' + escapeHtml(truncate(p.url, 90)) + '</div>';
+          html += '<div class="pf-mobile-card__info">';
+          html += '<span>⏱ ' + fping + '</span>';
+          html += '<span>📊 ' + (p.trust_score || 0) + '</span>';
+          html += '<span>📡 ' + fsource + '</span>';
+          html += '</div>';
+          html += '<div class="pf-mobile-card__actions">';
+          html += '<button class="pf-mobile-card__btn" onclick="copyConfig(\'' + esc(p.url) + '\')">📋 کپی</button>';
+          html += '<button class="pf-mobile-card__btn" onclick="showQR(\'' + esc(p.url) + '\',\'' + ftype + '\')">📱 QR</button>';
+          html += '<button class="pf-mobile-card__btn" onclick="importConfig(\'' + esc(p.url) + '\',\'' + ftype + '\')">🔗</button>';
+          html += '<button class="pf-mobile-card__btn" style="flex:0;padding:7px 10px;' + (fav ? 'color:#f5a623;' : '') + '" onclick="toggleFav(\'' + fid + '\')">' + (fav ? '★' : '☆') + '</button>';
+          html += '</div>';
+          html += '</div>';
+        });
+        container.innerHTML = html;
+      }
+
+      // --- Pagination ---
+      function renderPagination() {
+        var container = document.getElementById('pagination');
+        if (!container) return;
+        var total = Math.ceil(filtered.length / PAGE_SIZE);
+        if (total <= 1) { container.innerHTML = ''; return; }
+
+        var html = '';
+        html += '<button class="pf-page-btn" ' + (currentPage === 1 ? 'disabled' : '') + ' onclick="goPage(' + (currentPage - 1) + ')">←</button>';
+
+        var startP = Math.max(1, currentPage - 2);
+        var endP = Math.min(total, currentPage + 2);
+
+        if (startP > 1) { html += '<button class="pf-page-btn" onclick="goPage(1)">۱</button>'; if (startP > 2) html += '<span class="pf-page-info">...</span>'; }
+
+        for (var i = startP; i <= endP; i++) {
+          html += '<button class="pf-page-btn' + (i === currentPage ? ' active' : '') + '" onclick="goPage(' + i + ')">' + toFa(i) + '</button>';
+        }
+
+        if (endP < total) { if (endP < total - 1) html += '<span class="pf-page-info">...</span>'; html += '<button class="pf-page-btn" onclick="goPage(' + total + ')">' + toFa(total) + '</button>'; }
+
+        html += '<button class="pf-page-btn" ' + (currentPage === total ? 'disabled' : '') + ' onclick="goPage(' + (currentPage + 1) + ')">→</button>';
+        html += '<span class="pf-page-info">' + toFa(filtered.length) + ' عدد</span>';
+        container.innerHTML = html;
+      }
+
+      // --- Leaderboard ---
+      function renderLeaderboard() {
+        var container = document.getElementById('lb-grid');
+        if (!container) return;
+        var lb = leaderboard.slice(0, 9);
+        if (lb.length === 0) { container.innerHTML = '<div style="text-align:center;padding:24px;color:var(--color-text-muted);">داده‌ای موجود نیست</div>'; return; }
+
+        var html = '';
+        lb.forEach(function (s, i) {
+          var rankClass = i === 0 ? 'pf-lb-rank--1' : i === 1 ? 'pf-lb-rank--2' : i === 2 ? 'pf-lb-rank--3' : 'pf-lb-rank--other';
+          html += '<div class="pf-lb-item">';
+          html += '<div class="pf-lb-rank ' + rankClass + '">' + (i + 1) + '</div>';
+          html += '<div class="pf-lb-info">';
+          html += '<div class="pf-lb-source"><a href="https://t.me/s/' + escapeHtml(s.source) + '" target="_blank" rel="noopener">@' + escapeHtml(s.source) + '</a></div>';
+          html += '<div class="pf-lb-meta">' + (s.configs || 0) + ' کانفیگ</div>';
+          html += '</div>';
+          html += '<div class="pf-lb-trust">' + (s.trust || 0) + '</div>';
+          html += '</div>';
+        });
+        container.innerHTML = html;
+      }
+
+      // --- Helpers ---
+      function setText(id, text) { var el = document.getElementById(id); if (el) el.textContent = text; }
+      function fmt(n) { return n != null ? Number(n).toLocaleString('en-US') : '0'; }
+      function truncate(s, len) { if (!s) return ''; return s.length > len ? s.substring(0, len) + '...' : s; }
+      function escapeHtml(s) { var d = document.createElement('div'); d.textContent = s || ''; return d.innerHTML; }
+      function esc(s) { return (s || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'"); }
+      function typeLabel(t) { var m = { vless: 'VLESS', vmess: 'VMess', trojan: 'Trojan', shadowsocks: 'Shadowsocks', ss: 'SS', mtproto: 'MTProto' }; return m[t] || (t || '').toUpperCase(); }
+      function toFa(n) { return String(n).replace(/0/g,'۰').replace(/1/g,'۱').replace(/2/g,'۲').replace(/3/g,'۳').replace(/4/g,'۴').replace(/5/g,'۵').replace(/6/g,'۶').replace(/7/g,'۷').replace(/8/g,'۸').replace(/9/g,'۹'); }
+      function timeAgo(d) { try { var s = Math.floor((Date.now() - new Date(d).getTime()) / 1000); if (s < 60) return 'لحظاتی پیش'; var m = Math.floor(s / 60); if (m < 60) return m + ' دقیقه پیش'; var h = Math.floor(m / 60); if (h < 24) return h + ' ساعت پیش'; return Math.floor(h / 24) + ' روز پیش'; } catch (e) { return '—'; } }
+
+      // --- Actions ---
+      window.copyConfig = function (url) {
+        if (navigator.clipboard) { navigator.clipboard.writeText(url).then(function () { showToast('کپی شد!'); }); }
+        else { var ta = document.createElement('textarea'); ta.value = url; ta.style.position = 'fixed'; ta.style.left = '-9999px'; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); showToast('کپی شد!'); }
+      };
+
+      window.showQR = function (url, type) {
+        var overlay = document.getElementById('qr-overlay');
+        var container = document.getElementById('qr-code-container');
+        var typeLabel = document.getElementById('qr-type-label');
+        var urlInput = document.getElementById('qr-url-input');
+
+        if (overlay && container && typeof QRCode !== 'undefined') {
+          container.innerHTML = '';
+          new QRCode(container, { text: url, width: 200, height: 200, colorDark: '#0a0e14', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.M });
+          typeLabel.textContent = typeLabel(type);
+          typeLabel.className = 'pf-qr-type pf-qr-type--' + type;
+          urlInput.value = url;
+          overlay.classList.add('show');
+          document.body.classList.add('pf-modal-open');
+        }
+      };
+
+      window.copyQrUrl = function () {
+        var input = document.getElementById('qr-url-input');
+        if (input && navigator.clipboard) { navigator.clipboard.writeText(input.value).then(function () { showToast('کپی شد!'); }); }
+      };
+
+      window.importConfig = function (url, type) {
+        if (type === 'mtproto') { window.open(url, '_blank'); return; }
+        var encoded = encodeURIComponent(url);
+        window.location.href = 'v2rayng://install-config?url=' + encoded;
+      };
+
+      window.toggleFav = function (id) { toggleFav(id); };
+      window.goPage = function (p) { currentPage = p; renderDesktopTable(); renderMobileCards(); renderPagination(); };
+
+      function showToast(msg) {
+        var t = document.createElement('div');
+        t.textContent = msg;
+        t.style.cssText = 'position:fixed;bottom:24px;left:50%;transform:translateX(-50%);background:var(--color-success);color:#000;padding:8px 20px;border-radius:20px;font-size:0.8rem;font-weight:600;z-index:999;pointer-events:none;';
+        document.body.appendChild(t);
+        setTimeout(function () { t.remove(); }, 1800);
+      }
+
+      // --- Event Listeners ---
+      document.getElementById('proxy-search').addEventListener('input', function () {
+        searchQuery = this.value.trim();
+        applyFilters();
+        renderAll();
+      });
+
+      document.querySelectorAll('#type-chips .pf-chip').forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          document.querySelectorAll('#type-chips .pf-chip').forEach(function (c) { c.classList.remove('active'); });
+          this.classList.add('active');
+          activeType = this.getAttribute('data-type');
+          applyFilters();
+          renderAll();
+        });
+      });
+
+      document.querySelectorAll('#grade-chips .pf-chip').forEach(function (chip) {
+        chip.addEventListener('click', function () {
+          document.querySelectorAll('#grade-chips .pf-chip').forEach(function (c) { c.classList.remove('active'); });
+          this.classList.add('active');
+          activeGrade = this.getAttribute('data-grade');
+          applyFilters();
+          renderAll();
+        });
+      });
+
+      document.getElementById('page-size-select').addEventListener('change', function () {
+        PAGE_SIZE = parseInt(this.value, 10);
+        currentPage = 1;
+        renderAll();
+      });
+
+      document.getElementById('refresh-btn').addEventListener('click', function () { fetchData(); });
+
+      // Sort
+      document.querySelectorAll('#desk-table th[data-sort]').forEach(function (th) {
+        th.addEventListener('click', function () {
+          var key = this.getAttribute('data-sort');
+          if (sortKey === key) { sortDir = sortDir === 'asc' ? 'desc' : 'asc'; }
+          else { sortKey = key; sortDir = 'desc'; }
+          applyFilters();
+          renderDesktopTable();
+          renderMobileCards();
+          renderPagination();
+        });
+      });
+
+      // QR overlay close
+      document.getElementById('qr-overlay').addEventListener('click', function (e) {
+        if (e.target === this) { this.classList.remove('show'); document.body.classList.remove('pf-modal-open'); }
+      });
+
+      // Keyboard Escape
+      document.addEventListener('keydown', function (e) {
+        if (e.key === 'Escape') {
+          var overlay = document.getElementById('qr-overlay');
+          if (overlay.classList.contains('show')) { overlay.classList.remove('show'); document.body.classList.remove('pf-modal-open'); }
+        }
+      });
+
+    })();
+  </script>
 </body>
 </html>
