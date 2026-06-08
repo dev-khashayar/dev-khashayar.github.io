@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Proxy Finder — Free, regularly updated proxy and VPN configurations from 200+ Telegram channels. VLESS, VMess, Trojan, Shadowsocks, and MTProto. Copy, QR code, and import directly to your client.">
+  <meta name="theme-color" content="#0a0e14">
+  <meta property="og:title" content="Proxy Finder — PromptHub Tools">
+  <meta property="og:description" content="Free, regularly updated proxy and VPN configurations from 200+ Telegram channels. Copy, QR code, and import directly.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dev-khashayar.github.io/en/tools/proxy-finder/">
+  <title>Proxy Finder — PromptHub</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="stylesheet" href="css/proxy-finder.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- SITE HEADER                                 -->
+  <!-- ============================================ -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="/en/" class="site-logo" aria-label="PromptHub Home">
+        Prompt<span>Hub</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="Main navigation">
+        <a href="/en/" class="desktop-nav__link">🏠 Home</a>
+        <a href="/en/#prompts-section" class="desktop-nav__link">📋 Prompts</a>
+        <a href="/en/tools/" class="desktop-nav__link active">🛠 Tools</a>
+        <a href="/en/contact/" class="desktop-nav__link">📩 Contact</a>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switcher" aria-label="Language switcher">
+          <a href="/fa/tools/proxy-finder/" class="lang-switcher__link" lang="fa">FA</a>
+          <span class="lang-switcher__sep" aria-hidden="true">|</span>
+          <a href="/en/tools/proxy-finder/" class="lang-switcher__link active" lang="en" aria-current="page">EN</a>
+        </nav>
+
+        <button
+          class="hamburger-btn"
+          id="hamburger-btn"
+          aria-expanded="false"
+          aria-label="Open menu"
+          aria-controls="bottom-sheet"
+          data-open-label="Open menu"
+          data-close-label="Close menu"
+        >
+          <span class="hamburger-btn__icon" aria-hidden="true">
+            <span class="hamburger-btn__line"></span>
+            <span class="hamburger-btn__line"></span>
+            <span class="hamburger-btn__line"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- BACKDROP + BOTTOM SHEET                     -->
+  <!-- ============================================ -->
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+
+  <div class="bottom-sheet" id="bottom-sheet" role="dialog" aria-modal="true" aria-label="Navigation menu">
+    <div class="bottom-sheet__handle" aria-hidden="true">
+      <div class="bottom-sheet__handle-bar"></div>
+    </div>
+    <div class="bottom-sheet__content">
+      <nav class="bottom-sheet__nav" aria-label="Mobile navigation">
+        <a href="/en/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🏠</span>
+          Home
+        </a>
+        <a href="/en/#prompts-section" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📋</span>
+          Prompts
+        </a>
+        <a href="/en/tools/" class="bottom-sheet__nav-link active">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🛠</span>
+          Tools
+        </a>
+        <a href="/en/contact/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📩</span>
+          Contact
+        </a>
+      </nav>
+      <div class="bottom-sheet__lang" aria-label="Language switcher">
+        <a href="/fa/tools/proxy-finder/" class="bottom-sheet__lang-btn" lang="fa">🇮🇷 فارسی</a>
+        <a href="/en/tools/proxy-finder/" class="bottom-sheet__lang-btn active" lang="en" aria-current="page">🇬🇧 English</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- MAIN CONTENT                                -->
+  <!-- ============================================ -->
+  <main class="proxy-finder-page">
+
+    <!-- HERO -->
+    <section class="pf-hero">
+      <div class="container">
+        <div class="pf-hero__icon" aria-hidden="true">📡</div>
+        <h1 class="pf-hero__title">
+          <span class="pf-hero__title-highlight">Proxy</span> Finder
+        </h1>
+        <p class="pf-hero__subtitle">
+          Free, regularly updated proxy and VPN configurations scraped from <strong>200+ Telegram channels</strong>.
+          VLESS, VMess, Trojan, Shadowsocks, and MTProto — all tested, ranked, and ready to use.
+        </p>
+        <div class="pf-hero__meta">
+          <span class="pf-hero__update">
+            <span class="pf-hero__update-dot" aria-hidden="true"></span>
+            <span id="last-update">Loading...</span>
+          </span>
+          <span>🔄 Auto-refreshed every 30 minutes</span>
+          <span>🔒 Data stays in your browser</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+
+      <!-- STATS -->
+      <div class="pf-stats">
+        <div class="pf-stat pf-stat--accent">
+          <div class="pf-stat__value" id="stat-total-configs">—</div>
+          <div class="pf-stat__label">Total Configs</div>
+        </div>
+        <div class="pf-stat pf-stat--success">
+          <div class="pf-stat__value" id="stat-alive">—</div>
+          <div class="pf-stat__label">Active</div>
+        </div>
+        <div class="pf-stat">
+          <div class="pf-stat__value" id="stat-channels">—</div>
+          <div class="pf-stat__label">Sources</div>
+        </div>
+        <div class="pf-stat pf-stat--vless">
+          <div class="pf-stat__value" id="stat-grade-a">—</div>
+          <div class="pf-stat__label">Grade A</div>
+        </div>
+        <div class="pf-stat pf-stat--vmess">
+          <div class="pf-stat__value" id="stat-grade-b">—</div>
+          <div class="pf-stat__label">Grade B</div>
+        </div>
+        <div class="pf-stat pf-stat--warning">
+          <div class="pf-stat__value" id="stat-grade-c">—</div>
+          <div class="pf-stat__label">Grade C</div>
+        </div>
+      </div>
+
+      <!-- FILTER BAR -->
+      <div class="pf-filter-bar">
+        <div class="search-bar" role="search">
+          <span class="search-bar__icon" aria-hidden="true">🔍</span>
+          <input
+            type="search"
+            class="search-bar__input"
+            id="proxy-search-input"
+            placeholder="Search by URL, type, or source..."
+            aria-label="Search configurations"
+            autocomplete="off"
+          >
+        </div>
+        <div class="pf-filter-selects">
+          <select class="pf-filter-select" id="type-filter" aria-label="Filter by type">
+            <option value="all">All Types</option>
+            <option value="vless">VLESS</option>
+            <option value="vmess">VMess</option>
+            <option value="trojan">Trojan</option>
+            <option value="shadowsocks">Shadowsocks</option>
+            <option value="mtproto">MTProto</option>
+          </select>
+          <select class="pf-filter-select" id="grade-filter" aria-label="Filter by grade">
+            <option value="all">All Grades</option>
+            <option value="A">Grade A</option>
+            <option value="B">Grade B</option>
+            <option value="C">Grade C</option>
+          </select>
+          <select class="pf-filter-select" id="status-filter" aria-label="Filter by status">
+            <option value="all">All Status</option>
+            <option value="active" selected>Active Only</option>
+            <option value="dead">Dead Only</option>
+          </select>
+          <select class="pf-filter-select" id="page-size-select" aria-label="Results per page">
+            <option value="25">25 per page</option>
+            <option value="50">50 per page</option>
+            <option value="100">100 per page</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- RECOMMENDATIONS -->
+      <div class="pf-section">
+        <div class="pf-section__header">
+          <h2 class="pf-section__title">⭐ Top Recommendations</h2>
+          <span class="pf-section__count">Grade A · Lowest Ping</span>
+        </div>
+        <div class="pf-recommendations" id="recommendations-container">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- PROXY TABLE -->
+      <div class="pf-section">
+        <div class="pf-section__header">
+          <h2 class="pf-section__title">📋 All Configurations</h2>
+          <span class="pf-section__count" id="result-count">Loading...</span>
+          <button class="btn btn--secondary" id="refresh-btn" style="font-size: var(--font-size-xs);">🔄 Refresh</button>
+        </div>
+        <div class="pf-table-wrapper" id="proxy-table-wrapper">
+          <div class="pf-table-scroll">
+            <table class="pf-table" id="proxy-table">
+              <thead>
+                <tr>
+                  <th data-sort="type">Type</th>
+                  <th data-sort="latency_ms">Ping</th>
+                  <th data-sort="trust_score">Trust</th>
+                  <th data-sort="status">Status</th>
+                  <th data-sort="source">Source</th>
+                  <th>URL</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="proxy-table-body">
+                <!-- Populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+          <div class="pf-pagination" id="pagination-container">
+            <!-- Populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- LEADERBOARD -->
+      <div class="pf-section">
+        <div class="pf-section__header">
+          <h2 class="pf-section__title">🏆 Top Sources</h2>
+          <span class="pf-section__count">By Trust Score</span>
+        </div>
+        <div class="pf-leaderboard">
+          <div class="pf-table-scroll">
+            <table class="pf-leaderboard-table">
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Channel</th>
+                  <th>Configs</th>
+                  <th>Trust Score</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboard-body">
+                <!-- Populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- INFO BANNER -->
+      <div class="tools-info" style="margin-bottom: var(--space-2xl);">
+        <div class="tools-info__icon" aria-hidden="true">💡</div>
+        <div class="tools-info__content">
+          <h3 class="tools-info__title">How does this work?</h3>
+          <p class="tools-info__text">
+            A Python script runs via <strong>GitHub Actions</strong> and scrapes 200+ Telegram channels for proxy and VPN configurations.
+            Each config is tested with a real TCP connection to measure latency. Configs are deduplicated, ranked by trust score,
+            and stored as JSON files on GitHub Pages. This page loads those JSON files and displays them — everything happens in your browser.
+            <br><br>
+            <strong>Ping values</strong> are measured from the GitHub Actions runner, not from your internet connection.
+            They give you a reliable indication of server responsiveness.
+            <br><br>
+            <em>No data is ever sent to any server. All processing happens locally in your browser.</em>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ============================================ -->
+  <!-- SITE FOOTER                                  -->
+  <!-- ============================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="site-footer__text">
+        PromptHub &copy; 2026 &mdash; Curated AI Prompts for Professionals
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============================================ -->
+  <!-- SCRIPTS                                      -->
+  <!-- ============================================ -->
+  <script src="../../../assets/js/navigation.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="js/data-loader.js"></script>
+  <script src="js/qr-generator.js"></script>
+  <script src="js/ui-controller.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>
