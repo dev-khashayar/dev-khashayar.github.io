@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="پروکسی فایندر — کانفیگ‌های رایگان و بروز پروکسی و VPN از ۲۰۰+ کانال تلگرامی. VLESS، VMess، Trojan، Shadowsocks و MTProto. کپی، QR کد و import مستقیم.">
+  <meta name="theme-color" content="#0a0e14">
+  <meta property="og:title" content="پروکسی فایندر — ابزارهای PromptHub">
+  <meta property="og:description" content="کانفیگ‌های رایگان و بروز پروکسی و VPN از ۲۰۰+ کانال تلگرامی. کپی، QR کد و import مستقیم.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://dev-khashayar.github.io/fa/tools/proxy-finder/">
+  <title>پروکسی فایندر — PromptHub</title>
+  <link rel="stylesheet" href="../../../assets/css/style.css">
+  <link rel="stylesheet" href="../../../en/tools/proxy-finder/css/proxy-finder.css">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+<body>
+
+  <!-- ============================================ -->
+  <!-- SITE HEADER                                 -->
+  <!-- ============================================ -->
+  <header class="site-header">
+    <div class="container site-header__inner">
+      <a href="/fa/" class="site-logo" aria-label="PromptHub خانه">
+        Prompt<span>Hub</span>
+      </a>
+
+      <nav class="desktop-nav" aria-label="ناوبری اصلی">
+        <a href="/fa/" class="desktop-nav__link">🏠 خانه</a>
+        <a href="/fa/#prompts-section" class="desktop-nav__link">📋 پرامپت‌ها</a>
+        <a href="/fa/tools/" class="desktop-nav__link active">🛠 ابزارها</a>
+        <a href="/fa/contact/" class="desktop-nav__link">📩 تماس با من</a>
+      </nav>
+
+      <div class="header-actions">
+        <nav class="lang-switcher" aria-label="تغییر زبان">
+          <a href="/fa/tools/proxy-finder/" class="lang-switcher__link active" lang="fa" aria-current="page">FA</a>
+          <span class="lang-switcher__sep" aria-hidden="true">|</span>
+          <a href="/en/tools/proxy-finder/" class="lang-switcher__link" lang="en">EN</a>
+        </nav>
+
+        <button
+          class="hamburger-btn"
+          id="hamburger-btn"
+          aria-expanded="false"
+          aria-label="باز کردن منو"
+          aria-controls="bottom-sheet"
+          data-open-label="باز کردن منو"
+          data-close-label="بستن منو"
+        >
+          <span class="hamburger-btn__icon" aria-hidden="true">
+            <span class="hamburger-btn__line"></span>
+            <span class="hamburger-btn__line"></span>
+            <span class="hamburger-btn__line"></span>
+          </span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ============================================ -->
+  <!-- BACKDROP + BOTTOM SHEET                     -->
+  <!-- ============================================ -->
+  <div class="backdrop" id="backdrop" aria-hidden="true"></div>
+
+  <div class="bottom-sheet" id="bottom-sheet" role="dialog" aria-modal="true" aria-label="منوی ناوبری">
+    <div class="bottom-sheet__handle" aria-hidden="true">
+      <div class="bottom-sheet__handle-bar"></div>
+    </div>
+    <div class="bottom-sheet__content">
+      <nav class="bottom-sheet__nav" aria-label="ناوبری موبایل">
+        <a href="/fa/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🏠</span>
+          خانه
+        </a>
+        <a href="/fa/#prompts-section" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📋</span>
+          پرامپت‌ها
+        </a>
+        <a href="/fa/tools/" class="bottom-sheet__nav-link active">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">🛠</span>
+          ابزارها
+        </a>
+        <a href="/fa/contact/" class="bottom-sheet__nav-link">
+          <span class="bottom-sheet__nav-icon" aria-hidden="true">📩</span>
+          تماس با من
+        </a>
+      </nav>
+      <div class="bottom-sheet__lang" aria-label="تغییر زبان">
+        <a href="/fa/tools/proxy-finder/" class="bottom-sheet__lang-btn active" lang="fa" aria-current="page">🇮🇷 فارسی</a>
+        <a href="/en/tools/proxy-finder/" class="bottom-sheet__lang-btn" lang="en">🇬🇧 English</a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ============================================ -->
+  <!-- MAIN CONTENT                                -->
+  <!-- ============================================ -->
+  <main class="proxy-finder-page">
+
+    <!-- HERO -->
+    <section class="pf-hero">
+      <div class="container">
+        <div class="pf-hero__icon" aria-hidden="true">📡</div>
+        <h1 class="pf-hero__title">
+          <span class="pf-hero__title-highlight">پروکسی</span> فایندر
+        </h1>
+        <p class="pf-hero__subtitle">
+          کانفیگ‌های رایگان و بروز پروکسی و VPN از <strong>۲۰۰+ کانال تلگرامی</strong>
+          جمع‌آوری شده. VLESS، VMess، Trojan، Shadowsocks و MTProto —
+          همه تست شده، رتبه‌بندی شده و آماده استفاده.
+        </p>
+        <div class="pf-hero__meta">
+          <span class="pf-hero__update">
+            <span class="pf-hero__update-dot" aria-hidden="true"></span>
+            <span id="last-update">در حال بارگذاری...</span>
+          </span>
+          <span>🔄 بروزرسانی خودکار هر ۳۰ دقیقه</span>
+          <span>🔒 داده‌ها در مرورگر شما می‌ماند</span>
+        </div>
+      </div>
+    </section>
+
+    <div class="container">
+
+      <!-- STATS -->
+      <div class="pf-stats">
+        <div class="pf-stat pf-stat--accent">
+          <div class="pf-stat__value" id="stat-total-configs">—</div>
+          <div class="pf-stat__label">کل کانفیگ‌ها</div>
+        </div>
+        <div class="pf-stat pf-stat--success">
+          <div class="pf-stat__value" id="stat-alive">—</div>
+          <div class="pf-stat__label">فعال</div>
+        </div>
+        <div class="pf-stat">
+          <div class="pf-stat__value" id="stat-channels">—</div>
+          <div class="pf-stat__label">منبع</div>
+        </div>
+        <div class="pf-stat pf-stat--vless">
+          <div class="pf-stat__value" id="stat-grade-a">—</div>
+          <div class="pf-stat__label">درجه A</div>
+        </div>
+        <div class="pf-stat pf-stat--vmess">
+          <div class="pf-stat__value" id="stat-grade-b">—</div>
+          <div class="pf-stat__label">درجه B</div>
+        </div>
+        <div class="pf-stat pf-stat--warning">
+          <div class="pf-stat__value" id="stat-grade-c">—</div>
+          <div class="pf-stat__label">درجه C</div>
+        </div>
+      </div>
+
+      <!-- FILTER BAR -->
+      <div class="pf-filter-bar">
+        <div class="search-bar" role="search">
+          <span class="search-bar__icon" aria-hidden="true">🔍</span>
+          <input
+            type="search"
+            class="search-bar__input"
+            id="proxy-search-input"
+            placeholder="جستجو بر اساس URL، نوع یا منبع..."
+            aria-label="جستجوی کانفیگ‌ها"
+            autocomplete="off"
+          >
+        </div>
+        <div class="pf-filter-selects">
+          <select class="pf-filter-select" id="type-filter" aria-label="فیلتر بر اساس نوع">
+            <option value="all">همه نوع‌ها</option>
+            <option value="vless">VLESS</option>
+            <option value="vmess">VMess</option>
+            <option value="trojan">Trojan</option>
+            <option value="shadowsocks">Shadowsocks</option>
+            <option value="mtproto">MTProto</option>
+          </select>
+          <select class="pf-filter-select" id="grade-filter" aria-label="فیلتر بر اساس درجه">
+            <option value="all">همه درجه‌ها</option>
+            <option value="A">درجه A</option>
+            <option value="B">درجه B</option>
+            <option value="C">درجه C</option>
+          </select>
+          <select class="pf-filter-select" id="status-filter" aria-label="فیلتر بر اساس وضعیت">
+            <option value="all">همه وضعیت‌ها</option>
+            <option value="active" selected>فقط فعال</option>
+            <option value="dead">فقط غیرفعال</option>
+          </select>
+          <select class="pf-filter-select" id="page-size-select" aria-label="تعداد نتایج در هر صفحه">
+            <option value="25">۲۵ در هر صفحه</option>
+            <option value="50">۵۰ در هر صفحه</option>
+            <option value="100">۱۰۰ در هر صفحه</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- RECOMMENDATIONS -->
+      <div class="pf-section">
+        <div class="pf-section__header">
+          <h2 class="pf-section__title">⭐ توصیه‌های برتر</h2>
+          <span class="pf-section__count">درجه A · کمترین پینگ</span>
+        </div>
+        <div class="pf-recommendations" id="recommendations-container">
+          <!-- Populated by JavaScript -->
+        </div>
+      </div>
+
+      <!-- PROXY TABLE -->
+      <div class="pf-section">
+        <div class="pf-section__header">
+          <h2 class="pf-section__title">📋 همه کانفیگ‌ها</h2>
+          <span class="pf-section__count" id="result-count">در حال بارگذاری...</span>
+          <button class="btn btn--secondary" id="refresh-btn" style="font-size: var(--font-size-xs);">🔄 بروزرسانی</button>
+        </div>
+        <div class="pf-table-wrapper" id="proxy-table-wrapper">
+          <div class="pf-table-scroll">
+            <table class="pf-table" id="proxy-table">
+              <thead>
+                <tr>
+                  <th data-sort="type">نوع</th>
+                  <th data-sort="latency_ms">پینگ</th>
+                  <th data-sort="trust_score">اعتبار</th>
+                  <th data-sort="status">وضعیت</th>
+                  <th data-sort="source">منبع</th>
+                  <th>URL</th>
+                  <th>عملیات</th>
+                </tr>
+              </thead>
+              <tbody id="proxy-table-body">
+                <!-- Populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+          <div class="pf-pagination" id="pagination-container">
+            <!-- Populated by JavaScript -->
+          </div>
+        </div>
+      </div>
+
+      <!-- LEADERBOARD -->
+      <div class="pf-section">
+        <div class="pf-section__header">
+          <h2 class="pf-section__title">🏆 برترین منابع</h2>
+          <span class="pf-section__count">بر اساس امتیاز اعتبار</span>
+        </div>
+        <div class="pf-leaderboard">
+          <div class="pf-table-scroll">
+            <table class="pf-leaderboard-table">
+              <thead>
+                <tr>
+                  <th>رتبه</th>
+                  <th>کانال</th>
+                  <th>کانفیگ</th>
+                  <th>امتیاز اعتبار</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboard-body">
+                <!-- Populated by JavaScript -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+
+      <!-- INFO BANNER -->
+      <div class="tools-info" style="margin-bottom: var(--space-2xl);">
+        <div class="tools-info__icon" aria-hidden="true">💡</div>
+        <div class="tools-info__content">
+          <h3 class="tools-info__title">این ابزار چطور کار می‌کنه؟</h3>
+          <p class="tools-info__text">
+            یه اسکریپت پایتون از طریق <strong>GitHub Actions</strong> اجرا میشه و ۲۰۰+ کانال تلگرامی رو
+            برای پیدا کردن کانفیگ‌های پروکسی و VPN اسکن می‌کنه. هر کانفیگ با یه اتصال TCP واقعی تست میشه
+            تا latency اندازه‌گیری بشه. کانفیگ‌ها deduplicate میشن، بر اساس trust score رتبه‌بندی میشن
+            و به صورت فایل JSON روی GitHub Pages ذخیره میشن. این صفحه اون فایل‌ها رو می‌خونه و نمایش میده —
+            همه چیز توی مرورگر شما اتفاق می‌افته.
+            <br><br>
+            <strong>مقادیر پینگ</strong> از سرور GitHub Actions اندازه‌گیری شدن، نه از اینترنت شما.
+            این مقادیر یه نشانه قابل اعتماد از پاسخ‌دهی سرور هستن.
+            <br><br>
+            <em>هیچ داده‌ای به هیچ سروری ارسال نمیشه. تمام پردازش‌ها به صورت محلی در مرورگر شما انجام میشه.</em>
+          </p>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ============================================ -->
+  <!-- SITE FOOTER                                  -->
+  <!-- ============================================ -->
+  <footer class="site-footer">
+    <div class="container">
+      <p class="site-footer__text">
+        PromptHub &copy; 2026 — پرامپت‌های حرفه‌ای هوش مصنوعی
+      </p>
+    </div>
+  </footer>
+
+  <!-- ============================================ -->
+  <!-- SCRIPTS                                      -->
+  <!-- ============================================ -->
+  <script src="../../../assets/js/navigation.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+  <script src="../../../en/tools/proxy-finder/js/data-loader.js"></script>
+  <script src="../../../en/tools/proxy-finder/js/qr-generator.js"></script>
+  <script src="../../../en/tools/proxy-finder/js/ui-controller.js"></script>
+  <script src="../../../en/tools/proxy-finder/js/app.js"></script>
+</body>
+</html>
