@@ -1,82 +1,97 @@
 [
   {
     "source": "outline_vpn",
-    "configs": 186,
-    "trust": 17707
+    "configs": 187,
+    "trust": 17963
   },
   {
     "source": "v2ray_official",
-    "configs": 184,
-    "trust": 16980
+    "configs": 179,
+    "trust": 16704
   },
   {
     "source": "v2rayconfigs",
     "configs": 116,
-    "trust": 11434
+    "trust": 11520
   },
   {
     "source": "FilterShekanChannel",
     "configs": 33,
-    "trust": 3267
-  },
-  {
-    "source": "Raiv2mmr",
-    "configs": 31,
-    "trust": 2616
-  },
-  {
-    "source": "vpnbaz",
-    "configs": 26,
-    "trust": 2320
+    "trust": 3290
   },
   {
     "source": "opensafer",
     "configs": 23,
-    "trust": 2257
+    "trust": 2280
+  },
+  {
+    "source": "Raiv2mmr",
+    "configs": 23,
+    "trust": 1981
+  },
+  {
+    "source": "vpnbaz",
+    "configs": 19,
+    "trust": 1698
   },
   {
     "source": "V2RayRootFree",
-    "configs": 18,
-    "trust": 1551
-  },
-  {
-    "source": "irproxy",
-    "configs": 13,
-    "trust": 1079
+    "configs": 12,
+    "trust": 1032
   },
   {
     "source": "v2ray3",
     "configs": 10,
-    "trust": 890
+    "trust": 900
+  },
+  {
+    "source": "irproxy",
+    "configs": 11,
+    "trust": 886
+  },
+  {
+    "source": "proxymtprotoir",
+    "configs": 9,
+    "trust": 749
   },
   {
     "source": "v2ray_team",
     "configs": 6,
-    "trust": 584
+    "trust": 600
   },
   {
     "source": "v2rayng_channel",
     "configs": 5,
-    "trust": 495
+    "trust": 500
   },
   {
     "source": "freeproxymaker",
     "configs": 4,
-    "trust": 361
+    "trust": 365
+  },
+  {
+    "source": "v2rayvpnchannel",
+    "configs": 3,
+    "trust": 263
+  },
+  {
+    "source": "filtereshekan",
+    "configs": 3,
+    "trust": 247
   },
   {
     "source": "proxystore11",
     "configs": 2,
-    "trust": 188
+    "trust": 181
   },
   {
-    "source": "filtereshekan",
+    "source": "feriproxy",
     "configs": 2,
-    "trust": 144
+    "trust": 152
   },
   {
-    "source": "v2rayvpnchannel",
+    "source": "iProxyChannel",
     "configs": 1,
-    "trust": 91
+    "trust": 81
   }
 ]
