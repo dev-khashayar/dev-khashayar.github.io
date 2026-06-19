@@ -1,58 +1,68 @@
 [
   {
     "source": "outline_vpn",
-    "configs": 208,
-    "trust": 18724
+    "configs": 211,
+    "trust": 20251
   },
   {
     "source": "v2ray_official",
-    "configs": 150,
-    "trust": 13598
+    "configs": 122,
+    "trust": 11616
   },
   {
     "source": "v2rayconfigs",
     "configs": 116,
-    "trust": 11528
-  },
-  {
-    "source": "irproxy",
-    "configs": 42,
-    "trust": 3315
+    "trust": 11550
   },
   {
     "source": "FilterShekanChannel",
     "configs": 33,
-    "trust": 3300
+    "trust": 3280
+  },
+  {
+    "source": "proxiteiegram",
+    "configs": 41,
+    "trust": 3227
   },
   {
     "source": "opensafer",
     "configs": 23,
-    "trust": 2290
+    "trust": 2270
+  },
+  {
+    "source": "iProxyChannel",
+    "configs": 23,
+    "trust": 2003
   },
   {
     "source": "Raiv2mmr",
-    "configs": 20,
-    "trust": 1572
-  },
-  {
-    "source": "V2RayRootFree",
-    "configs": 18,
-    "trust": 1523
+    "configs": 19,
+    "trust": 1625
   },
   {
     "source": "vpnbaz",
-    "configs": 12,
-    "trust": 1033
+    "configs": 16,
+    "trust": 1408
+  },
+  {
+    "source": "V2RayRootFree",
+    "configs": 14,
+    "trust": 1239
+  },
+  {
+    "source": "proxystore11",
+    "configs": 7,
+    "trust": 620
   },
   {
     "source": "v2ray_team",
     "configs": 6,
-    "trust": 600
+    "trust": 580
   },
   {
     "source": "v2rayng_channel",
     "configs": 5,
-    "trust": 470
+    "trust": 500
   },
   {
     "source": "v2ray3",
@@ -60,27 +70,32 @@
     "trust": 460
   },
   {
-    "source": "proxystore11",
-    "configs": 5,
-    "trust": 434
-  },
-  {
-    "source": "filtereshekan",
+    "source": "iMTProxy_ir",
     "configs": 4,
-    "trust": 339
-  },
-  {
-    "source": "feriproxy",
-    "configs": 4,
-    "trust": 304
+    "trust": 338
   },
   {
     "source": "freeproxymaker",
     "configs": 3,
-    "trust": 270
+    "trust": 290
+  },
+  {
+    "source": "filtereshekan",
+    "configs": 3,
+    "trust": 279
   },
   {
     "source": "v2rayvpnchannel",
+    "configs": 3,
+    "trust": 264
+  },
+  {
+    "source": "proxymtprotoir",
+    "configs": 2,
+    "trust": 172
+  },
+  {
+    "source": "proxydaemi",
     "configs": 1,
     "trust": 81
   }
