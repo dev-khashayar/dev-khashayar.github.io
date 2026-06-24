@@ -1,13 +1,18 @@
 [
   {
     "source": "outline_vpn",
-    "configs": 225,
-    "trust": 20432
+    "configs": 226,
+    "trust": 20593
   },
   {
     "source": "v2rayconfigs",
     "configs": 116,
-    "trust": 11530
+    "trust": 11500
+  },
+  {
+    "source": "iProxyChannel",
+    "configs": 78,
+    "trust": 6695
   },
   {
     "source": "FilterShekanChannel",
@@ -15,19 +20,9 @@
     "trust": 3300
   },
   {
-    "source": "v2ray_official",
-    "configs": 31,
-    "trust": 2889
-  },
-  {
-    "source": "iProxyChannel",
-    "configs": 29,
-    "trust": 2565
-  },
-  {
     "source": "Raiv2mmr",
     "configs": 32,
-    "trust": 2508
+    "trust": 2524
   },
   {
     "source": "opensafer",
@@ -35,34 +30,39 @@
     "trust": 2270
   },
   {
-    "source": "proxiteiegram",
-    "configs": 19,
-    "trust": 1521
+    "source": "v2ray_official",
+    "configs": 21,
+    "trust": 1990
+  },
+  {
+    "source": "irproxy",
+    "configs": 20,
+    "trust": 1530
   },
   {
     "source": "vpnbaz",
     "configs": 16,
-    "trust": 1371
+    "trust": 1397
   },
   {
     "source": "V2RayRootFree",
-    "configs": 14,
-    "trust": 1217
+    "configs": 16,
+    "trust": 1397
   },
   {
     "source": "proxystore11",
     "configs": 11,
-    "trust": 1018
+    "trust": 1014
   },
   {
     "source": "v2ray_team",
     "configs": 6,
-    "trust": 600
+    "trust": 590
   },
   {
     "source": "v2rayng_channel",
     "configs": 5,
-    "trust": 470
+    "trust": 460
   },
   {
     "source": "v2ray3",
@@ -75,23 +75,28 @@
     "trust": 270
   },
   {
-    "source": "filtereshekan",
+    "source": "v2rayvpnchannel",
     "configs": 3,
-    "trust": 239
+    "trust": 244
   },
   {
     "source": "proxy_qavi",
     "configs": 2,
-    "trust": 163
+    "trust": 164
   },
   {
-    "source": "v2rayvpnchannel",
-    "configs": 2,
-    "trust": 162
+    "source": "feriproxy",
+    "configs": 1,
+    "trust": 91
+  },
+  {
+    "source": "filtereshekan",
+    "configs": 1,
+    "trust": 84
   },
   {
     "source": "proxydaemi",
     "configs": 1,
-    "trust": 74
+    "trust": 75
   }
 ]
