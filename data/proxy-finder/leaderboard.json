@@ -1,28 +1,23 @@
 [
   {
     "source": "outline_vpn",
-    "configs": 203,
-    "trust": 18639
+    "configs": 199,
+    "trust": 18294
   },
   {
     "source": "v2rayconfigs",
     "configs": 116,
-    "trust": 11530
+    "trust": 11540
   },
   {
     "source": "iProxyChannel",
-    "configs": 93,
-    "trust": 7971
+    "configs": 100,
+    "trust": 8339
   },
   {
     "source": "FilterShekanChannel",
     "configs": 33,
-    "trust": 3280
-  },
-  {
-    "source": "vpnbaz",
-    "configs": 28,
-    "trust": 2549
+    "trust": 3300
   },
   {
     "source": "opensafer",
@@ -30,19 +25,24 @@
     "trust": 2280
   },
   {
-    "source": "Raiv2mmr",
-    "configs": 25,
-    "trust": 2042
+    "source": "proxiteiegram",
+    "configs": 23,
+    "trust": 1833
   },
   {
-    "source": "proxiteiegram",
-    "configs": 24,
-    "trust": 1974
+    "source": "vpnbaz",
+    "configs": 20,
+    "trust": 1797
+  },
+  {
+    "source": "Raiv2mmr",
+    "configs": 14,
+    "trust": 1122
   },
   {
     "source": "V2RayRootFree",
-    "configs": 14,
-    "trust": 1146
+    "configs": 12,
+    "trust": 1017
   },
   {
     "source": "proxystore11",
@@ -52,7 +52,7 @@
   {
     "source": "v2ray_team",
     "configs": 6,
-    "trust": 580
+    "trust": 570
   },
   {
     "source": "v2rayng_channel",
@@ -60,19 +60,9 @@
     "trust": 470
   },
   {
-    "source": "iMTProxy_ir",
-    "configs": 5,
-    "trust": 418
-  },
-  {
     "source": "v2ray3",
     "configs": 4,
     "trust": 360
-  },
-  {
-    "source": "v2rayvpnchannel",
-    "configs": 4,
-    "trust": 326
   },
   {
     "source": "freeproxymaker",
@@ -80,23 +70,23 @@
     "trust": 270
   },
   {
-    "source": "proxy_qavi",
-    "configs": 2,
-    "trust": 160
+    "source": "v2rayvpnchannel",
+    "configs": 3,
+    "trust": 243
   },
   {
-    "source": "filtereshekan",
+    "source": "proxy_qavi",
     "configs": 2,
-    "trust": 142
+    "trust": 170
+  },
+  {
+    "source": "iMTProxy_ir",
+    "configs": 2,
+    "trust": 166
   },
   {
     "source": "proxydaemi",
     "configs": 1,
-    "trust": 76
-  },
-  {
-    "source": "mtp_roto",
-    "configs": 1,
-    "trust": 73
+    "trust": 77
   }
 ]
