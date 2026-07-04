@@ -1,28 +1,28 @@
 [
   {
     "source": "iProxyChannel",
-    "configs": 210,
-    "trust": 20149
+    "configs": 191,
+    "trust": 18259
   },
   {
     "source": "outline_vpn",
-    "configs": 132,
-    "trust": 12998
+    "configs": 130,
+    "trust": 12810
   },
   {
     "source": "v2rayconfigs",
     "configs": 116,
-    "trust": 11540
+    "trust": 11520
   },
   {
     "source": "FilterShekanChannel",
     "configs": 33,
-    "trust": 3290
+    "trust": 3300
   },
   {
     "source": "vpnbaz",
-    "configs": 27,
-    "trust": 2611
+    "configs": 32,
+    "trust": 3013
   },
   {
     "source": "opensafer",
@@ -30,19 +30,19 @@
     "trust": 2280
   },
   {
-    "source": "proxiteiegram",
+    "source": "irproxy",
     "configs": 23,
-    "trust": 2003
-  },
-  {
-    "source": "V2RayRootFree",
-    "configs": 17,
-    "trust": 1505
+    "trust": 2040
   },
   {
     "source": "proxystore11",
     "configs": 12,
-    "trust": 1177
+    "trust": 1188
+  },
+  {
+    "source": "V2RayRootFree",
+    "configs": 13,
+    "trust": 1163
   },
   {
     "source": "v2ray_team",
@@ -52,17 +52,17 @@
   {
     "source": "v2ray3",
     "configs": 8,
-    "trust": 674
+    "trust": 677
   },
   {
     "source": "v2rayng_channel",
     "configs": 5,
-    "trust": 480
+    "trust": 500
   },
   {
     "source": "proxy_qavi",
     "configs": 5,
-    "trust": 457
+    "trust": 448
   },
   {
     "source": "MTPProtoProxies",
@@ -77,6 +77,11 @@
   {
     "source": "freeproxymaker",
     "configs": 1,
-    "trust": 100
+    "trust": 90
+  },
+  {
+    "source": "iMTProxy_ir",
+    "configs": 1,
+    "trust": 71
   }
 ]
