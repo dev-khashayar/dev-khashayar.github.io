@@ -1,88 +1,83 @@
 [
   {
     "source": "iProxyChannel",
-    "configs": 225,
-    "trust": 21214
-  },
-  {
-    "source": "v2raycollector",
-    "configs": 146,
-    "trust": 12656
+    "configs": 228,
+    "trust": 21025
   },
   {
     "source": "outline_vpn",
-    "configs": 127,
-    "trust": 12542
+    "configs": 131,
+    "trust": 12488
+  },
+  {
+    "source": "v2raycollector",
+    "configs": 145,
+    "trust": 12397
   },
   {
     "source": "v2rayconfigs",
     "configs": 122,
-    "trust": 12130
+    "trust": 12050
   },
   {
     "source": "v2ray_official",
-    "configs": 59,
-    "trust": 5490
+    "configs": 58,
+    "trust": 5382
   },
   {
     "source": "FilterShekanChannel",
     "configs": 33,
-    "trust": 3300
+    "trust": 3280
   },
   {
     "source": "vpnbaz",
     "configs": 33,
-    "trust": 3160
+    "trust": 3130
   },
   {
-    "source": "irproxy",
+    "source": "proxiteiegram",
     "configs": 33,
-    "trust": 2692
+    "trust": 2748
   },
   {
     "source": "V2RayRootFree",
     "configs": 11,
-    "trust": 1060
+    "trust": 1040
   },
   {
     "source": "V2RAY_SPATIAL",
     "configs": 8,
-    "trust": 750
+    "trust": 760
   },
   {
     "source": "v2ray_team",
     "configs": 7,
-    "trust": 690
-  },
-  {
-    "source": "filtereshekan",
-    "configs": 6,
-    "trust": 525
+    "trust": 680
   },
   {
     "source": "v2rayng_channel",
     "configs": 5,
-    "trust": 480
-  },
-  {
-    "source": "v2rayvpnchannel",
-    "configs": 4,
-    "trust": 382
-  },
-  {
-    "source": "proxystore11",
-    "configs": 4,
-    "trust": 380
+    "trust": 470
   },
   {
     "source": "opensafer",
     "configs": 4,
-    "trust": 370
+    "trust": 390
   },
   {
-    "source": "iMTProxy_ir",
-    "configs": 1,
-    "trust": 91
+    "source": "proxystore11",
+    "configs": 4,
+    "trust": 390
+  },
+  {
+    "source": "v2rayvpnchannel",
+    "configs": 4,
+    "trust": 328
+  },
+  {
+    "source": "filtereshekan",
+    "configs": 3,
+    "trust": 268
   },
   {
     "source": "v2ray3",
