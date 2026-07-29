@@ -1,28 +1,28 @@
 [
   {
     "source": "iProxyChannel",
-    "configs": 148,
-    "trust": 14239
+    "configs": 146,
+    "trust": 13771
   },
   {
     "source": "v2ray_official",
-    "configs": 146,
-    "trust": 13625
+    "configs": 143,
+    "trust": 12937
   },
   {
     "source": "outline_vpn",
-    "configs": 133,
-    "trust": 12920
+    "configs": 134,
+    "trust": 12631
   },
   {
     "source": "v2rayconfigs",
     "configs": 122,
-    "trust": 12130
+    "trust": 12110
   },
   {
     "source": "v2raycollector",
-    "configs": 125,
-    "trust": 11016
+    "configs": 133,
+    "trust": 11330
   },
   {
     "source": "FilterShekanChannel",
@@ -30,34 +30,34 @@
     "trust": 3300
   },
   {
-    "source": "proxiteiegram",
-    "configs": 33,
-    "trust": 2766
+    "source": "irproxy",
+    "configs": 32,
+    "trust": 2666
   },
   {
     "source": "v2ray_configs_pool",
-    "configs": 26,
-    "trust": 2337
+    "configs": 27,
+    "trust": 2409
   },
   {
     "source": "V2RAY_SPATIAL",
     "configs": 23,
-    "trust": 2250
+    "trust": 2280
   },
   {
     "source": "vpnbaz",
     "configs": 20,
-    "trust": 1980
+    "trust": 1970
   },
   {
     "source": "V2RayRootFree",
     "configs": 11,
-    "trust": 1060
+    "trust": 1050
   },
   {
     "source": "Raiv2mmr",
     "configs": 10,
-    "trust": 950
+    "trust": 900
   },
   {
     "source": "v2ray_team",
@@ -70,24 +70,24 @@
     "trust": 570
   },
   {
-    "source": "v2rayvpnchannel",
-    "configs": 6,
-    "trust": 562
-  },
-  {
     "source": "v2rayng_channel",
     "configs": 5,
-    "trust": 490
+    "trust": 470
   },
   {
     "source": "opensafer",
     "configs": 4,
-    "trust": 380
+    "trust": 390
+  },
+  {
+    "source": "v2rayvpnchannel",
+    "configs": 4,
+    "trust": 344
   },
   {
     "source": "filtereshekan",
     "configs": 3,
-    "trust": 257
+    "trust": 250
   },
   {
     "source": "proxydaemi",
@@ -97,6 +97,6 @@
   {
     "source": "v2ray3",
     "configs": 1,
-    "trust": 89
+    "trust": 100
   }
 ]
