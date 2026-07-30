@@ -1,28 +1,28 @@
 [
   {
     "source": "iProxyChannel",
-    "configs": 153,
-    "trust": 14622
+    "configs": 155,
+    "trust": 14585
   },
   {
     "source": "v2ray_official",
-    "configs": 149,
-    "trust": 13554
+    "configs": 148,
+    "trust": 13086
   },
   {
     "source": "v2rayconfigs",
     "configs": 122,
-    "trust": 12120
+    "trust": 12130
   },
   {
     "source": "v2raycollector",
     "configs": 133,
-    "trust": 11918
+    "trust": 11930
   },
   {
     "source": "outline_vpn",
-    "configs": 124,
-    "trust": 11898
+    "configs": 127,
+    "trust": 11917
   },
   {
     "source": "FilterShekanChannel",
@@ -32,7 +32,7 @@
   {
     "source": "proxiteiegram",
     "configs": 34,
-    "trust": 2908
+    "trust": 2960
   },
   {
     "source": "V2RAY_SPATIAL",
@@ -42,22 +42,27 @@
   {
     "source": "vpnbaz",
     "configs": 22,
-    "trust": 2034
+    "trust": 2036
   },
   {
     "source": "v2ray_configs_pool",
     "configs": 14,
-    "trust": 1334
+    "trust": 1306
+  },
+  {
+    "source": "V2RayRootFree",
+    "configs": 11,
+    "trust": 941
   },
   {
     "source": "Raiv2mmr",
     "configs": 10,
-    "trust": 887
+    "trust": 879
   },
   {
     "source": "v2ray_team",
     "configs": 7,
-    "trust": 680
+    "trust": 700
   },
   {
     "source": "v2rayng_channel",
@@ -65,33 +70,33 @@
     "trust": 470
   },
   {
-    "source": "proxystore11",
-    "configs": 4,
-    "trust": 390
-  },
-  {
     "source": "opensafer",
     "configs": 4,
-    "trust": 390
+    "trust": 400
+  },
+  {
+    "source": "proxystore11",
+    "configs": 4,
+    "trust": 370
   },
   {
     "source": "v2rayvpnchannel",
     "configs": 4,
-    "trust": 368
+    "trust": 332
   },
   {
     "source": "filtereshekan",
     "configs": 3,
-    "trust": 241
+    "trust": 234
+  },
+  {
+    "source": "v2ray3",
+    "configs": 2,
+    "trust": 166
   },
   {
     "source": "proxydaemi",
     "configs": 2,
-    "trust": 162
-  },
-  {
-    "source": "v2ray3",
-    "configs": 1,
-    "trust": 84
+    "trust": 154
   }
 ]
