@@ -2,91 +2,91 @@
   {
     "source": "outline_vpn",
     "configs": 132,
-    "trust": 12554
+    "trust": 12835
   },
   {
     "source": "v2rayconfigs",
     "configs": 122,
-    "trust": 12120
+    "trust": 12130
+  },
+  {
+    "source": "v2ray_official",
+    "configs": 126,
+    "trust": 11624
   },
   {
     "source": "iProxyChannel",
     "configs": 117,
-    "trust": 11254
-  },
-  {
-    "source": "v2ray_official",
-    "configs": 123,
-    "trust": 11133
+    "trust": 11396
   },
   {
     "source": "v2raycollector",
-    "configs": 57,
-    "trust": 4925
+    "configs": 56,
+    "trust": 4918
   },
   {
     "source": "FilterShekanChannel",
     "configs": 33,
-    "trust": 3290
+    "trust": 3300
   },
   {
-    "source": "proxiteiegram",
-    "configs": 32,
-    "trust": 2718
+    "source": "irproxy",
+    "configs": 33,
+    "trust": 2882
   },
   {
     "source": "vpnbaz",
     "configs": 28,
-    "trust": 2531
+    "trust": 2606
   },
   {
     "source": "V2RAY_SPATIAL",
     "configs": 23,
-    "trust": 2260
+    "trust": 2280
   },
   {
     "source": "V2RayRootFree",
     "configs": 10,
-    "trust": 950
+    "trust": 980
   },
   {
     "source": "v2ray_team",
     "configs": 7,
-    "trust": 680
+    "trust": 690
   },
   {
     "source": "v2rayng_channel",
     "configs": 5,
-    "trust": 470
+    "trust": 490
   },
   {
     "source": "proxystore11",
     "configs": 4,
-    "trust": 390
+    "trust": 380
+  },
+  {
+    "source": "v2rayvpnchannel",
+    "configs": 4,
+    "trust": 369
   },
   {
     "source": "opensafer",
     "configs": 4,
-    "trust": 380
+    "trust": 360
   },
   {
     "source": "v2ray3",
     "configs": 3,
-    "trust": 247
-  },
-  {
-    "source": "v2rayvpnchannel",
-    "configs": 2,
-    "trust": 165
-  },
-  {
-    "source": "proxydaemi",
-    "configs": 2,
-    "trust": 160
+    "trust": 229
   },
   {
     "source": "filtereshekan",
     "configs": 2,
-    "trust": 153
+    "trust": 175
+  },
+  {
+    "source": "proxydaemi",
+    "configs": 2,
+    "trust": 170
   }
 ]
