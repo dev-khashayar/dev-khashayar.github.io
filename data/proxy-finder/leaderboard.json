@@ -2,27 +2,27 @@
   {
     "source": "v2ray_official",
     "configs": 169,
-    "trust": 15084
+    "trust": 15081
   },
   {
     "source": "outline_vpn",
-    "configs": 145,
-    "trust": 13537
+    "configs": 144,
+    "trust": 13485
   },
   {
     "source": "v2rayconfigs",
     "configs": 122,
-    "trust": 12130
+    "trust": 12100
   },
   {
     "source": "iProxyChannel",
     "configs": 113,
-    "trust": 10807
+    "trust": 10829
   },
   {
     "source": "v2raycollector",
     "configs": 107,
-    "trust": 9479
+    "trust": 9498
   },
   {
     "source": "V2RAY_SPATIAL",
@@ -30,39 +30,34 @@
     "trust": 4870
   },
   {
-    "source": "v2ray_configs_pool",
-    "configs": 42,
-    "trust": 3620
-  },
-  {
     "source": "FilterShekanChannel",
     "configs": 33,
-    "trust": 3290
+    "trust": 3300
   },
   {
-    "source": "proxiteiegram",
+    "source": "irproxy",
     "configs": 36,
-    "trust": 3198
+    "trust": 3154
   },
   {
     "source": "vpnbaz",
     "configs": 28,
-    "trust": 2471
+    "trust": 2493
   },
   {
     "source": "V2RayRootFree",
     "configs": 8,
-    "trust": 780
-  },
-  {
-    "source": "ParsProxyIr",
-    "configs": 9,
-    "trust": 717
+    "trust": 770
   },
   {
     "source": "v2ray_team",
     "configs": 7,
-    "trust": 680
+    "trust": 700
+  },
+  {
+    "source": "ParsProxyIr",
+    "configs": 9,
+    "trust": 686
   },
   {
     "source": "v2rayng_channel",
@@ -72,12 +67,12 @@
   {
     "source": "pro_proxy_ir",
     "configs": 5,
-    "trust": 410
+    "trust": 415
   },
   {
     "source": "proxystore11",
     "configs": 4,
-    "trust": 390
+    "trust": 380
   },
   {
     "source": "opensafer",
@@ -92,16 +87,21 @@
   {
     "source": "v2rayvpnchannel",
     "configs": 4,
-    "trust": 328
+    "trust": 332
+  },
+  {
+    "source": "v2ray_configs_pool",
+    "configs": 3,
+    "trust": 275
   },
   {
     "source": "v2ray3",
     "configs": 3,
-    "trust": 261
+    "trust": 233
   },
   {
     "source": "filtereshekan",
     "configs": 1,
-    "trust": 83
+    "trust": 84
   }
 ]
