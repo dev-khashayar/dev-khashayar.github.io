@@ -1,33 +1,38 @@
 [
   {
     "source": "iProxyChannel",
-    "configs": 167,
-    "trust": 16393
+    "configs": 168,
+    "trust": 16179
   },
   {
     "source": "outline_vpn",
     "configs": 153,
-    "trust": 14796
+    "trust": 14247
   },
   {
     "source": "v2rayconfigs",
     "configs": 122,
-    "trust": 12081
+    "trust": 12094
   },
   {
     "source": "v2ray_official",
-    "configs": 115,
-    "trust": 10814
-  },
-  {
-    "source": "v2raycollector",
-    "configs": 80,
-    "trust": 7328
+    "configs": 128,
+    "trust": 11462
   },
   {
     "source": "V2RAY_SPATIAL",
     "configs": 49,
     "trust": 4890
+  },
+  {
+    "source": "v2raycollector",
+    "configs": 53,
+    "trust": 4611
+  },
+  {
+    "source": "vpnbaz",
+    "configs": 39,
+    "trust": 3449
   },
   {
     "source": "FilterShekanChannel",
@@ -36,23 +41,13 @@
   },
   {
     "source": "v2ray_configs_pool",
-    "configs": 36,
-    "trust": 3113
-  },
-  {
-    "source": "vpnbaz",
-    "configs": 31,
-    "trust": 2918
+    "configs": 33,
+    "trust": 2842
   },
   {
     "source": "irproxy",
     "configs": 32,
-    "trust": 2844
-  },
-  {
-    "source": "V2RayRootFree",
-    "configs": 8,
-    "trust": 780
+    "trust": 2800
   },
   {
     "source": "v2ray_team",
@@ -60,19 +55,19 @@
     "trust": 690
   },
   {
+    "source": "V2RayRootFree",
+    "configs": 7,
+    "trust": 680
+  },
+  {
     "source": "ParsProxyIr",
     "configs": 7,
-    "trust": 590
+    "trust": 580
   },
   {
     "source": "v2rayng_channel",
     "configs": 5,
-    "trust": 500
-  },
-  {
-    "source": "opensafer",
-    "configs": 4,
-    "trust": 390
+    "trust": 470
   },
   {
     "source": "proxystore11",
@@ -80,28 +75,33 @@
     "trust": 390
   },
   {
-    "source": "v2rayvpnchannel",
+    "source": "opensafer",
     "configs": 4,
-    "trust": 368
+    "trust": 380
   },
   {
     "source": "proxydaemi",
     "configs": 4,
-    "trust": 324
+    "trust": 318
   },
   {
     "source": "v2ray3",
     "configs": 3,
-    "trust": 259
+    "trust": 261
   },
   {
     "source": "vless_ir",
     "configs": 2,
-    "trust": 184
+    "trust": 186
+  },
+  {
+    "source": "v2rayvpnchannel",
+    "configs": 1,
+    "trust": 84
   },
   {
     "source": "filtereshekan",
     "configs": 1,
-    "trust": 81
+    "trust": 82
   }
 ]
