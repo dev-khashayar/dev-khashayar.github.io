@@ -1,33 +1,33 @@
 [
   {
     "source": "iProxyChannel",
-    "configs": 198,
-    "trust": 19153
+    "configs": 199,
+    "trust": 19281
   },
   {
     "source": "outline_vpn",
-    "configs": 155,
-    "trust": 14170
+    "configs": 157,
+    "trust": 14328
   },
   {
     "source": "v2ray_official",
-    "configs": 153,
-    "trust": 13917
+    "configs": 155,
+    "trust": 14124
   },
   {
     "source": "v2rayconfigs",
-    "configs": 122,
-    "trust": 12082
+    "configs": 121,
+    "trust": 12003
   },
   {
     "source": "v2raycollector",
-    "configs": 116,
-    "trust": 10317
+    "configs": 117,
+    "trust": 10507
   },
   {
     "source": "V2RAY_SPATIAL",
     "configs": 49,
-    "trust": 4880
+    "trust": 4850
   },
   {
     "source": "FilterShekanChannel",
@@ -35,24 +35,24 @@
     "trust": 3300
   },
   {
-    "source": "proxiteiegram",
+    "source": "irproxy",
     "configs": 36,
-    "trust": 3142
+    "trust": 3090
   },
   {
     "source": "v2ray_configs_pool",
-    "configs": 33,
-    "trust": 2811
+    "configs": 34,
+    "trust": 2932
   },
   {
     "source": "vpnbaz",
-    "configs": 15,
-    "trust": 1404
+    "configs": 14,
+    "trust": 1323
   },
   {
     "source": "v2ray_team",
     "configs": 7,
-    "trust": 680
+    "trust": 690
   },
   {
     "source": "V2RayRootFree",
@@ -62,7 +62,7 @@
   {
     "source": "pro_proxy_ir",
     "configs": 6,
-    "trust": 540
+    "trust": 550
   },
   {
     "source": "v2rayng_channel",
@@ -75,24 +75,24 @@
     "trust": 380
   },
   {
-    "source": "v2rayvpnchannel",
-    "configs": 4,
-    "trust": 334
-  },
-  {
     "source": "proxydaemi",
     "configs": 4,
-    "trust": 320
-  },
-  {
-    "source": "filtereshekan",
-    "configs": 4,
-    "trust": 302
+    "trust": 330
   },
   {
     "source": "v2ray3",
     "configs": 3,
     "trust": 270
+  },
+  {
+    "source": "v2rayvpnchannel",
+    "configs": 2,
+    "trust": 174
+  },
+  {
+    "source": "filtereshekan",
+    "configs": 2,
+    "trust": 160
   },
   {
     "source": "ParsProxyIr",
