@@ -1,83 +1,88 @@
 [
   {
     "source": "iProxyChannel",
-    "configs": 200,
-    "trust": 17620
+    "configs": 201,
+    "trust": 18251
   },
   {
     "source": "v2ray_official",
-    "configs": 155,
-    "trust": 14279
+    "configs": 158,
+    "trust": 14956
   },
   {
     "source": "outline_vpn",
-    "configs": 160,
-    "trust": 13370
+    "configs": 157,
+    "trust": 14073
   },
   {
     "source": "v2rayconfigs",
     "configs": 122,
-    "trust": 11012
+    "trust": 11164
   },
   {
     "source": "v2raycollector",
-    "configs": 88,
-    "trust": 7308
+    "configs": 120,
+    "trust": 10318
   },
   {
     "source": "V2RAY_SPATIAL",
     "configs": 49,
-    "trust": 4439
+    "trust": 4468
   },
   {
     "source": "FilterShekanChannel",
     "configs": 33,
-    "trust": 3300
+    "trust": 3290
   },
   {
     "source": "proxiteiegram",
     "configs": 36,
-    "trust": 3180
+    "trust": 3254
   },
   {
     "source": "v2ray_configs_pool",
     "configs": 34,
-    "trust": 2864
+    "trust": 2998
   },
   {
     "source": "vpnbaz",
     "configs": 19,
-    "trust": 1785
+    "trust": 1798
   },
   {
     "source": "v2ray_team",
     "configs": 7,
-    "trust": 637
+    "trust": 634
   },
   {
     "source": "V2RayRootFree",
     "configs": 7,
-    "trust": 607
+    "trust": 634
   },
   {
     "source": "pro_proxy_ir",
     "configs": 6,
-    "trust": 550
+    "trust": 600
   },
   {
     "source": "v2rayng_channel",
     "configs": 5,
-    "trust": 470
+    "trust": 480
   },
   {
     "source": "proxystore11",
     "configs": 4,
-    "trust": 380
+    "trust": 390
+  },
+  {
+    "source": "v2rayvpnchannel",
+    "configs": 4,
+    "trust": 374
   },
   {
     "source": "proxydaemi",
     "configs": 4,
-    "trust": 304
+    "trust": 318
   },
   {
     "source": "v2ray3",
@@ -87,16 +92,11 @@
   {
     "source": "filtereshekan",
     "configs": 2,
-    "trust": 170
-  },
-  {
-    "source": "v2rayvpnchannel",
-    "configs": 2,
-    "trust": 170
+    "trust": 160
   },
   {
     "source": "ParsProxyIr",
     "configs": 1,
-    "trust": 71
+    "trust": 72
   }
 ]
