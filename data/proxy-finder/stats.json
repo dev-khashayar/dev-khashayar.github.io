@@ -4,8 +4,8 @@
   "total_messages_scraped": 1190,
   "proxies_new": 0,
   "proxies_duplicate": 0,
-  "proxies_alive": 1048,
+  "proxies_alive": 1025,
   "proxies_dead": 495,
-  "total_configs": 1000,
-  "generated_at": "2026-08-21T01:57:56Z"
+  "total_configs": 989,
+  "generated_at": "2026-08-21T03:06:15Z"
 }
