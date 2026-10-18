@@ -1,11 +1,11 @@
 {
   "channels_checked": 201,
   "channels_failed": 0,
-  "total_messages_scraped": 1141,
+  "total_messages_scraped": 1123,
   "proxies_new": 0,
   "proxies_duplicate": 0,
-  "proxies_alive": 953,
-  "proxies_dead": 449,
-  "total_configs": 901,
-  "generated_at": "2026-10-18T01:03:13Z"
+  "proxies_alive": 960,
+  "proxies_dead": 444,
+  "total_configs": 910,
+  "generated_at": "2026-10-18T05:47:17Z"
 }
