@@ -1,53 +1,53 @@
 [
   {
-    "source": "v2ray_official",
-    "configs": 243,
-    "trust": 21200
+    "source": "outline_vpn",
+    "configs": 210,
+    "trust": 19308
   },
   {
-    "source": "outline_vpn",
-    "configs": 202,
-    "trust": 18756
+    "source": "v2ray_official",
+    "configs": 211,
+    "trust": 18318
   },
   {
     "source": "iProxyChannel",
-    "configs": 172,
-    "trust": 16235
+    "configs": 170,
+    "trust": 16097
   },
   {
     "source": "v2rayconfigs",
     "configs": 120,
-    "trust": 11900
+    "trust": 11930
   },
   {
     "source": "v2raycollector",
-    "configs": 73,
-    "trust": 6330
-  },
-  {
-    "source": "proxiteiegram",
-    "configs": 40,
-    "trust": 3371
+    "configs": 83,
+    "trust": 6982
   },
   {
     "source": "FilterShekanChannel",
     "configs": 33,
-    "trust": 3290
+    "trust": 3300
+  },
+  {
+    "source": "irproxy",
+    "configs": 39,
+    "trust": 3255
   },
   {
     "source": "proxymtprotoir",
-    "configs": 30,
-    "trust": 2533
+    "configs": 32,
+    "trust": 2715
   },
   {
     "source": "vpnbaz",
-    "configs": 27,
-    "trust": 2342
+    "configs": 28,
+    "trust": 2440
   },
   {
     "source": "proxystore11",
-    "configs": 23,
-    "trust": 2138
+    "configs": 24,
+    "trust": 2236
   },
   {
     "source": "V2RayRootFree",
@@ -55,14 +55,24 @@
     "trust": 860
   },
   {
-    "source": "v2ray3",
+    "source": "v2rayvpnchannel",
     "configs": 8,
-    "trust": 709
+    "trust": 657
   },
   {
     "source": "v2ray_team",
     "configs": 6,
-    "trust": 590
+    "trust": 600
+  },
+  {
+    "source": "v2ray3",
+    "configs": 7,
+    "trust": 580
+  },
+  {
+    "source": "proxydaemi",
+    "configs": 7,
+    "trust": 578
   },
   {
     "source": "v2rayng_channel",
@@ -70,18 +80,8 @@
     "trust": 470
   },
   {
-    "source": "v2rayvpnchannel",
-    "configs": 5,
-    "trust": 409
-  },
-  {
-    "source": "proxydaemi",
-    "configs": 3,
-    "trust": 251
-  },
-  {
-    "source": "iMTProxy_ir",
+    "source": "feriproxy",
     "configs": 1,
-    "trust": 93
+    "trust": 94
   }
 ]
